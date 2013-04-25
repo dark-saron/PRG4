@@ -1,11 +1,12 @@
 Kriterium			Wertung	 	Bemerkung
-Erweiterbarkeit		2		
+						1 (sehr wichtig) - 4 (unwichtig)
+Erweiterbarkeit			2		
 Backups				3
-Portierbarkeit		4
+Portierbarkeit			4
 Effizienz			2
-Skalierbarkeit		3			
-Benutzbarkeit		2			
+Skalierbarkeit			3			
+Benutzbarkeit			2			
 Datenschutz			3
-Änderbarkeit		2
-Zuverlässigkeit		1
-Funktionalität		1
+Änderbarkeit			2
+Zuverlässigkeit			1
+Funktionalität			1
