@@ -10,5 +10,5 @@ Produktleistungen
 
 /LL 50/Verfügbarkeit: Es muss sicher gestellt sein das der Server immer erreichbar ist
 
-/LL 60/Archivierung:n 
+/LL 60/Archivierung: Dokumente wie Rechnungen werden permanent im System gesichert
 
