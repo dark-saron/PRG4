@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2013-03-27" view-index="0" gantt-divider-location="353" resource-divider-location="300" version="2.0" locale="de_DE">
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2013-05-28" view-index="0" gantt-divider-location="353" resource-divider-location="300" version="2.0" locale="de">
     <description/>
     <view zooming-state="default:2" id="gantt-chart">
         <field id="tpd3" name="Vorgang" width="57" order="0"/>
@@ -9,7 +9,7 @@
     </view>
     <view id="resource-table">
         <field id="0" name="Ressource" width="50" order="0"/>
-        <field id="1" name="Rolle" width="49" order="1"/>
+        <field id="1" name="Rolle" width="50" order="1"/>
     </view>
     <!-- -->
     <calendars>
@@ -49,6 +49,8 @@
         </task>
         <task id="17" name="Entwicklung / Implementierung" color="#8cb6ce" meeting="false" start="2013-04-30" duration="37" complete="0" expand="true">
             <task id="20" name="Datenbank anlegen" color="#8cb6ce" meeting="false" start="2013-04-30" duration="3" complete="0" expand="true"/>
+            <task id="27" name="DBController-Funktionen" color="#8cb6ce" meeting="false" start="2013-05-13" duration="20" complete="0" expand="true"/>
+            <task id="26" name="GUI" color="#8cb6ce" meeting="false" start="2013-05-13" duration="26" complete="0" expand="true"/>
             <task id="19" name="Korrekturen" color="#8cb6ce" meeting="false" start="2013-05-14" duration="27" complete="0" expand="true"/>
             <task id="18" name="Testen" color="#8cb6ce" meeting="false" start="2013-05-13" duration="27" complete="0" expand="true"/>
         </task>
