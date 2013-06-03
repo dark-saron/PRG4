@@ -1,0 +1,3 @@
+Ich hab hier mal die grundsätzlichen Funktionen der Modelklassen erstellt (erstellen lassen)
+- rate  jedoch dringend von einer übermäßigen Nutzung ab 
+- am besten auf die nutzung einer Klasse beschränken (falls noch grundsätzlich Strukturänderungen stattfinden)

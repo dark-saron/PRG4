@@ -1,0 +1,18 @@
+ClassDBController.txt:
+Derzeitige fertige Funktionen für die Datenbank.
+
+mydb.sql:
+Skript zur Erstellung des Datenbankschemas mit Beispieldatensätzen.
+Zum Benutzen in der Workbench mit dem mySQL-Server verbinden und ein neues Schema unter benutzung dieses Skripts generieren.
+
+mysql-connector-java:
+In Eclipse im Package unter "Build-Path" als zu referenzierendes library die "mysql-connector-java-5.1.25-bin.jar" einbinden.
+
+MYSQL:
+http://dev.mysql.com/downloads/mysql/
+
+Community Server 5.6.11 (~200MB, installer für windows benutzen)
+falls nicht dabei:
+http://dev.mysql.com/downloads/tools/workbench/5.2.html
+
+Mehr sollte nicht nötig sein!
