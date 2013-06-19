@@ -1,4 +1,4 @@
-package de.fhe.ai.prg4;
+package de.fhe.ai.prg4.io_database;
 import java.sql.*;
 
 import com.mysql.*;
@@ -12,6 +12,7 @@ public class DBManager {
 	static final String PASSWORT 			= "";
 	
 	private static  Connection 	CONNECTION	= null;
+	
 	private static Statement STATEMENT 		= null;
 	private static ResultSet RESULT_SET 	= null;;
 		
@@ -19,19 +20,25 @@ public class DBManager {
 	// called once!!! at start
 	public static void open(){
 		try {
+			Class.forName(PATH_DRIVER_JDBC).newInstance();
 			CONNECTION 	= DriverManager.getConnection(PATH_DB,USER,PASSWORT);
 			STATEMENT 	= CONNECTION.createStatement();
+
+		
 		} catch (Exception e) {	
 			e.printStackTrace();
 		}
 	}
+	
 	// called once!!! at the end
 	public static void close(){
 		
 		try {			
+			
 			if (RESULT_SET != null){
 			RESULT_SET.close();
 			}
+			
 			STATEMENT.close();
 			CONNECTION.close();		
 		
@@ -40,9 +47,16 @@ public class DBManager {
 		}
 	}
 	
+	
+
 	public static void getResultSet (String _query){
+		
+
+		
 		try {
+			
 			RESULT_SET = STATEMENT.executeQuery(_query);
+			
 			////////////////////// TESTZWECKE
 			while(RESULT_SET.next())
 			{
@@ -50,12 +64,33 @@ public class DBManager {
 				 System.out.println(RESULT_SET.getString("Username") );
 			}
 			////////////////////////
+			
 			STATEMENT.close();
+
+			
 		} catch (Exception e) {	
 			e.printStackTrace();
 		}
+		
+
 	}
+	
+	
+
+	
 	//public List<String> 
+	
+public static void main (String[] args){
+		
+		DBManager DBM = new DBManager();
+		
+		DBM.open();
+		DBM.getResultSet("SELECT * FROM user");
+		DBM.close();
+		
+}
+	
+
 }
 
 
