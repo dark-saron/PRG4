@@ -2,7 +2,7 @@ package de.fhe.ai.prg4.controller;
 
 import java.util.LinkedList;
 
-import de.fhe.ai.prg4.database_io.DBManager;
+import de.fhe.ai.prg4.io_database.DBManager;
 import de.fhe.ai.prg4.model.Article;
 
 /**
