@@ -1,0 +1,42 @@
+/*public static void getResultSet (String _query){
+		try {
+			
+			RESULT_SET = STATEMENT.executeQuery(_query);
+			
+			////////////////////// TESTZWECKE
+			while(RESULT_SET.next())
+			{
+				 System.out.println(RESULT_SET.toString() );
+				 System.out.println(RESULT_SET.getString("pw") );
+			}
+			////////////////////////
+			
+			STATEMENT.close();
+
+			
+		} catch (Exception e) {	
+			e.printStackTrace();
+		}
+		
+
+	}
+	
+	---------------------------------------------------------
+	*/
+	
+	// wird durch view in der Logik aufgerufen
+		//List<Article> list1 = DBM.queryAllArticles();
+					
+		// Logik verarbeitet Liste zu einem Artikel
+		
+		/*for (Article article : list1) {
+			system.out.println(article.getID());
+		}
+		//andere Lösung um Liste auf Artikel abzubilden:
+		  Article article=(list1.get(1));
+		//System.out.print(article.getId());
+		*/
+		
+	----------------------------------------------------------
+	
+	

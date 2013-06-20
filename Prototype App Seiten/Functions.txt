@@ -1,0 +1,25 @@
+alle Artikel anzeigen	-->fertig
+Artikel Details anzeigen (Article queryArticleDetails (id))
+Artikel anlegen	(boolean queryInsertArticle (article))
+Artikel ändern	(boolean queryUpdateArticle (article))
+Artikel löschen	(boolean queryDeleteArticle (id))
+
+alle Angebote anzeigen (ID, Article ID zu Name, status, UserID)
+Angebots-Details anzeigen (Offer queryAllOffers (id))
+Angebote anlegen	(queryInsertOffer)
+Angebote ändern		(queryUpdateOffer)
+Angebote löschen	(queryDeleteOffer)
+
+alle Kontakte anzeigen	(queryAllContacts)
+Kontakt-Details anzeigen (queryContactDetails)
+Kontakt anlegen	(queryInsertContact)
+Kontakt ändern	(queryUpdateContact)
+Kontakt löschen	(queryDeleteContact)
+
+Login (boolean queryLogin (Username + Passwort überprüfen))
+
+Rechnung anzeigen (Bill queryBill (Offer_ID)
+Rechnung erstellen(boolean queryInsertBill (Offer_ID)
+Rechnung existiert (boolean queryExistBill (Offer_ID)
+
+(Artikel suchen)
