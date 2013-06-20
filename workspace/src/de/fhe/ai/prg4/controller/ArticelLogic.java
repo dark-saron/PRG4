@@ -33,10 +33,17 @@ public class ArticelLogic {
 	}
 	
 	//anlegen eines neuen Artikeln
-	public boolean setArticle(int id, String type, String description, String place, String name,
+	public boolean setNewArticle(int id, String type, String description, String place, String name,
 			String photo, String ean_Isbn, String externalId)
 	{
 		Article art = new Article(id, type, description, place, name, photo, ean_Isbn, externalId);
+		//db connection um ein insert aufzurufen
+		return true;
+	}
+	
+	//bearbeiten eines Artikeln
+	public boolean setArticle(Article article)
+	{
 		//db connection um ein insert aufzurufen
 		return true;
 	}

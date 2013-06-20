@@ -1,4 +1,4 @@
-package de.fhe.ai.prg4;
+package de.fhe.ai.prg4.view;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,17 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class HelloWorldServlet
+ * Servlet implementation class OfferNew
  */
-@WebServlet("/HelloWorldServlet")
-public class HelloWorldServlet extends HttpServlet {
+@WebServlet("/OfferNew")
+public class OfferNew extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String GET_PARAMETER_FIRSTNAME = "firstname";
-	private static final String GET_PARAMETER_LASTNAME = "lastname";   
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HelloWorldServlet() {
+    public OfferNew() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,13 +25,11 @@ public class HelloWorldServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String firstname = req.getParameter( GET_PARAMETER_FIRSTNAME );
-		String lastname = req.getParameter( GET_PARAMETER_LASTNAME );
+	protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType( "text/html;charset=UTF-8" );
 		resp.getOutputStream().println( "<html><body>" );
 		resp.getOutputStream().println( "<p><b><i>" );
-		resp.getOutputStream().println( "Hello World" );
+		resp.getOutputStream().println( "New Offer Page" );
 		resp.getOutputStream().println( "</p></i></b>" );
 		resp.getOutputStream().println( "</body></html>" );
 	}

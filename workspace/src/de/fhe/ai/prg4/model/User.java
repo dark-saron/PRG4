@@ -1,5 +1,11 @@
 package de.fhe.ai.prg4.model;
 
+/**
+ * 
+ * @author Daniel W.
+ *
+ */
+
 public class User {
 	
 	private int Id;
@@ -12,6 +18,14 @@ public class User {
 		Id = id;
 		Username = username;
 		Pw = pw;
+	}
+
+
+	public User(String username, String pW) {
+		super();
+		Id = -1;
+		Username = username;
+		Pw = pW;
 	}
 
 

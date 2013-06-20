@@ -16,20 +16,30 @@ import de.fhe.ai.prg4.model.Article;
  */
 
 public class ArticelListLogic {
+	
+	LinkedList<Article> list = new LinkedList<Article>();
 	public LinkedList<Article> getArticleList()
 	{
-		if(DBManager.queryAllArticle() == null)
-			return null;
+		DBManager.open();
+		LinkedList<Article> list =  DBManager.queryAllArticle();
+		DBManager.close();
 		
-		return DBManager.queryAllArticle();
+		return list;
 	}
 	
-	public LinkedList<Article> setArticleList()
-	{
-		if(DBManager.queryAllArticle() == null)
-			return null;
-		
-		return DBManager.queryAllArticle();
+	//future feature
+	public LinkedList<Article> orderArticleList(int order)
+	{	
+		//call of db funktion to get list with articles with order []
+		return null;
 	}
+	
+	public LinkedList<Article> filterArticleList(int filter)
+	{
+		//call of db funktion to get list with articles with filter []
+		return null;
+	}
+	
+	
 	
 }
