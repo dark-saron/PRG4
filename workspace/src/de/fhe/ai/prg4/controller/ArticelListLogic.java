@@ -16,12 +16,12 @@ import de.fhe.ai.prg4.model.Article;
  */
 
 public class ArticelListLogic {
-	
+	DBManager dbManager = new DBManager();
 	LinkedList<Article> list = new LinkedList<Article>();
 	public LinkedList<Article> getArticleList()
 	{
 		DBManager.open();
-		LinkedList<Article> list =  DBManager.queryAllArticle();
+		LinkedList<Article> list =  dbManager.queryAllArticles();
 		DBManager.close();
 		
 		return list;
