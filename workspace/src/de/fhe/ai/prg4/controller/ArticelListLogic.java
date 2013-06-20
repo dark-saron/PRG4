@@ -17,6 +17,7 @@ import de.fhe.ai.prg4.model.Article;
 
 public class ArticelListLogic {
 	
+	LinkedList<Article> list = new LinkedList<Article>();
 	public LinkedList<Article> getArticleList()
 	{
 		DBManager.open();

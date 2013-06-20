@@ -13,10 +13,6 @@
     <servlet-name>HelloWorldServlet</servlet-name>
     <servlet-class>de.fhe.ai.prg4.HelloWorldServlet</servlet-class>
   </servlet>
-   <servlet>
-    <servlet-name>ArticleListServlet</servlet-name>
-    <servlet-class>de.fhe.ai.prg4.view.ActicleList</servlet-class>
-  </servlet>
   <servlet>
     <servlet-name>UserQuery</servlet-name>
     <servlet-class>QueryServlet</servlet-class>
@@ -25,11 +21,8 @@
     <servlet-name>HelloWorldServlet</servlet-name>
     <url-pattern>/hello</url-pattern>
   </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>ArticleListServlet</servlet-name>
-    <url-pattern>/ArticleList</url-pattern>
-  </servlet-mapping>
-
+  
+  
   <servlet-mapping>
     <servlet-name>UserQuery</servlet-name>
     <url-pattern>/query</url-pattern>
