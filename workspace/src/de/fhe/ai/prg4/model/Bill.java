@@ -32,6 +32,12 @@ public class Bill {
 	}
 
 
+	public Bill() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+
 	public int getId() {
 		return Id;
 	}

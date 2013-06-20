@@ -33,6 +33,13 @@ public class Offer {
 	}
 
 
+	public Offer() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+
 	public int getId() {
 		return Id;
 	}

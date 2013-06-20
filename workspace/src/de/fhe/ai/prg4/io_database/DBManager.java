@@ -104,9 +104,10 @@ public class DBManager {
 	
 	public LinkedList<Offer> queryAllOffers(int UserID){
 		try {
-			/*RESULT_SET = STATEMENT.executeQuery("SELECT ID,Type,Name FROM article");
-			
 			LinkedList<Offer> list1 = new LinkedList<Offer>();
+			
+			RESULT_SET = STATEMENT.executeQuery("SELECT ID,Type,Name FROM article");
+			/*
 			Offer offer;
 			while (RESULT_SET.next()){
 				offer = new Offer();
@@ -116,8 +117,8 @@ public class DBManager {
 				article.setName(RESULT_SET.getString("Name"));
 				list1.add(article);
 				
-			}
-			return list1;*/
+			}*/
+			return list1;
 		}
 		catch (SQLException e){
 			System.out.println(e);
@@ -149,10 +150,11 @@ public class DBManager {
 	
 	public LinkedList<Contact> queryAllContacts(int UserID){
 		try {
-			/*RESULT_SET = STATEMENT.executeQuery("SELECT ID,Type,Name FROM article");
+			RESULT_SET = STATEMENT.executeQuery("SELECT ID,Type,Name FROM article");
 			
-			LinkedList<Offer> list1 = new LinkedList<Offer>();
-			Offer offer;
+			LinkedList<Contact> list1 = new LinkedList<Contact>();
+			
+			/*Offer offer;
 			while (RESULT_SET.next()){
 				offer = new Offer();
 				//System.out.println(RESULT_SET.getInt("ID"));
@@ -161,13 +163,13 @@ public class DBManager {
 				article.setName(RESULT_SET.getString("Name"));
 				list1.add(article);
 				
-			}
-			return list1;*/
+			}*/
+			return list1;
 		}
 		catch (SQLException e){
 			System.out.println(e);
 			return null;
-		}	
+		}
 	}
 	
 	public Contact queryContactDetails(int ID){ //ID von Contact
@@ -215,7 +217,7 @@ public class DBManager {
 	}
 
 	
-public static void main (String[] args){
+/*public static void main (String[] args){
 		
 		DBManager DBM = new DBManager();
 		
@@ -223,7 +225,7 @@ public static void main (String[] args){
 		
 		DBM.close();
 		
-}
+}*/
 	
 
 }
