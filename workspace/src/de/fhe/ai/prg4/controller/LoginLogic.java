@@ -1,6 +1,6 @@
 package de.fhe.ai.prg4.controller;
 
-import de.fhe.ai.prg4.database_io.DBManager;
+import de.fhe.ai.prg4.io_database.DBManager;
 
 public class LoginLogic {
 
