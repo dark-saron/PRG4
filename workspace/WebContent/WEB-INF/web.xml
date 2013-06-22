@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+<web-app 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" 
+	id="WebApp_ID" 
+	version="3.0"
+>
   <display-name>flogit_web</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
@@ -20,6 +27,15 @@
   </servlet-mapping>
 
   <servlet>
+    <servlet-name>OfferNew</servlet-name>
+    <jsp-file>/OfferNew.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OfferNew</servlet-name>
+    <url-pattern>/NewOffer</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
     <servlet-name>Article</servlet-name>
     <jsp-file>/ArticleDetails.jsp</jsp-file>
   </servlet>
@@ -28,5 +44,13 @@
     <url-pattern>/ArticleDetails</url-pattern>
   </servlet-mapping>
 
-  
+  <servlet>
+    <servlet-name>Offer</servlet-name>
+    <jsp-file>/OfferDetails.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Offer</servlet-name>
+    <url-pattern>/OfferDetails</url-pattern>
+  </servlet-mapping>
+
 </web-app>

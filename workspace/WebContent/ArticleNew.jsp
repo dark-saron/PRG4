@@ -7,13 +7,19 @@
 <title>Neuer Artikel</title>
 </head>
 <body>
-<form action="Article" method="post">
+<form action="psNA" method="post">
 <table>
     <tr><td><b>Name:</b>	</td><td><input type="text" name="name"></td></tr>
     <tr><td><b>Type(Dropdown): </b></td><td><input type="text" name="type"></td></tr>
     <tr><td><b>Beschreibung: </b></td><td><input type="text" name="description"></td></tr>
-    <tr><td><b>ISBN: </b></td><td><input type="text" name="ISBN"></td></tr>
+    <tr><td><b>EAN/ISBN: </b></td><td><input type="text" name="ean_isbn"></td></tr>
+    <tr><td><b>Shop Url: </b></td><td><input type="text" name="externalID"></td></tr>
+    <tr><td><b>Lager: </b></td><td><input type="text" name="place"></td></tr>
+
+
     <tr><td><b>Artikel erstellen: </b></td><td><input type="submit" value="article"></td></tr>
+
+
 </table><br>    
     
     <span class="error">${error}</span>

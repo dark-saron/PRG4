@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link href="CSS/style.css" rel="stylesheet" type="text/css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Artikel Details</title>
+<title>Insert title here</title>
 </head>
 <body>
 <div id='navi'>
@@ -15,34 +15,27 @@
     <span style='float:left;padding-right:5%'><h2><a href='/flogit_web/ContactList'>Kontakte</a></h2></span>
     </div></div>
 		
-		<div style='float:left; padding:5% 20%'>
+		<div style='float:left; padding:5% 20%''>
 <div id='content' style='margin:auto; width:800px'>
-<table id="details" width='500' border='1'>
 
-		
-			<tr>
-			<td ><b>ID:</b></td>
-			<td >	-1</td>
-			</tr>
-			<tr>
-			<td><b>Name:</b></td>
-			<td>	MusterName</td>
-			</tr>
-			<tr>
-			<td style='text-align:center'><b>	Type:</b></td>
-			<td style='text-align:left'>	MusterType</td>
-			</tr>
-						<tr>
-			<td style='text-align:center'><b>Beschreibung:</b></td>
-			<td style='text-align:center'>	Musterbeschreibung</td>
-			</tr>
-			
-		
-		</table>
-		<div style='float:left; padding:5% 0%'>
-			<button>Bearbeiten</button>
-			<button>Löschen</button>
-		</div></div></div>
-		
+<table width='600' border=1>
+	<tr>
+		<th scope='col'><b>ID</b></th>
+		<th scope='col'><b>Name</b></th>
+		<th scope='col'><b>Type</b></th>
+		<th scope='col'><b>Details</b></th>
+	</tr>
+  <c:forEach items="${artList}" var="art" varStatus="loop">
+    <tr>
+      <td><c:out value="${art.getId()}" /></td>
+      <td><c:out value="${art.getName()}" /></td>
+      <td><c:out value="${art.getType()}" /></td>
+      <td><a href='/flogit_web/ArticleDetails'>Show Details</a></td>
+    </tr>
+  </c:forEach>
+</table>
+
+</div>
+<a href='/flogit_web/NewArticle'>Erstelle Artikel</a></div></div>
 </body>
 </html>

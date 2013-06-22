@@ -18,6 +18,13 @@ import de.fhe.ai.prg4.model.Article;
 
 public class ArticelLogic {
 
+	private DBManager dbManager;
+	
+	public ArticelLogic()
+	{
+		dbManager = new DBManager();
+		
+	}
 	public boolean deleteArticle(int artID)
 	{
 		if(artID == -1)
@@ -36,15 +43,22 @@ public class ArticelLogic {
 	public boolean setNewArticle(int id, String type, String description, String place, String name,
 			String photo, String ean_Isbn, String externalId)
 	{
+		//TODO: überprüfung des unhaltes
 		Article art = new Article(id, type, description, place, name, photo, ean_Isbn, externalId);
+		boolean status;
+		
 		//db connection um ein insert aufzurufen
-		return true;
+		dbManager.open();
+		status = dbManager.queryInsertArticle(art);
+		dbManager.close();
+		
+		return status;
 	}
 	
 	//bearbeiten eines Artikeln
 	public boolean setArticle(Article article)
 	{
 		//db connection um ein insert aufzurufen
-		return true;
+		return dbManager.queryInsertArticle(article);
 	}
 }
