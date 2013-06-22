@@ -7,18 +7,19 @@ public class Offer {
 	private int 	Id;
 	private float 	Startsaleprice;
 	private float	Buynowprice;
-	private Date 	Start;
-	private	Date	End;
+	private String 	Start;
+	private	String	End;
 	private String	Url;
 	private	int		Status;
 	private	int		Creator_User_Id;
 	private	int		Article_Id;
 	private String	Article_Name;
+	private String	Auctionhouse;
 	
 	
-	public Offer(int id, float startsaleprice, float buynowprice, Date start,
-			Date end, String url, int status, int creator_User_Id,
-			int article_Id, String	Article_Name) {
+	public Offer(int id, float startsaleprice, float buynowprice, String start,
+			String end, String url, int status, int creator_User_Id,
+			int article_Id, String	article_Name, String auctionhouse) {
 		super();
 		Id = id;
 		Startsaleprice = startsaleprice;
@@ -30,6 +31,7 @@ public class Offer {
 		Creator_User_Id = creator_User_Id;
 		Article_Id = article_Id;
 		Article_Name = null;
+		Auctionhouse = auctionhouse;
 	}
 
 
@@ -43,9 +45,19 @@ public class Offer {
 		Status = -1;
 		Creator_User_Id = -1;
 		Article_Id = -1;
-		Article_Name= null;
+		Article_Name = null;
+		Auctionhouse = null; 
 	}
 
+	public String getAuctionhouse(){
+		return Auctionhouse;
+	}
+	
+	public void setAuctionhouse(String auctionhouse){
+		Auctionhouse = auctionhouse;
+	}
+	
+	
 	public String getArticle_Name() {
 		return Article_Name;
 	}
@@ -85,22 +97,22 @@ public class Offer {
 	}
 
 
-	public Date getStart() {
+	public String getStart() {
 		return Start;
 	}
 
 
-	public void setStart(Date start) {
+	public void setStart(String start) {
 		Start = start;
 	}
 
 
-	public Date getEnd() {
+	public String getEnd() {
 		return End;
 	}
 
 
-	public void setEnd(Date end) {
+	public void setEnd(String end) {
 		End = end;
 	}
 

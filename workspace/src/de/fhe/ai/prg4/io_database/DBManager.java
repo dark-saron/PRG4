@@ -1,7 +1,7 @@
 package de.fhe.ai.prg4.io_database;
 import java.sql.*;
-import java.util.LinkedList;
-import java.util.List;
+import java.sql.Date;
+import java.util.*;
 
 import com.mysql.*;
 import com.mysql.jdbc.PreparedStatement;
@@ -85,10 +85,12 @@ public class DBManager {
 	public Article queryArticleDetails (int id){
 	
 		try {
+			
 			RESULT_SET = STATEMENT.executeQuery("SELECT * FROM article WHERE ID LIKE '" + id + "'");
+			RESULT_SET.next();
 			
 			Article article = new Article();
-			RESULT_SET.next();
+			
 		
 			article.setId(RESULT_SET.getInt("ID"));
 			article.setType(RESULT_SET.getString("Type"));
@@ -108,19 +110,23 @@ public class DBManager {
 	}
 	
 	public boolean queryInsertArticle (Article article){
-		boolean success=false;
-		
+		boolean success= false;
 		try {
 			
 			String type=article.getType();
 			String name=article.getName();
 			String place=article.getPlace();
 			String ean_isbn=article.getEan_Isbn();
-			String externalID=article.getEan_Isbn();
+			String externalID=article.getExternalId();
 			String description=article.getDescription();
 			String photo=article.getPhoto();
 			
-			success=STATEMENT.execute("INSERT INTO article (Type,Name,Place,externalID,EAN_ISBN,Description,Photo) VALUES ('"+type+"','"+name+"','"+place+"','"+externalID+"','"+ean_isbn+"','"+description+"','"+photo+"'") ;
+			System.out.println(article.getName());
+			
+			int rows=STATEMENT.executeUpdate("INSERT INTO Article (Type,Name,Place,externalID,EAN_ISBN,Description,Photo) VALUES ('"+type+"','"+name+"','"+place+"','"+externalID+"','"+ean_isbn+"','"+description+"','"+photo+"')") ;
+			if (rows >0){
+				success=true;
+			}
 			
 			return success;
 		}
@@ -162,8 +168,11 @@ public class DBManager {
 		boolean success=false;
 		try {
 			
-			success=STATEMENT.execute("Delete LOW_PRIORITY FROM article WHERE ID ='"+id+"'");
+			int rows=STATEMENT.executeUpdate("Delete LOW_PRIORITY FROM article WHERE ID ='"+id+"'");
 			
+			if (rows > 0){
+				success=true;
+			}
 			return success;
 		}
 			
@@ -202,13 +211,53 @@ public class DBManager {
 	}
 	
 	public Offer queryOfferDetails (int id){ //ID von Offer
-		Offer offer = new Offer();
-		return offer;
+				
+		try {
+			
+			RESULT_SET = STATEMENT.executeQuery("SELECT * FROM Offer WHERE ID LIKE '" + id + "'");
+			
+			Offer offer = new Offer();
+			RESULT_SET.next();
+			
+			offer.setId(RESULT_SET.getInt("ID"));
+			offer.setStartsaleprice(RESULT_SET.getFloat("Startsaleprice"));
+			offer.setBuynowprice(RESULT_SET.getFloat("Buynowprice"));
+			offer.setStart(RESULT_SET.getString("Start"));
+			offer.setEnd(RESULT_SET.getString("End"));
+			offer.setUrl(RESULT_SET.getString("URL"));
+			offer.setStatus(RESULT_SET.getInt("StatusID"));
+			offer.setAuctionhouse(RESULT_SET.getString("Auctionhouse"));
+			offer.setCreator_User_Id(RESULT_SET.getInt("UserID"));
+			offer.setArticle_Id(RESULT_SET.getInt("ArticleID"));
+			
+			RESULT_SET = STATEMENT.executeQuery("SELECT Name FROM Article WHERE ID LIKE '" +offer.getArticle_Id()+ "'");
+			RESULT_SET.next();
+			offer.setArticle_Name(RESULT_SET.getString("Name"));
+			return offer;
+		}
+			
+		catch (SQLException e){
+			System.out.println(e);
+			return null;
+		}	
 	}
 	
 	public boolean queryInsertOffer(Offer offer){
 		boolean success = false;
-		return success;
+		
+		try {			
+			int rows=STATEMENT.executeUpdate("INSERT INTO Offer (Startsaleprice,Buynowprice,Start,End,Auctionhouse,URL,ArticleID,UserID,StatusID) VALUES ('"+offer.getStartsaleprice()+"','"+offer.getBuynowprice()+"','"+offer.getStart()+"','"+offer.getEnd()+"','"+offer.getAuctionhouse()+"','"+offer.getUrl()+"','"+offer.getArticle_Id()+"','"+offer.getCreator_User_Id()+"','"+offer.getStatus()+"')");
+			if (rows >0){
+				success=true;
+			}
+			
+			return success;
+		}
+			
+		catch (SQLException e){
+			System.out.println(e);
+			return success;
+		}
 	}
 	
 	public boolean queryUpdateOffer(Offer offer){
@@ -297,16 +346,30 @@ public static void main (String[] args){
 		DBManager DBM = new DBManager();
 		
 		DBM.open();
-
-		LinkedList<Offer> offer = DBM.queryAllOffers(1);
-		System.out.print(offer.get(1));
+		
+		/*Article article = new Article(1,"Buch", "Ein beispielhaftes Buch", "Box", "Beispielbuch5", "Kein Foto", "3859891302715", "BN12349");
+		if (DBM.queryInsertArticle(article)){
+			System.out.println("Artikel eingefügt");
+		}
+		else {
+			System.out.println("Artikel wurde nicht eingefügt");
+		}
+		*/
+		//Offer offer = new Offer(-1,3.00f,4.00f, "2000-11-30", "2000-12-30", "http:\\www.123.de", 1,1,1, "", "Bol.de") ;
+		//DBM.queryInsertOffer(offer);
+		//System.out.println(offer.getStart().toString());
+		
+		//boolean success=DBM.queryInsertOffer(offer);
+		
+		//System.out.print(offer.getArticle_Name());
+				
+		//LinkedList<Offer> offer = DBM.queryAllOffers(1);
+		//System.out.print(offer.get(1));
 		//Article article = DBM.queryArticleDetails(2);
 		//System.out.print(article.getName());
 		DBM.close();
 		
 }
-	
-
 }
 
 
