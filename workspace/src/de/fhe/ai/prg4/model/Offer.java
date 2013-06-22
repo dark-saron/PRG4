@@ -10,15 +10,15 @@ public class Offer {
 	private Date 	Start;
 	private	Date	End;
 	private String	Url;
-	private	String	Status;
+	private	int		Status;
 	private	int		Creator_User_Id;
 	private	int		Article_Id;
-	private	int		User_User_Id; // ?
+	private String	Article_Name;
 	
 	
 	public Offer(int id, float startsaleprice, float buynowprice, Date start,
-			Date end, String url, String status, int creator_User_Id,
-			int article_Id, int user_User_Id) {
+			Date end, String url, int status, int creator_User_Id,
+			int article_Id, String	Article_Name) {
 		super();
 		Id = id;
 		Startsaleprice = startsaleprice;
@@ -29,15 +29,30 @@ public class Offer {
 		Status = status;
 		Creator_User_Id = creator_User_Id;
 		Article_Id = article_Id;
-		User_User_Id = user_User_Id;
+		Article_Name = null;
 	}
 
 
 	public Offer() {
-		// TODO Auto-generated constructor stub
+		Id = -1;
+		Startsaleprice = -1;
+		Buynowprice = -1;
+		Start = null;
+		End = null;
+		Url = null;
+		Status = -1;
+		Creator_User_Id = -1;
+		Article_Id = -1;
+		Article_Name= null;
 	}
 
-
+	public String getArticle_Name() {
+		return Article_Name;
+	}
+	
+	public void setArticle_Name(String article_name){
+		Article_Name = article_name;
+	}
 
 
 	public int getId() {
@@ -100,12 +115,12 @@ public class Offer {
 	}
 
 
-	public String getStatus() {
+	public int getStatus() {
 		return Status;
 	}
 
 
-	public void setStatus(String status) {
+	public void setStatus(int status) {
 		Status = status;
 	}
 
@@ -128,20 +143,6 @@ public class Offer {
 	public void setArticle_Id(int article_Id) {
 		Article_Id = article_Id;
 	}
-
-
-	public int getUser_User_Id() {
-		return User_User_Id;
-	}
-
-
-	public void setUser_User_Id(int user_User_Id) {
-		User_User_Id = user_User_Id;
-	}
-	
-	
-	
-	
 	
 
 }

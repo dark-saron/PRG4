@@ -46,7 +46,7 @@ public class Article {
 		Name = null;
 		Photo = null;
 		Ean_Isbn = null;
-		externalId = externalId;
+		externalId = null;
 	}
 	
 	

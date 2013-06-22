@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
-  <display-name>TestWebProjekt</display-name>
+  <display-name>flogit_web</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
@@ -9,22 +9,24 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
   <servlet>
-    <servlet-name>HelloWorldServlet</servlet-name>
-    <servlet-class>de.fhe.ai.prg4.HelloWorldServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>UserQuery</servlet-name>
-    <servlet-class>QueryServlet</servlet-class>
+    <servlet-name>ArticleNew</servlet-name>
+    <jsp-file>/ArticleNew.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
-    <servlet-name>HelloWorldServlet</servlet-name>
-    <url-pattern>/hello</url-pattern>
+    <servlet-name>ArticleNew</servlet-name>
+    <url-pattern>/NewArticle</url-pattern>
   </servlet-mapping>
-  
-  
+
+  <servlet>
+    <servlet-name>Article</servlet-name>
+    <jsp-file>/ArticleDetails.jsp</jsp-file>
+  </servlet>
   <servlet-mapping>
-    <servlet-name>UserQuery</servlet-name>
-    <url-pattern>/query</url-pattern>
+    <servlet-name>Article</servlet-name>
+    <url-pattern>/ArticleDetails</url-pattern>
   </servlet-mapping>
+
+  
 </web-app>

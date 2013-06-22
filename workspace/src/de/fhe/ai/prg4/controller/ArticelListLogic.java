@@ -16,6 +16,7 @@ import de.fhe.ai.prg4.model.Article;
  */
 
 public class ArticelListLogic {
+	
 	DBManager dbManager = new DBManager();
 	LinkedList<Article> list = new LinkedList<Article>();
 	public LinkedList<Article> getArticleList()
@@ -26,6 +27,7 @@ public class ArticelListLogic {
 		
 		return list;
 	}
+	
 	
 	//future feature
 	public LinkedList<Article> orderArticleList(int order)
