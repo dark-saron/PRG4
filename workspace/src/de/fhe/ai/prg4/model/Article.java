@@ -1,6 +1,8 @@
 package de.fhe.ai.prg4.model;
 
-public class Article {
+import java.io.Serializable;
+
+public class Article implements Serializable{
 	
 	private	int 	Id;
 	private	String	Description;
@@ -79,7 +81,7 @@ public class Article {
 	}
 
 	public void setName(String name) {
-		Name = name;
+		this.Name = name;
 	}
 
 	public String getPhoto() {

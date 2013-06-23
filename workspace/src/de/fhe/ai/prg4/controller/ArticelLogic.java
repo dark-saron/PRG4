@@ -19,10 +19,12 @@ import de.fhe.ai.prg4.model.Article;
 public class ArticelLogic {
 
 	private DBManager dbManager;
+	private Article art;
 	
 	public ArticelLogic()
 	{
 		dbManager = new DBManager();
+		art = new Article();
 		
 	}
 	public boolean deleteArticle(int artID)
@@ -34,9 +36,14 @@ public class ArticelLogic {
 	
 	public Article getArticle(int artID)
 	{
+		
 		if(artID == -1)
 			return null;
-		return null;
+		DBManager.open();
+		art = dbManager.queryArticleDetails(artID);
+		DBManager.close();
+		
+		return art;
 	}
 	
 	//anlegen eines neuen Artikeln
@@ -56,9 +63,18 @@ public class ArticelLogic {
 	}
 	
 	//bearbeiten eines Artikeln
-	public boolean setArticle(Article article)
+	public boolean setArticle(int id, String type, String description, String place, String name,
+			String photo, String ean_Isbn, String externalId)
 	{
+		Article art = new Article(id, type, description, place, name, photo, ean_Isbn, externalId);
+		System.out.println(id + type + description + place + name + photo + ean_Isbn + externalId);
+		boolean status;
+		
 		//db connection um ein insert aufzurufen
-		return dbManager.queryInsertArticle(article);
+		DBManager.open();
+		status = dbManager.queryUpdateArticle(art);
+		DBManager.close();
+		
+		return status;
 	}
 }

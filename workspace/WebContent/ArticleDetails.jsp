@@ -1,3 +1,4 @@
+<%@page import="de.fhe.ai.prg4.view.Article"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -10,38 +11,64 @@
 <body>
 <div id='navi'>
 	<div id='content' style='margin:auto; width:600px'>
-	<span style='float:left; padding-right:5%'><h2><a href='/flogit_web/ArticleList'>Article</a></h2></span>
-    <span style='float:left;padding-right:5%'><h2><a href='/flogit_web/OfferList'>Angebote</a></h2></span>
-    <span style='float:left;padding-right:5%'><h2><a href='/flogit_web/ContactList'>Kontakte</a></h2></span>
+	<span style='float:left; padding-right:5%'><h2><a href='/flogit_web/ArticleList'>Artikel Liste</a></h2></span>
+    <span style='float:left;padding-right:5%'><h2><a href='/flogit_web/OfferList'>Angebots Liste</a></h2></span>
+    <span style='float:left;padding-right:5%'><h2><a href='/flogit_web/ContactList'>Kontakt Liste</a></h2></span>
     </div></div>
 		
 		<div style='float:left; padding:5% 20%'>
 <div id='content' style='margin:auto; width:800px'>
-<table id="details" width='500' border='1'>
+<h1>Artikel Details</h1>
+<br><br><br>
 
-		
+<jsp:useBean id="artL" class ="de.fhe.ai.prg4.controller.ArticelLogic" />
+<jsp:useBean id="art" class ="de.fhe.ai.prg4.model.Article" />
+
+<%
+  int id = Integer.parseInt(request.getParameter( "param" ));
+  art = artL.getArticle(id);		
+%>
+
+<table id="details" width='500' border='1'>
 			<tr>
 			<td ><b>ID:</b></td>
-			<td >	-1</td>
+			<td >	<%= art.getId() %></td>
 			</tr>
 			<tr>
 			<td><b>Name:</b></td>
-			<td>	MusterName</td>
+			<td>	<%= art.getName() %></td>
 			</tr>
 			<tr>
-			<td style='text-align:center'><b>	Type:</b></td>
-			<td style='text-align:left'>	MusterType</td>
+			<td><b>	Type:</b></td>
+			<td>	<%= art.getType() %></td>
 			</tr>
 						<tr>
-			<td style='text-align:center'><b>Beschreibung:</b></td>
-			<td style='text-align:center'>	Musterbeschreibung</td>
+			<td><b>EAN / ISBN:</b></td>
+			<td>	<%= art.getEan_Isbn() %></td>
+			</tr>
+			<tr>
+			<td><b>Lager:</b></td>
+			<td>	<%= art.getPlace() %></td>
+			</tr>
+			<tr>
+			<td><b>Photo:</b></td>
+			<td>	<%= art.getPhoto() %></td>
+			</tr>
+			<tr>
+			<td><b>External ID:</b></td>
+			<td>	<%= art.getExternalId() %></td>
+			</tr>
+			
+			<tr>
+			<td><b>Beschreibung:</b></td>
+			<td>	<%= art.getDescription() %></td>
 			</tr>
 			
 		
 		</table>
 		<div style='float:left; padding:5% 0%'>
-			<button>Bearbeiten</button>
-			<button>Löschen</button>
+			<a href="ArticleEdit?param=<%=art.getId() %>">Bearbeiten</a>
+			<a href="ArticleDelete?param=<%=art.getId() %>">Löschen</a>
 		</div></div></div>
 		
 </body>

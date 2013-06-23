@@ -5,19 +5,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Angebots Liste</title>
 </head>
 <body>
 <div id='navi'>
 	<div id='content' style='margin:auto; width:600px'>
-	<span style='float:left; padding-right:5%'><h2><a href='/flogit_web/ArticleList'>Article</a></h2></span>
-    <span style='float:left;padding-right:5%'><h2><a href='/flogit_web/OfferList'>Angebote</a></h2></span>
-    <span style='float:left;padding-right:5%'><h2><a href='/flogit_web/ContactList'>Kontakte</a></h2></span>
+	<span style='float:left; padding-right:5%'><h2><a href='/flogit_web/ArticleList'>Artikel Liste</a></h2></span>
+    <span style='float:left;padding-right:5%'><h2><a href='/flogit_web/OfferList'>Angebots Liste</a></h2></span>
+    <span style='float:left;padding-right:5%'><h2><a href='/flogit_web/ContactList'>Kontakt Liste</a></h2></span>
     </div></div>
 		
 		<div style='float:left; padding:5% 20%''>
 <div id='content' style='margin:auto; width:800px'>
-
+		
+<h1>Angebots Liste</h1>
+<br><br><br>
 <table width='600' border=1>
 	<tr>
 		<th scope='col'><b>Angebots ID</b></th>
