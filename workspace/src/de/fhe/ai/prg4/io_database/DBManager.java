@@ -149,7 +149,7 @@ public class DBManager {
 			String newdescription=article.getDescription();
 			String newphoto=article.getPhoto();
 			
-			int rows=STATEMENT.executeUpdate("Update article SET Type='"+newtype+"',Name='"+newname+"',Place='"+newplace+"',externalID='"+newexternalID+"',EAN_ISBN='"+newean_isbn+"',Description='"+newdescription+"',Photo='"+newphoto+"' WHERE ID ='"+article.getId()+"'");
+			int rows=STATEMENT.executeUpdate("UPDATE article SET Type='"+newtype+"',Name='"+newname+"',Place='"+newplace+"',externalID='"+newexternalID+"',EAN_ISBN='"+newean_isbn+"',Description='"+newdescription+"',Photo='"+newphoto+"' WHERE ID ='"+article.getId()+"'");
 			
 			if (rows>0){
 				success=true;
@@ -262,30 +262,58 @@ public class DBManager {
 	
 	public boolean queryUpdateOffer(Offer offer){
 		boolean success = false;
-		return success;
+		try {
+			int rows=STATEMENT.executeUpdate("Update Offer SET Startsaleprice='"+offer.getStartsaleprice()+"',Buynowprice='"+offer.getBuynowprice()+"',Start='"+offer.getStart()+"',End='"+offer.getEnd()+"',Auctionhouse='"+offer.getAuctionhouse()+"',URL='"+offer.getUrl()+"',ArticleID='"+offer.getArticle_Id()+"',UserID='"+offer.getCreator_User_Id()+"',StatusID='"+offer.getStatus()+"'");
+			
+			if (rows>0){
+				success=true;
+			}
+			
+			return success;
+		}
+			
+		catch (SQLException e){
+			System.out.println(e);
+			return success;
+		}
 	}
 	
-	public boolean queryDeleteOffer(int ID){
+	public boolean queryDeleteOffer(int id){
 		boolean success = false;
-		return success;
+		try {
+			
+			int rows=STATEMENT.executeUpdate("Delete LOW_PRIORITY FROM Offer WHERE ID ='"+id+"'");
+			
+			if (rows > 0){
+				success=true;
+			}
+			return success;
+		}
+			
+		catch (SQLException e){
+			System.out.println(e);
+			return success;
+		}
 	}
 	
 	// Contacts
 	
 	public LinkedList<Contact> queryAllContacts(int UserID){
 		try {
-			RESULT_SET = STATEMENT.executeQuery("SELECT ID,Type,Name FROM article");
-			
 			LinkedList<Contact> list1 = new LinkedList<Contact>();
+			//@TODO UserID nachreichen
+			RESULT_SET = STATEMENT.executeQuery("SELECT Contact.ID, Contact.First_Name, Contact.Last_Name, Contact.ID FROM Offer join User on Offer.UserID=User.ID join Article on Article.ID=Offer.ArticleID ORDER BY Offer.StatusID");
 			
 			/*Offer offer;
 			while (RESULT_SET.next()){
 				offer = new Offer();
 				//System.out.println(RESULT_SET.getInt("ID"));
-				article.setId(RESULT_SET.getInt("ID"));
-				article.setType(RESULT_SET.getString("Type"));
-				article.setName(RESULT_SET.getString("Name"));
-				list1.add(article);
+				offer.setId(RESULT_SET.getInt("Offer.ID"));
+				offer.setStatus(RESULT_SET.getInt("Offer.StatusID"));
+				offer.setArticle_Id(RESULT_SET.getInt("Article.ID"));
+				offer.setArticle_Name(RESULT_SET.getString("Article.Name"));
+								
+				list1.add(offer);
 				
 			}*/
 			return list1;
@@ -293,7 +321,7 @@ public class DBManager {
 		catch (SQLException e){
 			System.out.println(e);
 			return null;
-		}
+		}	
 	}
 	
 	public Contact queryContactDetails(int ID){ //ID von Contact
