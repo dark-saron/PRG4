@@ -25,7 +25,7 @@
 		<th scope='col'><b>ID</b></th>
 		<th scope='col'><b>Name</b></th>
 		<th scope='col'><b>Type</b></th>
-		<th scope='col'><b>Details</b></th>
+		<th scope='col'><b>Details</b></th>		
 	</tr>
   <c:forEach items="${artList}" var="art" varStatus="loop">
     <tr>

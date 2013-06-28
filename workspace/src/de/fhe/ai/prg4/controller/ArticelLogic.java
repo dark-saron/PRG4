@@ -20,6 +20,7 @@ public class ArticelLogic {
 
 	private DBManager dbManager;
 	private Article art;
+	private Boolean flag;
 	
 	public ArticelLogic()
 	{
@@ -29,9 +30,14 @@ public class ArticelLogic {
 	}
 	public boolean deleteArticle(int artID)
 	{
+		flag = false;
 		if(artID == -1)
-			return false;
-		return true;
+			return flag;
+		DBManager.open();
+		flag = dbManager.queryDeleteArticle(artID);
+		DBManager.close();
+		
+		return flag;
 	}
 	
 	public Article getArticle(int artID)

@@ -51,7 +51,7 @@ dispatcher.forward(request,response);
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		boolean insertArticle = false;
+		insertArticle = false;
 		
 		insertArticle = artLogic.setNewArticle(-1, 
 				request.getParameter("type"),

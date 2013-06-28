@@ -38,7 +38,7 @@ public class OfferList extends HttpServlet {
 		O_List = OlLogic.getOfferList();
 		
 		request.setAttribute("offerList", O_List);
-		RequestDispatcher view = request.getRequestDispatcher("OfferList.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("Offer/OfferList.jsp");
 	    view.forward(request, resp);
 	}
 	
@@ -51,7 +51,7 @@ public class OfferList extends HttpServlet {
 		O_List = OlLogic.getOfferList();
 		
 		request.setAttribute("offerList", O_List);
-		RequestDispatcher view = request.getRequestDispatcher("OfferList.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("Offer/OfferList.jsp");
 	    view.forward(request, response);
 	}
 

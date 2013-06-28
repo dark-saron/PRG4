@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>flogit_web</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
+  <servlet>
+    <servlet-name>ArticleDelete</servlet-name>
+    <jsp-file>/Article/ArticleDelete.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ArticleDelete</servlet-name>
+    <url-pattern>/DeleteArticle</url-pattern>
+  </servlet-mapping>
   <servlet>
     <servlet-name>ArticleNew</servlet-name>
-    <jsp-file>/ArticleNew.jsp</jsp-file>
+    <jsp-file>/Article/ArticleNew.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>ArticleNew</servlet-name>
@@ -19,7 +19,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>ArticleEdit</servlet-name>
-    <jsp-file>/ArticleEdit.jsp</jsp-file>
+    <jsp-file>/Article/ArticleEdit.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>ArticleEdit</servlet-name>
@@ -27,7 +27,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>OfferNew</servlet-name>
-    <jsp-file>/OfferNew.jsp</jsp-file>
+    <jsp-file>/Offer/OfferNew.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>OfferNew</servlet-name>
@@ -35,7 +35,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>Article</servlet-name>
-    <jsp-file>/ArticleDetails.jsp</jsp-file>
+    <jsp-file>/Article/ArticleDetails.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>Article</servlet-name>
@@ -43,7 +43,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>Offer</servlet-name>
-    <jsp-file>/OfferDetails.jsp</jsp-file>
+    <jsp-file>/Offer/OfferDetails.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>Offer</servlet-name>

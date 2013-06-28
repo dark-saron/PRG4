@@ -14,7 +14,8 @@
 	<span style='float:left; padding-right:5%'><h2><a href='/flogit_web/ArticleList'>Artikel Liste</a></h2></span>
     <span style='float:left;padding-right:5%'><h2><a href='/flogit_web/OfferList'>Angebots Liste</a></h2></span>
     <span style='float:left;padding-right:5%'><h2><a href='/flogit_web/ContactList'>Kontakt Liste</a></h2></span>
-    </div></div>
+    </div>
+ </div>
 		
 		<div style='float:left; padding:5% 20%'>
 <div id='content' style='margin:auto; width:800px'>
@@ -68,7 +69,8 @@
 		</table>
 		<div style='float:left; padding:5% 0%'>
 			<a href="ArticleEdit?param=<%=art.getId() %>">Bearbeiten</a>
-			<a href="ArticleDelete?param=<%=art.getId() %>">Löschen</a>
+			<a href="DeleteArticle?param=<%=art.getId() %>">Löschen</a>
+			<a href='/flogit_web/NewOffer?art=<%=art.getId() %>'>Angebot erstellen</a>
 		</div></div></div>
 		
 </body>

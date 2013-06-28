@@ -39,7 +39,7 @@ public class ArticleList extends HttpServlet {
 		 A_List = AlLogic.getArticleList();
 		 
 		request.setAttribute("artList", A_List);
-		RequestDispatcher view = request.getRequestDispatcher("ArticleList.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("Article/ArticleList.jsp");
 	    view.forward(request, resp); 
 	    
 	}
@@ -52,7 +52,7 @@ public class ArticleList extends HttpServlet {
 		A_List = AlLogic.getArticleList();
 		
 		request.setAttribute("artList", A_List);
-		RequestDispatcher view = request.getRequestDispatcher("ArticleList.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("Article/ArticleList.jsp");
 	    view.forward(request, response); 
 	    
 	}
