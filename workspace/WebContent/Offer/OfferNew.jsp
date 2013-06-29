@@ -49,13 +49,8 @@ LinkedList<Article> artList = new LinkedList<Article>();
 	}
 %>
 
-<div id='navi'>
-	<div id='content' style='margin:auto; width:600px'>
-	<span style='float:left; padding-right:5%'><h2><a href='/flogit_web/ArticleList'>Artikel Liste</a></h2></span>
-    <span style='float:left;padding-right:5%'><h2><a href='/flogit_web/OfferList'>Angebots Liste</a></h2></span>
-    <span style='float:left;padding-right:5%'><h2><a href='/flogit_web/ContactList'>Kontakt Liste</a></h2></span>
-    </div>
-</div>
+<jsp:include page="/include/navigation.jsp"></jsp:include>
+
 <div style='float:left; padding:5% 20%'>
 
 <div id='content' style='margin:auto; width:800px'>
@@ -69,41 +64,57 @@ LinkedList<Article> artList = new LinkedList<Article>();
     	<td><b>Artikel:</b>	</td>
 		<c:choose>
 		<c:when test="${aID  == -1}">
-		
-    	<td>
-    	<select name="article" >
-    		  	<c:forEach items="<%= artList %>" var="art" varStatus="loop">
-      				<option value="${art.getId()}">
-      					<c:out value="${art.getName()}" />
-      				</option>
-        		</c:forEach>
-        </select>
-        </td>
+			<td>
+    			<select name="article" >
+    		  		<c:forEach items="<%= artList %>" var="art" varStatus="loop">
+      					<option value="${art.getId()}">
+      						<c:out value="${art.getName()}" />
+      					</option>
+        			</c:forEach>
+        		</select>
+        	</td>
         </c:when>
         <c:otherwise>
-        <td>
-			<input type="text" name="article_Id" style="display:none" value="<%= art1.getId() %>">
-			<input type="text" name="article_Name" style="display:none" value="<%= art1.getName() %>">
-			<div><%= art1.getName() %></div>
-		</td>
-        
+        	<td>
+				<input type="text" name="article_Id" style="display:none" value="<%= art1.getId() %>">
+				<div><%= art1.getName() %></div>
+			</td>
         </c:otherwise>
-	    	
-    	
     	</c:choose>
     </tr>
-    <tr><td><b>Start Preis:</b>	</td><td><input type="text" name="startsaleprice"></td></tr>
-    <tr><td><b>End Preis:</b>	</td><td><input type="text" name="buynowprice"></td></tr>
-    <tr><td><b>Start Datum: </b></td><td><input type="text" name="start" class="datepicker"></td></tr>
-    <tr><td><b>End Datum: </b></td><td><input type="text" name="end" class="datepicker"></td></tr>
-    <tr><td><b>Auctions Hause: </b></td><td><input type="text" name="auctionhouse"></td></tr>
-    <tr><td><b>External Url: </b></td><td><input type="text" name="url"></td></tr>	
-    <tr><td></td><td><input type="submit" value="Angebot erstellen"></td></tr>
+    <tr>
+    	<td><b>Start Preis:</b>	</td>
+    	<td><input type="text" name="startsaleprice" placeholder="0.00"></td>
+    </tr>
+    <tr>
+    	<td><b>Buy Now Preis:</b>	</td>
+    	<td><input type="text" name="buynowprice" placeholder="0.00"></td>
+    </tr>
+    <tr>
+    	<td><b>Start Datum: </b></td>
+    	<td><input type="text" name="start" class="datepicker" placeholder="2013-01-01"></td>
+    </tr>
+    <tr>
+    	<td><b>End Datum: </b></td>
+    	<td><input type="text" name="end" class="datepicker" placeholder="2013-01-01"></td>
+    </tr>
+    <tr>
+    	<td><b>Auctions Hause: </b></td>
+    	<td><input type="text" name="auctionhouse" placeholder="ebay"></td>
+    </tr>
+    <tr>
+    	<td><b>External Url: </b></td>
+    	<td><input type="text" name="url" placeholder="ebay.de/234Ad"></td>
+    </tr>	
+    <tr>
+    	<td></td>
+    	<td><input type="submit" value="Angebot erstellen"></td>
+    </tr>
 	
 
 </table><br>    
     <span class="error">${error}</span>
-
+	<a href="/flogit_web/OfferList">Zurück zur Angebots Liste</a>
 </form>
 </div></div>
 </body>

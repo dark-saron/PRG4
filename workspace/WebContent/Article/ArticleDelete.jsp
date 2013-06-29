@@ -4,15 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Artikel Löschen</title>
 </head>
 <body>
-<div id='navi'>
-	<div id='content' style='margin:auto; width:600px'>
-	<span style='float:left; padding-right:5%'><h2><a href='/flogit_web/ArticleList'>Artikel Liste</a></h2></span>
-    <span style='float:left;padding-right:5%'><h2><a href='/flogit_web/OfferList'>Angebots Liste</a></h2></span>
-    <span style='float:left;padding-right:5%'><h2><a href='/flogit_web/ContactList'>Kontakt Liste</a></h2></span>
-    </div></div>
+<jsp:include page="/include/navigation.jsp"></jsp:include>
+
+<div style='float:left; padding:5% 20%''>
+<div id='content' style='margin:auto; width:800px'>
 
 
 <jsp:useBean id="artL" class ="de.fhe.ai.prg4.controller.ArticelLogic" />
@@ -36,7 +34,7 @@
     	<td><div><%= art.getName() %></div>
     	</td>
     </tr>
-    <tr><td><b>Artikel Löschen: </b></td><td><input type="submit" value="Ja"></td></tr>
+    <tr><td></td><td><input type="submit" value="Artikel Löschen"></td></tr>
 </table>
 </form>
 <a href="/flogit_web/ArticleDetails?param=<%= art.getId() %>">Zurück</a>

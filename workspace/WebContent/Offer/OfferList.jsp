@@ -11,14 +11,9 @@
 
 
 
-<div id='navi'>
-	<div id='content' style='margin:auto; width:600px'>
-	<span style='float:left; padding-right:5%'><h2><a href='/flogit_web/ArticleList'>Artikel Liste</a></h2></span>
-    <span style='float:left;padding-right:5%'><h2><a href='/flogit_web/OfferList'>Angebots Liste</a></h2></span>
-    <span style='float:left;padding-right:5%'><h2><a href='/flogit_web/ContactList'>Kontakt Liste</a></h2></span>
-    </div></div>
+<jsp:include page="/include/navigation.jsp"></jsp:include>
 		
-		<div style='float:left; padding:5% 20%''>
+<div style="float:left; padding:5% 20%">
 <div id='content' style='margin:auto; width:800px'>
 		
 <h1>Angebots Liste</h1>
@@ -35,16 +30,18 @@
       <td><c:out value="${offer.getId()}" /></td>
       <td><c:out value="${offer.getArticle_Name()}" /></td>
       <td>
-      	<c:if test="${ offer.getStatus() == 1 }">Offen</c:if>
-      	<c:if test="${ offer.getStatus() == 2 }">Gekauft</c:if>
-      	<c:if test="${ offer.getStatus() == 3 }">Abgelaufen</c:if>
+      <c:choose>
+      	<c:when test="${offer.getStatus() == 1 }">Offen</c:when>
+      	<c:when test="${offer.getStatus() == 2 }">Gekauft</c:when>
+      	<c:otherwise>Abglaufen</c:otherwise>
+	</c:choose>
       </td>
       <td><a href='/flogit_web/OfferDetails?param=${offer.getId()}'>Show Details</a></td>
     </tr>
   </c:forEach>
 </table>
 
-</div>
+
 <a href='/flogit_web/NewOffer'>Erstelle Angebot</a></div></div>
 </body>
 </html>

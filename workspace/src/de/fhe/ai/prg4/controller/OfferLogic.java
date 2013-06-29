@@ -18,8 +18,10 @@ public class OfferLogic
 	public boolean deleteOffer(int offerID)
 	{
 		flag = false;
+
 		if(offerID == -1)
 			return flag;
+		
 		DBManager.open();
 		flag = dbManager.queryDeleteOffer(offerID);
 		DBManager.close();
@@ -37,6 +39,7 @@ public class OfferLogic
 		
 		if(offerID == -1)
 			return null;
+		
 		DBManager.open();
 		offer = dbManager.queryOfferDetails(offerID);
 		DBManager.close();

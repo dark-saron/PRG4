@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>flogit_web</display-name>
+  
+  <servlet>
+    <servlet-name>Article</servlet-name>
+    <jsp-file>/Article/ArticleDetails.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Article</servlet-name>
+    <url-pattern>/ArticleDetails</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
     <servlet-name>ArticleDelete</servlet-name>
     <jsp-file>/Article/ArticleDelete.jsp</jsp-file>
@@ -34,14 +44,6 @@
     <url-pattern>/NewOffer</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>Article</servlet-name>
-    <jsp-file>/Article/ArticleDetails.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Article</servlet-name>
-    <url-pattern>/ArticleDetails</url-pattern>
-  </servlet-mapping>
-  <servlet>
     <servlet-name>Offer</servlet-name>
     <jsp-file>/Offer/OfferDetails.jsp</jsp-file>
   </servlet>
@@ -49,4 +51,24 @@
     <servlet-name>Offer</servlet-name>
     <url-pattern>/OfferDetails</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>OfferDelete</servlet-name>
+    <jsp-file>/Offer/OfferDelete.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OfferDelete</servlet-name>
+    <url-pattern>/DeleteOffer</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>OfferEdit</servlet-name>
+    <jsp-file>/Offer/OfferEdit.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OfferEdit</servlet-name>
+    <url-pattern>/OfferEdit</url-pattern>
+  </servlet-mapping>
+
+
 </web-app>

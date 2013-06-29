@@ -7,12 +7,7 @@
 <title>Artikel Bearbeiten</title>
 </head>
 <body>
-<div id='navi'>
-	<div id='content' style='margin:auto; width:600px'>
-	<span style='float:left; padding-right:5%'><h2><a href='/flogit_web/ArticleList'>Artikel Liste</a></h2></span>
-    <span style='float:left;padding-right:5%'><h2><a href='/flogit_web/OfferList'>Angebots Liste</a></h2></span>
-    <span style='float:left;padding-right:5%'><h2><a href='/flogit_web/ContactList'>Kontakt Liste</a></h2></span>
-    </div></div>
+<jsp:include page="/include/navigation.jsp"></jsp:include>
 
 <jsp:useBean id="artL" class ="de.fhe.ai.prg4.controller.ArticelLogic" />
 <jsp:useBean id="art" class ="de.fhe.ai.prg4.model.Article" />
@@ -23,13 +18,15 @@
   art = artL.getArticle(id);		
 %>
 
+		<div style='float:left; padding:5% 20%''>
+<div id='content' style='margin:auto; width:800px'>
 
 <h1>Artikel bearbeiten:</h1>
 <br><br><br>
 <form action="editArticle" method="post">
 <table>
     <tr><td style="diplay:hide;"><b>ID:</b>	</td>
-    <td style="display:none;"><input type="text" name="id" value="<%= art.getId() %>" ></tr>
+    <td ><input style="display:none;" type="text" name="id" value="<%= art.getId() %>" ><%= art.getId() %></tr>
     <tr><td><b>Name:</b>	</td>
     <td><input type="text" name="name" value="<%= art.getName() %>"></td></tr>
     <tr><td><b>Type: </b></td>
@@ -63,10 +60,11 @@
 		<td><input type="text" name="photo" value="<%= art.getPhoto() %>"></td>
 	</tr>
 
-    <tr><td><b>Artikel speichern: </b></td><td><input type="submit" value="article"></td></tr>
+    <tr><td></td><td><input type="submit" value="Artikel speichern"></td></tr>
 
 
 </table><br>    
+    <a href="/flogit_web/ArticleDetails?param=<%= art.getId() %>">Zurück</a>
     
     <span class="error">${error}</span>
 

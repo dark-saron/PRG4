@@ -7,12 +7,10 @@
 <title>Neuer Artikel</title>
 </head>
 <body>
-<div id='navi'>
-	<div id='content' style='margin:auto; width:600px'>
-	<span style='float:left; padding-right:5%'><h2><a href='/flogit_web/ArticleList'>Artikel Liste</a></h2></span>
-    <span style='float:left;padding-right:5%'><h2><a href='/flogit_web/OfferList'>Angebots Liste</a></h2></span>
-    <span style='float:left;padding-right:5%'><h2><a href='/flogit_web/ContactList'>Kontakt Liste</a></h2></span>
-    </div></div>
+<jsp:include page="/include/navigation.jsp"></jsp:include>
+
+		<div style='float:left; padding:5% 20%''>
+<div id='content' style='margin:auto; width:800px'>
 		
 <h1>Neuen Artikeln anlegen:</h1>
 <br><br><br>
@@ -37,6 +35,7 @@
 
 
 </table><br>    
+<a href="/flogit_web/ArticleList">Zurück</a>
     
     <span class="error">${error}</span>
 

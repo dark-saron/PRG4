@@ -13,29 +13,21 @@ import de.fhe.ai.prg4.controller.ArticelLogic;
 import de.fhe.ai.prg4.controller.OfferLogic;
 
 /**
- * Servlet implementation class OfferNew
+ * Servlet implementation class OfferEditServlet
  */
-@WebServlet("/psNO")
-public class OfferNewServlet extends HttpServlet {
+@WebServlet("/editOffer")
+public class OfferEditServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static OfferLogic offerLogic;   
-    private boolean query = false;
-    
+    private static OfferLogic offerLogic;   
+    private boolean editOffer = false;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OfferNewServlet() {
+    public OfferEditServlet() {
         super();
-        // TODO Auto-generated constructor stub
         offerLogic = new OfferLogic();
+        // TODO Auto-generated constructor stub
     }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
-		
-	}
 
 	@SuppressWarnings("unused")
 	private void forwardToPage(final HttpServletRequest request, 
@@ -46,33 +38,47 @@ public class OfferNewServlet extends HttpServlet {
 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
 dispatcher.forward(request,response);
 }
+    
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+	}
 
-	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.println(request.getParameter("article"));
-		ArticelLogic artL = new ArticelLogic();
+		boolean updateOffer = false;
+		response.setContentType("Offer" + request.getParameter("id") );
+		int id = Integer.parseInt( request.getParameter("id"));
 		
-		int article_id = Integer.parseInt(request.getParameter("article"));
-		String article_name = artL.getArticle(article_id).getName();
-		
-		query = offerLogic.setNewOffer(
-				-1,
+		updateOffer = offerLogic.setOffer(
+				Integer.parseInt(request.getParameter("id")),
 				Float.parseFloat(request.getParameter("startsaleprice")),
 				Float.parseFloat(request.getParameter("buynowprice")),
 				request.getParameter("start"),
 				request.getParameter("end"),
 				request.getParameter("url"),
+				Integer.parseInt(request.getParameter("status")),
 				1,
-				1,
-				article_id,
-				article_name,
+				Integer.parseInt(request.getParameter("article_Id")),
+				request.getParameter("article_Name"),
 				request.getParameter("auctionhouse"));
-		forwardToPage(request, response, "/OfferList");
-
+		System.out.println(updateOffer);
+		if(!updateOffer)
+		{
+			response.setContentType( "text/html;charset=UTF-8" );
+			response.setContentType( "<html><head></head><body>" );
+			response.setContentType( "<h2>Artikel konnte nicht zur Datenbank hinzugefügt werden.</h2></body></html>" );
+		}
+		else
+		{
+			forwardToPage(request, response, "/OfferList");
+		}
+		 		
 	}
 
 }
