@@ -1,11 +1,17 @@
 package de.fhe.ai.prg4.view;
 
 import java.io.IOException;
+import java.util.LinkedList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import de.fhe.ai.prg4.controller.ContactListLogic;
+import de.fhe.ai.prg4.helper.Helper;
+import de.fhe.ai.prg4.model.Contact;
 
 /**
  * Servlet implementation class ContactList
@@ -13,7 +19,10 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/ContactList")
 public class ContactList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    private static Helper helper;
+	private static ContactListLogic CL_Logic = new ContactListLogic();
+    LinkedList<Contact> C_List = new LinkedList<Contact>();
+    
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -26,12 +35,10 @@ public class ContactList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
-		resp.setContentType( "text/html;charset=UTF-8" );
-		resp.getOutputStream().println( "<html><body>" );
-		resp.getOutputStream().println( "<p><b><i>" );
-		resp.getOutputStream().println( "Contact List Page" );
-		resp.getOutputStream().println( "</p></i></b>" );
-		resp.getOutputStream().println( "</body></html>" );
+		C_List = CL_Logic.getContactList();
+		 
+		request.setAttribute("contactList", C_List);
+		helper.forwardToPage(request, resp, "Article/ArticleList.jsp");
 	}
 
 	/**
@@ -39,6 +46,12 @@ public class ContactList extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		C_List = CL_Logic.getContactList();
+		 
+		request.setAttribute("contactList", C_List);
+		helper.forwardToPage(request, response, "Article/ArticleList.jsp");
+
 	}
 
 }

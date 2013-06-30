@@ -22,6 +22,16 @@ public class Address {
 		Country = country;
 	}
 
+	public Address() {
+		super();
+		Id = -1;
+		First_Name = null;
+		Last_Name = null;
+		Street_Nr = null;
+		Zip = null;
+		City = null;
+		Country = null;
+	}
 	
 	public int getId() {
 		return Id;

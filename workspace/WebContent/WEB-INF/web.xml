@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>flogit_web</display-name>
-  
+
+<!-- Article Mapping start -->  
   <servlet>
     <servlet-name>Article</servlet-name>
     <jsp-file>/Article/ArticleDetails.jsp</jsp-file>
@@ -35,6 +36,13 @@
     <servlet-name>ArticleEdit</servlet-name>
     <url-pattern>/ArticleEdit</url-pattern>
   </servlet-mapping>
+  
+  
+<!-- Article Mapping end -->
+
+
+<!-- Offer Mapping start -->
+  
   <servlet>
     <servlet-name>OfferNew</servlet-name>
     <jsp-file>/Offer/OfferNew.jsp</jsp-file>
@@ -71,4 +79,45 @@
   </servlet-mapping>
 
 
+<!-- Offer Mapping end -->
+
+
+<!-- Contact Mapping start -->
+  <servlet>
+    <servlet-name>ContactNew</servlet-name>
+    <jsp-file>/Contact/ContactNew.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ContactNew</servlet-name>
+    <url-pattern>/NewContact</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Contact</servlet-name>
+    <jsp-file>/Contact/ContactDetails.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Contact</servlet-name>
+    <url-pattern>/ContactDetails</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ContactDelete</servlet-name>
+    <jsp-file>/Contact/ContactDelete.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ContactDelete</servlet-name>
+    <url-pattern>/DeleteContact</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ContactEdit</servlet-name>
+    <jsp-file>/Contact/ContactEdit.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ContactEdit</servlet-name>
+    <url-pattern>/ContactEdit</url-pattern>
+  </servlet-mapping>
+
+
+<!-- Contact Mapping end -->
 </web-app>

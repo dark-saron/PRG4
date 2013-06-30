@@ -3,6 +3,7 @@ package de.fhe.ai.prg4.controller;
 import java.util.LinkedList;
 
 import de.fhe.ai.prg4.io_database.DBManager;
+import de.fhe.ai.prg4.model.Article;
 import de.fhe.ai.prg4.model.Contact;
 
 /**
@@ -16,8 +17,10 @@ import de.fhe.ai.prg4.model.Contact;
  */
 
 public class ContactListLogic {
+
 	DBManager dbManager = new DBManager();
 	LinkedList<Contact> list = new LinkedList<Contact>();
+	
 	public LinkedList<Contact> getContactList()
 	{
 		DBManager.open();
@@ -27,4 +30,19 @@ public class ContactListLogic {
 		
 		return list;
 	}
+	
+	//future feature
+	public LinkedList<Contact> orderContactList(int order)
+	{	
+		//call of db funktion to get list with articles with order []
+		return null;
+	}
+	
+	public LinkedList<Contact> filterContactList(int filter)
+	{
+		//call of db funktion to get list with articles with filter []
+		return null;
+	}
+	
+
 }

@@ -7,34 +7,34 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import de.fhe.ai.prg4.controller.ContactLogic;
+import de.fhe.ai.prg4.helper.Helper;
+
 /**
  * Servlet implementation class DeleteContact
- * 
+ * Author: Sabine Lück
  *  
  *  
  */
-@WebServlet("/DeleteContacter")
+@WebServlet("/DeleteContact")
 public class ContactDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static ContactLogic contactLogic;
+	private static Helper helper;
+    private boolean deleteContact = false;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public ContactDelete() {
         super();
-        // TODO Auto-generated constructor stub
+        contactLogic = new ContactLogic();
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
-		resp.setContentType( "text/html;charset=UTF-8" );
-		resp.getOutputStream().println( "<html><body>" );
-		resp.getOutputStream().println( "<p><b><i>" );
-		resp.getOutputStream().println( "Contact was deleted" );
-		resp.getOutputStream().println( "</p></i></b>" );
-		resp.getOutputStream().println( "</body></html>" );
 	}
 
 	/**
@@ -42,6 +42,21 @@ public class ContactDelete extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		deleteContact = false;
+		System.out.println("Kontakt: " + request.getParameter("id"));
+		int id = Integer.parseInt( request.getParameter("id"));
+		deleteContact = contactLogic.deleteContact(id);
+		
+		if(!deleteContact)
+		{
+			helper.forwardToPage(request, response, "/ContactDetails?param=" + id);
+			//TODO: include fehler meldung
+		}
+		else
+		{
+			helper.forwardToPage(request, response, "/ContactList");
+		}
+
 	}
 
 }

@@ -10,14 +10,15 @@ public class Contact {
 	private String	Phone;
 	private String	Mobile;
 	private int		User_Id;
-	private String	Shipping_Address_Id;
-	private String	Billing_Address_Id;
+	private int	Shipping_Address_Id;
+	private int	Billing_Address_Id;
 	
 	
 	public Contact(int id, String first_Name, String last_Name, String title,
 			String email, String phone, String mobile, int user_Id,
-			String shipping_Address_Id, String billing_Address_Id) {
+			int shipping_Address_Id, int billing_Address_Id) {
 		super();
+		
 		Id = id;
 		First_Name = first_Name;
 		Last_Name = last_Name;
@@ -117,28 +118,23 @@ public class Contact {
 	}
 
 
-	public String getShipping_Address_Id() {
+	public int getShipping_Address_Id() {
 		return Shipping_Address_Id;
 	}
 
 
-	public void setShipping_Address_Id(String shipping_Address_Id) {
+	public void setShipping_Address_Id(int shipping_Address_Id) {
 		Shipping_Address_Id = shipping_Address_Id;
 	}
 
 
-	public String getBilling_Address_Id() {
+	public int getBilling_Address_Id() {
 		return Billing_Address_Id;
 	}
 
 
-	public void setBilling_Address_Id(String billing_Address_Id) {
+	public void setBilling_Address_Id(int billing_Address_Id) {
 		Billing_Address_Id = billing_Address_Id;
 	}
 		
-	
-	
-
-	
-	
 }

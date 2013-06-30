@@ -2,7 +2,6 @@ package de.fhe.ai.prg4.view;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,16 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import de.fhe.ai.prg4.controller.ArticelLogic;
-import de.fhe.ai.prg4.model.Article;
+import de.fhe.ai.prg4.helper.Helper;
 
 /**
  * Servlet implementation class DeleteArticle
+ * Author: Sabine Lück
  */
 @WebServlet("/ArticleDelete")
 public class ArticleDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static ArticelLogic artLogic;   
-    private boolean editArticle = false;
+	private static Helper helper;   
+    private boolean deleteArticle = false;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -30,15 +31,6 @@ public class ArticleDelete extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
     
-	@SuppressWarnings("unused")
-	private void forwardToPage(final HttpServletRequest request, 
-            final HttpServletResponse response,
-            String url) 
-            throws IOException, ServletException
-            {	
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-				dispatcher.forward(request,response);
-            }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -55,19 +47,19 @@ public class ArticleDelete extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	
-		boolean deleteArticle = false;
+		deleteArticle = false;
 		System.out.println("hdkajgsa" + request.getParameter("id"));
 		int id = Integer.parseInt( request.getParameter("id"));
 		deleteArticle = artLogic.deleteArticle(id);
 		
 		if(!deleteArticle)
 		{
-			forwardToPage(request, response, "/ArticleDetails?param=" + id);
+			helper.forwardToPage(request, response, "/ArticleDetails?param=" + id);
 			//TODO: include fehler meldung
 		}
 		else
 		{
-			forwardToPage(request, response, "/ArticleList");
+			helper.forwardToPage(request, response, "/ArticleList");
 		}
 	}
 

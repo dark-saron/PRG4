@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import de.fhe.ai.prg4.controller.ArticelLogic;
+import de.fhe.ai.prg4.helper.Helper;
 
 /**
  * Servlet implementation class NewArticle
@@ -17,7 +18,8 @@ import de.fhe.ai.prg4.controller.ArticelLogic;
 @WebServlet("/psNA")
 public class ArticleNewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private static ArticelLogic artLogic;   
+    private static ArticelLogic artLogic;
+    private Helper helper;
     private boolean insertArticle = false;
     /**
      * @see HttpServlet#HttpServlet()
@@ -37,15 +39,6 @@ public class ArticleNewServlet extends HttpServlet {
 
 	}
 	
-	@SuppressWarnings("unused")
-	private void forwardToPage(final HttpServletRequest request, 
-            final HttpServletResponse response,
-            String url) 
-            throws IOException, ServletException
-            {
-RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-dispatcher.forward(request,response);
-}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -61,18 +54,14 @@ dispatcher.forward(request,response);
 				request.getParameter("photo"),
 				request.getParameter("ean_isbn"),
 				request.getParameter("externalID"));
-		forwardToPage(request, resp, "/ArticleList");
+		helper.forwardToPage(request, resp, "/ArticleList");
 		if(!insertArticle)
 		{
-			resp.setContentType( "text/html;charset=UTF-8" );
-			resp.setContentType( "<html><head></head><body>" );
-			resp.setContentType( "<h2>Artikel konnte nicht zur Datenbank hinzugefügt werden.</h2></body></html>" );
+
 		}
 		else
 		{
 			
-			//RequestDispatcher view = getServletContext().getRequestDispatcher("/ArticleList");
-			//view.forward(request, resp);
 		}
 		 		
 	}
