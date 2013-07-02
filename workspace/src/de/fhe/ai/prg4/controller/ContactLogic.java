@@ -47,7 +47,7 @@ public class ContactLogic {
 			int shipping_Address_Id, int billing_Address_Id)
 	{
 		//TODO: check for error input
-		contact = new Contact(-1,first_Name, last_Name, title,
+		contact = new Contact(-1,first_Name, last_Name,
 				email, phone, mobile, user_Id,
 				shipping_Address_Id, billing_Address_Id);
 		
@@ -55,19 +55,19 @@ public class ContactLogic {
 		
 		//db connection to call the insert query
 		dbManager.open();
-		status = dbManager.queryInsertContact(contact);
+		status = dbManager.queryInsertContact(contact ); //address id als parameter
 		dbManager.close();
 		
 		return status;
 	}
 	
 	//edit a existing contact
-	public boolean setContact(int id, String first_Name, String last_Name, String title,
+	public boolean setContact(int id, String first_Name, String last_Name,
 			String email, String phone, String mobile, int user_Id,
 			int shipping_Address_Id, int billing_Address_Id)
 	{
 
-		contact = new Contact(id, first_Name, last_Name, title,
+		contact = new Contact(id, first_Name, last_Name,
 				email, phone, mobile, user_Id,
 				shipping_Address_Id, billing_Address_Id);
 		
@@ -91,10 +91,10 @@ public class ContactLogic {
 	}
 	
 	public Address setNewAddress(String first_Name, String last_Name,
-			String street_Nr, String zip, String city, String country)
+			String street_Nr, String zip, String city, String country, String title, char gender)
 	{
 		
-		address = new Address(-1, first_Name, last_Name, street_Nr, zip, city, country);
+		address = new Address(-1, first_Name, last_Name, street_Nr, zip, city, country, title, gender);
 		
 		//TODO: Missing query for the address
 		DBManager.open();
@@ -104,9 +104,9 @@ public class ContactLogic {
 	}
 	
 	public Address setAddress(int id, String first_Name, String last_Name,
-			String street_Nr, String zip, String city, String country)
+			String street_Nr, String zip, String city, String country, String title, char gender)
 	{
-		address = new Address(id, first_Name, last_Name, street_Nr, zip, city, country);
+		address = new Address(id, first_Name, last_Name, street_Nr, zip, city, country, title, gender);
 		
 		//TODO: Missing query for the address
 		DBManager.open();

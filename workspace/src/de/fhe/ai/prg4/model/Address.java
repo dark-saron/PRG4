@@ -6,12 +6,15 @@ public class Address {
 	private	String	First_Name	;
 	private	String	Last_Name	;
 	private	String	Street_Nr	;
-	private	String	Zip;
-	private	String	City;
-	private	String	Country;
+	private	String	Zip			;
+	private	String	City		;
+	private	String	Country		;
+	private String Title		;
+	private char Gender			;
 	
 	public Address(int id, String first_Name, String last_Name,
-			String street_Nr, String zip, String city, String country) {
+			String street_Nr, String zip, String city, String country, String title,
+			char gender) {
 		super();
 		Id = id;
 		First_Name = first_Name;
@@ -20,6 +23,9 @@ public class Address {
 		Zip = zip;
 		City = city;
 		Country = country;
+		Title = title;
+		Gender = gender;
+		
 	}
 
 	public Address() {
@@ -31,6 +37,7 @@ public class Address {
 		Zip = null;
 		City = null;
 		Country = null;
+		Gender = 'w';
 	}
 	
 	public int getId() {
@@ -76,6 +83,20 @@ public class Address {
 		Country = country;
 	}
 	
+	public String getTitle() {
+		return Title;
+	}
 
+	public void setTitle(String title) {
+		Title = title;
+	}
 
+	public char getGender() {
+		return Gender;
+	}
+
+	public void setGender(char gender) {
+		Gender = gender;
+	}
+	
 }

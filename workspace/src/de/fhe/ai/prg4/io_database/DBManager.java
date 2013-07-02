@@ -263,7 +263,7 @@ public class DBManager {
 	public boolean queryUpdateOffer(Offer offer){
 		boolean success = false;
 		try {
-			int rows=STATEMENT.executeUpdate("Update Offer SET Startsaleprice='"+offer.getStartsaleprice()+"',Buynowprice='"+offer.getBuynowprice()+"',Start='"+offer.getStart()+"',End='"+offer.getEnd()+"',Auctionhouse='"+offer.getAuctionhouse()+"',URL='"+offer.getUrl()+"',ArticleID='"+offer.getArticle_Id()+"',UserID='"+offer.getCreator_User_Id()+"',StatusID='"+offer.getStatus()+"'");
+			int rows=STATEMENT.executeUpdate("Update Offer SET Startsaleprice='"+offer.getStartsaleprice()+"',Buynowprice='"+offer.getBuynowprice()+"',Start='"+offer.getStart()+"',End='"+offer.getEnd()+"',Auctionhouse='"+offer.getAuctionhouse()+"',URL='"+offer.getUrl()+"',ArticleID='"+offer.getArticle_Id()+"',UserID='"+offer.getCreator_User_Id()+"',StatusID='"+offer.getStatus()+"' WHERE ID ='"+offer.getId()+"'");
 			
 			if (rows>0){
 				success=true;
@@ -302,20 +302,18 @@ public class DBManager {
 		try {
 			LinkedList<Contact> list1 = new LinkedList<Contact>();
 			//@TODO UserID nachreichen
-			RESULT_SET = STATEMENT.executeQuery("SELECT Contact.ID, Contact.First_Name, Contact.Last_Name, Contact.ID FROM Offer join User on Offer.UserID=User.ID join Article on Article.ID=Offer.ArticleID ORDER BY Offer.StatusID");
+			RESULT_SET = STATEMENT.executeQuery("SELECT Contact.ID, Contact.First_Name, Contact.Last_Name FROM Contacts");
 			
-			/*Offer offer;
+			Contact contact;
 			while (RESULT_SET.next()){
-				offer = new Offer();
-				//System.out.println(RESULT_SET.getInt("ID"));
-				offer.setId(RESULT_SET.getInt("Offer.ID"));
-				offer.setStatus(RESULT_SET.getInt("Offer.StatusID"));
-				offer.setArticle_Id(RESULT_SET.getInt("Article.ID"));
-				offer.setArticle_Name(RESULT_SET.getString("Article.Name"));
-								
-				list1.add(offer);
+				contact = new Contact();
+				contact.setId(RESULT_SET.getInt("Contact.ID"));
+				contact.setFirst_Name(RESULT_SET.getString("Contact.First_Name"));
+				contact.setLast_Name(RESULT_SET.getString("Contact.Last_Name"));
+			
+				list1.add(contact);
 				
-			}*/
+			}
 			return list1;
 		}
 		catch (SQLException e){
@@ -324,26 +322,95 @@ public class DBManager {
 		}	
 	}
 	
-	public Contact queryContactDetails(int ID){ //ID von Contact
-		Contact contact = new Contact();
-		return contact;
+	public Contact queryContactDetails(int id){ //ID von Contact
+		Contact contact;
+		try {
+			contact = new Contact();
+			//System.out.println(RESULT_SET.getInt("ID"));
+			contact.setId(RESULT_SET.getInt("Contact.ID"));
+			contact.setFirst_Name(RESULT_SET.getString("Contact.First_Name"));
+			contact.setLast_Name(RESULT_SET.getString("Contact.Last_Name"));
+			contact.setEmail(RESULT_SET.getString("Contact.Email"));
+			contact.setPhone(RESULT_SET.getString("Contact.Phone"));
+			contact.setMobile(RESULT_SET.getString("Contact.Mobile"));
+			contact.setUser_Id(RESULT_SET.getInt("Contact.UserID"));
+			contact.setShipping_Address_Id(RESULT_SET.getInt("Contact.ShippingaddressId"));
+			contact.setBilling_Address_Id(RESULT_SET.getInt("Contact.BillingaddressId"));
+				
+			return contact;
+		}
+			
+		catch (SQLException e){
+			System.out.println(e);
+			return null;
+		}	
+		
 	}
 	
-	public boolean queryInsertContact(Contact contact){
+	public boolean queryInsertContact(Contact contact, int id){ //id für shipping und billing standardmäßig gleich
 		boolean success = false;
-		return success;
+		
+		try {			
+			int rows=STATEMENT.executeUpdate("INSERT INTO contact " +
+					"(First_Name,Last_Name,Email,Phone,Mobile,UserID,ShippingaddressId,BillingaddressId)" +
+					" VALUES ('"+contact.getFirst_Name()+"','"+contact.getLast_Name()+"','"+contact.getEmail()+"','"+contact.getPhone()+"','"+contact.getMobile()+"','"+contact.getUser_Id()+"','"+id+"','"+id+"')");
+			if (rows >0){
+				success=true;
+			}
+			
+			return success;
+		}
+			
+		catch (SQLException e){
+			System.out.println(e);
+			return success;
+		}
 	}
 	
 	public boolean queryUpdateContact(Contact contact){
 		boolean success = false;
-		return success;
+
+		try {			
+			int rows=STATEMENT.executeUpdate("UPDATE contact SET" +
+					"(First_Name='"+contact.getFirst_Name()+"',Last_Name='"+contact.getLast_Name()+"',Email='"+contact.getEmail()+"',Phone='"+contact.getPhone()+"',Mobile='"+contact.getMobile()+"',UserID='"+contact.getUser_Id()+"',ShippingaddressId='"+contact.getShipping_Address_Id()+"',BillingaddressId='"+contact.getBilling_Address_Id()+"')" +
+					" WHERE ID='"+contact.getId()+"'");
+			if (rows >0){
+				success=true;
+			}
+			
+			return success;
+		}
+			
+		catch (SQLException e){
+			System.out.println(e);
+			return success;
+		}
+		
 	}
 	
-	public boolean queryDeleteContact(int ID){
+	public boolean queryDeleteContact(int id){
 		boolean success = false;
-		return success;
+		try {
+			
+			int rows=STATEMENT.executeUpdate("Delete LOW_PRIORITY FROM contact WHERE ID ='"+id+"'");
+			
+			if (rows > 0){
+				success=true;
+			}
+			return success;
+		}
+			
+		catch (SQLException e){
+			System.out.println(e);
+			return success;
+		}
 	}
 
+	//Adress
+	//extra funktionen für addressen insert,delete und update,
+	//getAddress(), und getAddressID() 
+
+		
 	//Login
 	
 	public boolean queryLogin (User user){

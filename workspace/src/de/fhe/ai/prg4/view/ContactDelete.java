@@ -16,7 +16,7 @@ import de.fhe.ai.prg4.helper.Helper;
  *  
  *  
  */
-@WebServlet("/DeleteContact")
+@WebServlet("/ContactDelete")
 public class ContactDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static ContactLogic contactLogic;
