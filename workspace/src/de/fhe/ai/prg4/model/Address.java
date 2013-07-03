@@ -10,11 +10,11 @@ public class Address {
 	private	String	City		;
 	private	String	Country		;
 	private String Title		;
-	private char Gender			;
+	private String Gender			;
 	
 	public Address(int id, String first_Name, String last_Name,
 			String street_Nr, String zip, String city, String country, String title,
-			char gender) {
+			String gender) {
 		super();
 		Id = id;
 		First_Name = first_Name;
@@ -37,7 +37,7 @@ public class Address {
 		Zip = null;
 		City = null;
 		Country = null;
-		Gender = 'w';
+		Gender = "w";
 	}
 	
 	public int getId() {
@@ -91,11 +91,11 @@ public class Address {
 		Title = title;
 	}
 
-	public char getGender() {
+	public String getGender() {
 		return Gender;
 	}
 
-	public void setGender(char gender) {
+	public void setGender(String gender) {
 		Gender = gender;
 	}
 	
