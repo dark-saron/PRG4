@@ -1,3 +1,4 @@
+<%@page import="de.fhe.ai.prg4.model.Article"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -17,8 +18,11 @@
 <jsp:useBean id="art" class ="de.fhe.ai.prg4.model.Article" />
 
 <%
-  int id = Integer.parseInt(request.getParameter( "param" ));
-  art = artL.getArticle(id);		
+  String id = request.getParameter( "param" );
+  if(id != null)
+	art = artL.getArticle(Integer.parseInt(id));		
+  else
+	  art = new Article();
 %>
 		
 <h1>Artikeln Löschen:</h1>
@@ -34,11 +38,11 @@
     	<td><div><%= art.getName() %></div>
     	</td>
     </tr>
-    <tr><td></td><td><input type="submit" value="Artikel Löschen"></td></tr>
+    <tr><td></td><td><input type="button" onclick="if(<%=art.getId() %> != -1) document.forms.submit();" value="Artikel Löschen"></td></tr>
 </table>
 </form>
 <a href="/flogit_web/ArticleDetails?param=<%= art.getId() %>">Zurück</a>
 
-
+</div></div>
 </body>
 </html>

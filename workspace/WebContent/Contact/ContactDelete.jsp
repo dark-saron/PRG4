@@ -27,8 +27,8 @@
 <form action="ContactDelete" method="post">
 <table>
 	<tr ><td><b>ID:</b>	</td>
-    	<!-- <td><div><%= contact.getId() %></div></td>
-		<td style="display:none"><input type="text" name="id" value="<%= contact.getId() %>" ></td> -->
+    	<td><div><%= contact.getId() %></div></td>
+		<td style="display:none"><input type="text" name="id" value="<%= contact.getId() %>" ></td>
 	</tr>
     <tr style="display:hide">
     	<td><b>Full Name:</b>	</td>

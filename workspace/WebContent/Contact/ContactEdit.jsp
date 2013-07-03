@@ -29,14 +29,15 @@
 <h3>Persönliche Daten:</h1>
 
 <table>
-    <tr><td><b>Titel:</b>	</td><td><input type="text" name="title" value="<%= contact.getTitle() %>"></td></tr>
-    <tr><td><b>Vorname:</b>	</td><td><input type="text" name="first_name" value="<%= contact.getFirst_Name() %>"></td></tr>
-    <tr><td><b>Nachname:</b>	</td><td><input type="text" name="last_name" value="<%= contact.getLast_Name() %>"></td></tr>
-    <tr><td><b>Email: </b></td><td><input type="text" name="email" value="<%= contact.getEmail() %>"></td></tr>
-    <tr><td><b>Telefon: </b></td><td><input type="text" name="phone" value="<%= contact.getPhone() %>"></td></tr>
+    <tr><td><b>ID:</b>	</td><td><input style="display: none;" type="text" name="id" value="<%= contact.getId() %>"><%= contact.getId() %></td></tr>
+    <tr><td><b>Titel:</b>	</td><td><input type="text" name="cTitle" value="<%= contact.getTitle() %>"></td></tr>
+    <tr><td><b>Vorname:</b>	</td><td><input type="text" name="cFirst_Name" value="<%= contact.getFirst_Name() %>"></td></tr>
+    <tr><td><b>Nachname:</b>	</td><td><input type="text" name="cLast_Name" value="<%= contact.getLast_Name() %>"></td></tr>
+    <tr><td><b>Email: </b></td><td><input type="text" name="cEmail" value="<%= contact.getEmail() %>"></td></tr>
+    <tr><td><b>Telefon: </b></td><td><input type="text" name="cPhone" value="<%= contact.getPhone() %>"></td></tr>
     <tr>
     	<td><b>Mobile: </b></td>
-    	<td><input type="text" name="mobile" value="<%= contact.getMobile() %>"></td>
+    	<td><input type="text" name="cMobile" value="<%= contact.getMobile() %>"></td>
     </tr>
 	<br />
 </table>
@@ -47,31 +48,42 @@
 <hr>
 
 <table>
+	<tr style="display: none;">
+    	<td><b>ID:</b>	</td>
+    	<td><input type="text" name="aID" value="<%= address.getId() %>"></td>
+    </tr>
+	<tr>
+		<td><b>Anrede:</b></td>
+		<td>
+			<input type="radio" name="aGender" value="m" checked>Herr<br>
+			<input type="radio" name="aGender" value="f">Frau
+		</td>
+	</tr>
     <tr>
     	<td><b>Vorname:</b>	</td>
-    	<td><input type="text" name="first_name" value="<%= address.getFirst_Name() %>"></td>
+    	<td><input type="text" name="aFirst_Name" value="<%= address.getFirst_Name() %>"></td>
     </tr>
     <tr>
     	<td><b>Nachname:</b>	</td>
-    	<td><input type="text" name="last_name" value="<%= address.getLast_Name() %>"></td>
+    	<td><input type="text" name="aLast_Name" value="<%= address.getLast_Name() %>"></td>
     </tr>
     <tr>
     	<td><b>Straße und Nr.: </b></td>
-    	<td><input type="text" name="street_nr" value="<%= address.getStreet_Nr() %>"></td>
+    	<td><input type="text" name="aStreet_Nr" value="<%= address.getStreet_Nr() %>"></td>
     </tr>
     <tr>
     	<td><b>PLZ: </b></td>
-    	<td><input type="text" name="zip" value="<%= address.getZip() %>"></td>
+    	<td><input type="text" name="aZip" value="<%= address.getZip() %>"></td>
     </tr>
     <tr>
     	<td><b>Stadt: </b></td>
-    	<td><input type="text" name="city" value="<%= address.getCity() %>"></td>
+    	<td><input type="text" name="aCity" value="<%= address.getCity() %>"></td>
     </tr>
     <tr>
     	<td><b>Land: </b></td>
-    	<td><input type="text" name="country" value="<%= address.getCountry() %>"></td></tr>
+    	<td><input type="text" name="aCountry" value="<%= address.getCountry() %>"></td></tr>
 	<br />
-	<br />
+	<tr><td></td><td><input type="submit" value="Kontakt speichern"></td></tr>
 
 </table><br>    
     <a href="/flogit_web/ContactDetails?param=<%= contact.getId() %>">Zurück</a>

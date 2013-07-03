@@ -1,22 +1,30 @@
 package de.fhe.ai.prg4.model;
 
+import java.sql.Date;
+
 public class Bill {
 	
 	private int 	Id;
 	private String	Buyer;
+	//private String	Offer_Id; //?
 	private	float	Total;
+	private	Date	Bought_At;
+	private	Date	Paid_At;
 	private	float	Shipping_Cost;
 	private	int		Offer_Id;
 	private int 	User_Id;
 	private	int		Contact_Id;
 	
 	
-	public Bill(int id, String buyer, float total, float shipping_Cost, int offer_Id, int user_Id,
+	public Bill(int id, String buyer, float total, Date bought_At,
+			Date paid_At, float shipping_Cost, int offer_Id, int user_Id,
 			int contact_Id) {
 		super();
 		Id = id;
 		Buyer = buyer;
 		Total = total;
+		Bought_At = bought_At;
+		Paid_At = paid_At;
 		Shipping_Cost = shipping_Cost;
 		Offer_Id = offer_Id;
 		User_Id = user_Id;
@@ -59,7 +67,27 @@ public class Bill {
 		Total = total;
 	}
 
-	
+
+	public Date getBought_At() {
+		return Bought_At;
+	}
+
+
+	public void setBought_At(Date bought_At) {
+		Bought_At = bought_At;
+	}
+
+
+	public Date getPaid_At() {
+		return Paid_At;
+	}
+
+
+	public void setPaid_At(Date paid_At) {
+		Paid_At = paid_At;
+	}
+
+
 	public float getShipping_Cost() {
 		return Shipping_Cost;
 	}

@@ -337,8 +337,8 @@ public class DBManager {
 			contact.setPhone(RESULT_SET.getString("contact.Phone"));
 			contact.setMobile(RESULT_SET.getString("contact.Mobile"));
 			contact.setUser_Id(RESULT_SET.getInt("contact.UserID"));
-			contact.setShipping_Address_Id(RESULT_SET.getInt("contact.ShippingaddressId"));
-			contact.setBilling_Address_Id(RESULT_SET.getInt("contact.BillingaddressId"));
+			contact.setShipping_Address_Id(RESULT_SET.getInt("contact.ShippingadressID"));
+			contact.setBilling_Address_Id(RESULT_SET.getInt("contact.BillingadressID"));
 				
 			return contact;
 		}
@@ -350,13 +350,13 @@ public class DBManager {
 		
 	}
 	
-	public boolean queryInsertContact(Contact contact, int id){ //id für shipping und billing standardmäßig gleich
+	public boolean queryInsertContact(Contact contact){ //id für shipping und billing standardmäßig gleich
 		boolean success = false;
 		
 		try {			
 			int rows=STATEMENT.executeUpdate("INSERT INTO contact " +
-					"(First_Name,Last_Name,Email,Phone,Mobile,UserID,ShippingaddressId,BillingaddressId)" +
-					" VALUES ('"+contact.getFirst_Name()+"','"+contact.getLast_Name()+"','"+contact.getEmail()+"','"+contact.getPhone()+"','"+contact.getMobile()+"','"+contact.getUser_Id()+"','"+id+"','"+id+"')");
+					"(First_Name,Last_Name,Email,Phone,Mobile,UserID,ShippingadressID,BillingadressID)" +
+					" VALUES ('"+contact.getFirst_Name()+"','"+contact.getLast_Name()+"','"+contact.getEmail()+"','"+contact.getPhone()+"','"+contact.getMobile()+"','"+contact.getUser_Id()+"','"+contact.getShipping_Address_Id()+"','"+contact.getBilling_Address_Id()+"')");
 			if (rows >0){
 				success=true;
 			}
@@ -374,9 +374,7 @@ public class DBManager {
 		boolean success = false;
 
 		try {			
-			int rows=STATEMENT.executeUpdate("UPDATE contact SET" +
-					"(First_Name='"+contact.getFirst_Name()+"',Last_Name='"+contact.getLast_Name()+"',Email='"+contact.getEmail()+"',Phone='"+contact.getPhone()+"',Mobile='"+contact.getMobile()+"',UserID='"+contact.getUser_Id()+"',ShippingaddressId='"+contact.getShipping_Address_Id()+"',BillingaddressId='"+contact.getBilling_Address_Id()+"')" +
-					" WHERE ID='"+contact.getId()+"'");
+			int rows=STATEMENT.executeUpdate("UPDATE contact SET First_Name='"+contact.getFirst_Name()+"',Last_Name='"+contact.getLast_Name()+"',Email='"+contact.getEmail()+"',Phone='"+contact.getPhone()+"',Mobile='"+contact.getMobile()+"',UserID='"+contact.getUser_Id()+"',ShippingadressID='"+contact.getShipping_Address_Id()+"',BillingadressID='"+contact.getBilling_Address_Id()+"' WHERE ID='"+contact.getId()+"'");
 			if (rows >0){
 				success=true;
 			}
@@ -418,7 +416,7 @@ public class DBManager {
 		
 		try {			
 			int rows=STATEMENT.executeUpdate("INSERT INTO address " +
-					"(First_Name,Last_Name,Sreet_Nr,Zip,city,country,Gender,Title)" +
+					"(First_Name,Last_Name,Street_Nr,Zip,city,country,Gender,Title)" +
 					" VALUES ('"+address.getFirst_Name()+"','"+address.getLast_Name()+"','"+address.getStreet_Nr()+"','"+address.getZip()+"','"+address.getCity()+"','"+address.getCountry()+"','"+address.getGender()+"','"+address.getTitle()+"')");
 			if (rows >0){
 				success=true;
@@ -437,9 +435,7 @@ public class DBManager {
 		boolean success = false;
 
 		try {			
-			int rows=STATEMENT.executeUpdate("UPDATE address SET" +
-					"(First_Name='"+address.getFirst_Name()+"',Last_Name='"+address.getLast_Name()+"',Street_Nr='"+address.getStreet_Nr()+"',Zip='"+address.getZip()+"',city='"+address.getCity()+"',country='"+address.getCountry()+"',Gender='"+address.getGender()+"',Title='"+address.getTitle()+"'" +
-					" WHERE ID='"+address.getId()+"'");
+			int rows=STATEMENT.executeUpdate("UPDATE address SET First_Name='"+address.getFirst_Name()+"',Last_Name='"+address.getLast_Name()+"',Street_Nr='"+address.getStreet_Nr()+"',Zip='"+address.getZip()+"',city='"+address.getCity()+"',country='"+address.getCountry()+"',Gender='"+address.getGender()+"',Title='"+address.getTitle()+"' WHERE ID='"+address.getId()+"'");
 			if (rows >0){
 				success=true;
 			}
@@ -472,11 +468,11 @@ public class DBManager {
 		}
 	}
 	
-	public Address queryAddressDetails(Contact contact){ //ID von Contact
+	public Address queryAddressDetails(int id){ //ID von Contact
 		
 		try {
 			Address address = new Address();
-			RESULT_SET = STATEMENT.executeQuery("SELECT * FROM address WHERE ID='"+contact.getShipping_Address_Id()+"'");
+			RESULT_SET = STATEMENT.executeQuery("SELECT * FROM address WHERE ID='"+id+"'");
 			RESULT_SET.next();
 			//System.out.println(RESULT_SET.getInt("ID"));
 			address.setId(RESULT_SET.getInt("address.ID"));
@@ -499,21 +495,22 @@ public class DBManager {
 		
 	}
 	
-public Address queryAddressID(Address address){ //ID von Contact
+	//get newest Address in the DB
+public int queryAddressID()
+{ 
 		
 		try {
 			
 			RESULT_SET = STATEMENT.executeQuery("SELECT ID FROM address ORDER BY ID DESC LIMIT 1");
 			RESULT_SET.next();
 			//System.out.println(RESULT_SET.getInt("ID"));
-			address.setId(RESULT_SET.getInt("address.ID"));
 				
-			return address;
+			return RESULT_SET.getInt("address.ID");
 		}
 			
 		catch (SQLException e){
 			System.out.println(e);
-			return null;
+			return -1;
 		}	
 		
 	}

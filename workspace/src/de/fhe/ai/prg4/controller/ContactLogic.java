@@ -1,5 +1,9 @@
 package de.fhe.ai.prg4.controller;
 
+import java.util.regex.Pattern;
+
+import org.apache.commons.validator.EmailValidator;
+
 import de.fhe.ai.prg4.io_database.DBManager;
 import de.fhe.ai.prg4.model.Address;
 import de.fhe.ai.prg4.model.Contact;
@@ -41,36 +45,129 @@ public class ContactLogic {
 		return contact;
 	}
 	
+	//combines insert of contact and address with checkup is success
+	public boolean CreateNewContactWithAddress(
+			String cFirst_Name, 
+			String cLast_Name, 
+			String cTitle,
+			String cEmail, 
+			String cPhone, 
+			String cMobile, 
+			int cUser_Id,
+			String aFirst_Name, 
+			String aLast_Name,
+			String aStreet_Nr, 
+			String aZip, 
+			String aCity, 
+			String aCountry, 
+			String aTitle, 
+			String aGender)
+	{
+		
+		address = new Address(-1, aFirst_Name, aLast_Name, aStreet_Nr, aZip, aCity, aCountry, aTitle, aGender);
+		
+		if(!setNewAddress(address))
+			return false;
+		DBManager.open();
+		address.setId(dbManager.queryAddressID());
+		DBManager.close();
+		
+		contact = new Contact(-1, cFirst_Name, cLast_Name, cTitle, cEmail, cPhone, cMobile, cUser_Id,address.getId(),address.getId());
+		
+		if(!setNewContact(contact))
+		{
+			if(contact.getShipping_Address_Id() == contact.getBilling_Address_Id())
+			{
+				deleteAddress(contact.getShipping_Address_Id());
+			}
+			else
+			{
+				deleteAddress(contact.getShipping_Address_Id());
+				deleteAddress(contact.getBilling_Address_Id());
+			}
+			return false;
+			
+		}
+		return true;
+	}
+
+	public boolean DeleteContactWithAddress(int id)
+	{
+		contact = getContact(id);
+		int id_sa = contact.getShipping_Address_Id();
+		int id_ba = contact.getBilling_Address_Id();
+		if(!deleteContact(id))
+			return false;
+
+		if(id_sa == id_ba)
+			{
+				if(!deleteAddress(id_ba))
+						return false;
+			}
+			else
+			{
+				if(!deleteAddress(id_sa) && 
+				!deleteAddress(id_ba))
+					return false;
+			}
+			
+			
+		return true;
+	}
+
+	//combines update of contact and address with checkup is success
+	public boolean UpdateContactWithAddress(
+			int cid, 
+			String cFirst_Name, 
+			String cLast_Name, 
+			String cTitle,
+			String cEmail, 
+			String cPhone, 
+			String cMobile, 
+			int cUser_Id,
+			int aID, 
+			String aFirst_Name, 
+			String aLast_Name,
+			String aStreet_Nr, 
+			String aZip, 
+			String aCity, 
+			String aCountry, 
+			String aTitle, 
+			String aGender)
+	{
+		contact = new Contact(cid, cFirst_Name, cLast_Name, cTitle, cEmail, cPhone, cMobile, cUser_Id,aID,aID);
+
+		if(!setContact(contact))
+			return false;
+		
+		address = new Address(aID, aFirst_Name, aLast_Name, aStreet_Nr, aZip, aCity, aCountry, aTitle, aGender);
+		
+		if(!setAddress(address))
+			return false;
+		
+		return true;
+	}
+
+	
+	
 	//create new Contact
-	public boolean setNewContact(String first_Name, String last_Name, String title,
-			String email, String phone, String mobile, int user_Id,
-			int shipping_Address_Id, int billing_Address_Id)
+	public boolean setNewContact(Contact contact)
 	{
 		//TODO: check for error input
-		contact = new Contact(-1,first_Name, last_Name,
-				email, phone, mobile, user_Id,
-				shipping_Address_Id, billing_Address_Id);
-		
 		boolean status;
 		
 		//db connection to call the insert query
-		dbManager.open();
-		status = dbManager.queryInsertContact(contact ); //address id als parameter
-		dbManager.close();
+		DBManager.open();
+		status = dbManager.queryInsertContact(contact);
+		DBManager.close();
 		
 		return status;
 	}
 	
 	//edit a existing contact
-	public boolean setContact(int id, String first_Name, String last_Name,
-			String email, String phone, String mobile, int user_Id,
-			int shipping_Address_Id, int billing_Address_Id)
+	public boolean setContact(Contact contact)
 	{
 
-		contact = new Contact(id, first_Name, last_Name,
-				email, phone, mobile, user_Id,
-				shipping_Address_Id, billing_Address_Id);
-		
 		boolean status;
 		
 		//db connection um ein insert aufzurufen
@@ -81,39 +178,60 @@ public class ContactLogic {
 		return status;
 	}
 	
+
+	
 	public Address getAddress(int id)
 	{
 		//TODO: Missing query for the address
 		DBManager.open();
-		//address = dbManager.qu
+		address = dbManager.queryAddressDetails(id);
 		DBManager.close();
+		
 		return address; 
 	}
 	
-	public Address setNewAddress(String first_Name, String last_Name,
-			String street_Nr, String zip, String city, String country, String title, char gender)
+	//create new address in the DB
+	public boolean setNewAddress(Address address)
 	{
-		
-		address = new Address(-1, first_Name, last_Name, street_Nr, zip, city, country, title, gender);
+		boolean check;
 		
 		//TODO: Missing query for the address
 		DBManager.open();
-		//address = dbManager.qu
+		check = dbManager.queryInsertAdress(address);
 		DBManager.close();
-		return address; 
+		return check; 
 	}
 	
-	public Address setAddress(int id, String first_Name, String last_Name,
-			String street_Nr, String zip, String city, String country, String title, char gender)
+	//update old Address
+	public boolean setAddress(Address address)
 	{
-		address = new Address(id, first_Name, last_Name, street_Nr, zip, city, country, title, gender);
+		
+		boolean check;
 		
 		//TODO: Missing query for the address
 		DBManager.open();
-		//address = dbManager.qu
+		check = dbManager.queryUpdateAddress(address);
 		DBManager.close();
-		return address; 
+		return check; 
 	}
 
-
+	@SuppressWarnings("deprecation")
+	public static boolean validateEmailAddress(String sEmail){
+	       EmailValidator emailValidator = EmailValidator.getInstance();
+	       return emailValidator.isValid(sEmail);
+	       
+	} 
+	
+	//delete address in the DB
+	public boolean deleteAddress(int id)
+		{
+			boolean check;
+			
+			//TODO: Missing query for the address
+			DBManager.open();
+			check = dbManager.queryDeleteAddress(id);
+			DBManager.close();
+			return check; 
+		}
+	
 }

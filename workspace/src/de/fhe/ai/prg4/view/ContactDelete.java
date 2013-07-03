@@ -1,6 +1,8 @@
 package de.fhe.ai.prg4.view;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -45,16 +47,19 @@ public class ContactDelete extends HttpServlet {
 		deleteContact = false;
 		System.out.println("Kontakt: " + request.getParameter("id"));
 		int id = Integer.parseInt( request.getParameter("id"));
-		deleteContact = contactLogic.deleteContact(id);
+		deleteContact = contactLogic.DeleteContactWithAddress(id);
 		
 		if(!deleteContact)
 		{
-			helper.forwardToPage(request, response, "/ContactDetails?param=" + id);
+			RequestDispatcher view = request.getRequestDispatcher("Contact/ContactDetails?param=" + id);
+		    view.forward(request, response);
+			
 			//TODO: include fehler meldung
 		}
 		else
 		{
-			helper.forwardToPage(request, response, "/ContactList");
+			RequestDispatcher view = request.getRequestDispatcher("Contact/ContactList.jsp");
+		    view.forward(request, response);
 		}
 
 	}

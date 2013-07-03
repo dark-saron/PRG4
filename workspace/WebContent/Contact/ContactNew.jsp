@@ -18,23 +18,32 @@
 <h3>Persönliche Daten:</h1>
 <br>
 <table>
-    <tr><td><b>Titel:</b>	</td><td><input type="text" name="title" placeholer="Dr."></td></tr>
-    <tr><td><b>Vorname:</b>	</td><td><input type="text" name="first_name" placeholer="Max"></td></tr>
-    <tr><td><b>Nachname:</b>	</td><td><input type="text" name="last_name" placeholer="Mustermann"></td></tr>
-    <tr><td><b>Email: </b></td><td><input type="text" name="email" placeholer="muster@email.de"></td></tr>
-    <tr><td><b>Telefon: </b></td><td><input type="text" name="phone" placeholer="01234-12343"></td></tr>
-    <tr><td><b>Mobile: </b></td><td><input type="text" name="mobile" placeholer="01234-1234"></td></tr>
+    <tr><td><b>Titel:</b>	</td><td><input type="text" name="cTitle" placeholer="Dr."></td></tr>
+    <tr><td><b>Vorname:</b>	</td><td><input type="text" name="cFirst_Name" placeholer="Max"></td></tr>
+    <tr><td><b>Nachname:</b>	</td><td><input type="text" name="cLast_Name" placeholer="Mustermann"></td></tr>
+    <tr><td><b>Email: </b></td><td><input type="text" name="cEmail" placeholer="muster@email.de"></td></tr>
+    <tr><td><b>Telefon: </b></td><td><input type="text" name="cPhone" placeholer="01234-12343"></td></tr>
+    <tr><td><b>Mobile: </b></td><td><input type="text" name="cMobile" placeholer="01234-1234"></td></tr>
 	<br />
 </table><br>    
 <hr>
 <h3>Anschrift: </h3>
 <table>
-    <tr><td><b>Vorname:</b>	</td><td><input type="text" name="first_name" placeholer="Max"></td></tr>
-    <tr><td><b>Nachname:</b>	</td><td><input type="text" name="last_name" placeholer="Mustermann"></td></tr>
-    <tr><td><b>Straße und Nr.: </b></td><td><input type="text" name="street_nr" placeholer="Luther Str. 7"></td></tr>
-    <tr><td><b>PLZ: </b></td><td><input type="text" name="zip" placeholer="01234"></td></tr>
-    <tr><td><b>Stadt: </b></td><td><input type="text" name="city" placeholer="Erfurt"></td></tr>
-    <tr><td><b>Land: </b></td><td><input type="text" name="country" placeholer="Deutschland"></td></tr>
+    
+	<tr>
+		<td><b>Anrede:</b></td>
+		<td>
+			<input type="radio" name="aGender" value="m" checked>Herr<br>
+			<input type="radio" name="aGender" value="f">Frau
+		</td>
+	</tr>
+	<tr><td><b>Titel:</b>	</td><td><input type="text" name="aTitle" placeholer="Dr."></td></tr>
+    <tr><td><b>Vorname:</b>	</td><td><input type="text" name="aFirst_Name" placeholer="Max"></td></tr>
+    <tr><td><b>Nachname:</b>	</td><td><input type="text" name="aLast_Name" placeholer="Mustermann"></td></tr>
+    <tr><td><b>Straße und Nr.: </b></td><td><input type="text" name="aStreet_Nr" placeholer="Luther Str. 7"></td></tr>
+    <tr><td><b>PLZ: </b></td><td><input type="text" name="aZip" placeholer="01234"></td></tr>
+    <tr><td><b>Stadt: </b></td><td><input type="text" name="aCity" placeholer="Erfurt"></td></tr>
+    <tr><td><b>Land: </b></td><td><input type="text" name="aCountry" placeholer="Deutschland"></td></tr>
 	<br />
 	<br />
 

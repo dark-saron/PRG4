@@ -2,6 +2,7 @@ package de.fhe.ai.prg4.view;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,26 +44,34 @@ public class ContactEditServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		editContact = false;
-		response.setContentType("Kontakt: " + request.getParameter("id") );
+		System.out.println("Kontakt: " + request.getParameter("id") );
 		int id = Integer.parseInt( request.getParameter("id"));
-		editContact = contactLogic.setContact(
-				id,
-				request.getParameter("first_Name"),
-				request.getParameter("last_Name"),
-				request.getParameter("title"),
-				request.getParameter("email"),
-				request.getParameter("phone"),
-				request.getParameter("mobile"),
+		editContact = contactLogic.UpdateContactWithAddress(
+				id, 
+				request.getParameter("cFirst_Name"), 
+				request.getParameter("cLast_Name"), 
+				request.getParameter("cTitle"), 
+				request.getParameter("cEmail"), 
+				request.getParameter("cPhone"), 
+				request.getParameter("cMobile"), 
 				1,
-				Integer.parseInt(request.getParameter("shipping_Address_Id")),
-				Integer.parseInt(request.getParameter("billing_Address_Id"))				
+				Integer.parseInt(request.getParameter("aID")), 
+				request.getParameter("aFirst_Name"), 
+				request.getParameter("aLast_Name"), 
+				request.getParameter("aStreet_Nr"), 
+				request.getParameter("aZip"), 
+				request.getParameter("aCity"), 
+				request.getParameter("aCountry"), 
+				request.getParameter("aTitle"), 
+				request.getParameter("aGender")
 				);
 		if(!editContact)
 		{
 		}
 		else
 		{
-			helper.forwardToPage(request, response, "/ContactList");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ContactList");
+			dispatcher.forward(request,response);
 		}
 		 		
 	}

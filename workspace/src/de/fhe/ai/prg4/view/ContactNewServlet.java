@@ -1,6 +1,8 @@
 package de.fhe.ai.prg4.view;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +17,7 @@ import de.fhe.ai.prg4.helper.Helper;
  * 20.06.2013
  * Servlet implementation class NewContact
  */
-@WebServlet("/psNC")
+@WebServlet("/psNK")
 public class ContactNewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private static ContactLogic contactLogic;   
@@ -46,18 +48,25 @@ public class ContactNewServlet extends HttpServlet {
 		
 		insertContact = false;
 		
-		insertContact = contactLogic.setNewContact( 
-				request.getParameter("first_Name"),
-				request.getParameter("last_Name"),
-				request.getParameter("title"),
-				request.getParameter("email"),
-				request.getParameter("phone"),
-				request.getParameter("mobile"),
-				1,
-				Integer.parseInt(request.getParameter("shipping_Address_Id")),
-				Integer.parseInt(request.getParameter("billing_Address_Id"))				
+		insertContact = contactLogic.CreateNewContactWithAddress(
+				request.getParameter("cFirst_Name"), 
+				request.getParameter("cLast_Name"), 
+				request.getParameter("cTitle"), 
+				request.getParameter("cEmail"), 
+				request.getParameter("cPhone"),
+				request.getParameter("cMobile"), 
+				1, 
+				request.getParameter("aFirst_Name"), 
+				request.getParameter("aLast_Name"), 
+				request.getParameter("aStreet_Nr"), 
+				request.getParameter("aZip"), 
+				request.getParameter("aCity"), 
+				request.getParameter("aCountry"), 
+				request.getParameter("aTitle"), 
+				request.getParameter("aGender")
 				);
-		helper.forwardToPage(request, response, "/ContactList");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ContactList");
+		dispatcher.forward(request,response);
 		if(!insertContact)
 		{
 

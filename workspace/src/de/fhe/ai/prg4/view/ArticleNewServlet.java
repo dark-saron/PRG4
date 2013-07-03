@@ -54,14 +54,16 @@ public class ArticleNewServlet extends HttpServlet {
 				request.getParameter("photo"),
 				request.getParameter("ean_isbn"),
 				request.getParameter("externalID"));
-		helper.forwardToPage(request, resp, "/ArticleList");
+		
+		//helper.forwardToPage(request, resp, "/ArticleList");
 		if(!insertArticle)
 		{
 
 		}
 		else
 		{
-			
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ArticleList");
+			dispatcher.forward(request,resp);
 		}
 		 		
 	}

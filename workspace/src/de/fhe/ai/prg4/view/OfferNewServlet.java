@@ -53,10 +53,10 @@ dispatcher.forward(request,response);
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println(request.getParameter("article"));
+		System.out.println(request.getParameter("article_Id"));
 		ArticelLogic artL = new ArticelLogic();
 		
-		int article_id = Integer.parseInt(request.getParameter("article"));
+		int article_id = Integer.parseInt(request.getParameter("article_Id"));
 		String article_name = artL.getArticle(article_id).getName();
 		
 		query = offerLogic.setNewOffer(

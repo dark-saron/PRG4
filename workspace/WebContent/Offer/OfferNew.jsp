@@ -10,8 +10,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
-
+<script type="text/javascript" src="Javascript/check.js" ></script>
+<link href="CSS/style.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
@@ -56,7 +56,7 @@ LinkedList<Article> artList = new LinkedList<Article>();
 <div id='content' style='margin:auto; width:800px'>
 <h1>Neues Angebot anlegen:</h1>
 <br><br><br>
-<form action="psNO" method="post">
+<form id="fOffer" name="fOffer" action="psNO" method="post">
 <c:set var="aID" scope="session" value="<%= id %>"/>
 
 <table>
@@ -65,7 +65,7 @@ LinkedList<Article> artList = new LinkedList<Article>();
 		<c:choose>
 		<c:when test="${aID  == -1}">
 			<td>
-    			<select name="article" >
+    			<select name="article_Id" >
     		  		<c:forEach items="<%= artList %>" var="art" varStatus="loop">
       					<option value="${art.getId()}">
       						<c:out value="${art.getName()}" />
@@ -108,7 +108,7 @@ LinkedList<Article> artList = new LinkedList<Article>();
     </tr>	
     <tr>
     	<td></td>
-    	<td><input type="submit" value="Angebot erstellen"></td>
+    	<td><input type="button" onclick="if(chkOfferFormular()) document.forms.submit();" value="Angebot erstellen"></td>
     </tr>
 	
 
@@ -117,5 +117,6 @@ LinkedList<Article> artList = new LinkedList<Article>();
 	<a href="/flogit_web/OfferList">Zurück zur Angebots Liste</a>
 </form>
 </div></div>
+<div id="errorMsg"></div>
 </body>
 </html>

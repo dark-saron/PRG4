@@ -22,15 +22,12 @@
 <jsp:useBean id="address" class ="de.fhe.ai.prg4.model.Address" />
 <%
   int id = Integer.parseInt(request.getParameter( "param" ));
-  contact = contactL.getContact(id);	
+  contact = contactL.getContact(id);
+  address = contactL.getAddress(contact.getBilling_Address_Id());
 %>
 <h3>Persönliche Daten:</h1>
 <br>
 <table id="details" width='500' border='1'>
-			<tr>
-			<td ><b>Anrede: </b></td>
-			<td >	(TODO: missed var in DB and Model)</td>
-			</tr>
 			<tr>
 			<td ><b>Titel: </b></td>
 			<td >	<%= contact.getTitle() %></td>
@@ -60,6 +57,25 @@
 		<hr><h3>Anschrift: </h3>
 		<table id="address_details" width='500' border='1'>
 			<tr>
+				<td ><b>Anrede: </b></td>
+				<td >
+			    <%
+			    	String anrede = "";
+    				
+		    	if(address.getGender().matches("f"))
+		    		anrede = "Frau";
+		    	else
+		    		anrede = "Herr";
+				%>
+			    <%= anrede %></td>
+				
+				</td>
+			</tr>
+			<tr>
+			<td ><b>Titel: </b></td>
+			<td >	<%= address.getTitle() %></td>
+			</tr>
+			<tr>
 			<td ><b>Name: </b></td>
 			<td >	<%= address.getFirst_Name() %> <%= address.getLast_Name() %></td>
 			</tr>
@@ -68,12 +84,8 @@
 			<td >	<%= address.getStreet_Nr() %></td>
 			</tr>
 			<tr>
-			<td ><b>PLZ: </b></td>
-			<td >	<%= address.getZip() %></td>
-			</tr>
-			<tr>
-			<td><b>Stadt: </b></td>
-			<td>	<%= address.getCity() %></td>
+			<td ><b>Ort: </b></td>
+			<td ><%= address.getZip() %> <%= address.getCity() %></td>
 			</tr>
 			<tr>
 			<td><b>Land: </b></td>
@@ -82,8 +94,8 @@
 		</table>
 		
 		<div style='float:left; padding:5% 0%'>
-			<a href="ArticleEdit?param=<%=contact.getId() %>">Bearbeiten</a>
-			<a href="DeleteArticle?param=<%=contact.getId() %>">Löschen</a>
+			<a href="ContactEdit?param=<%=contact.getId() %>">Bearbeiten</a>
+			<a href="DeleteContact?param=<%=contact.getId() %>">Löschen</a>
 		</div></div></div>
 		
 </body>

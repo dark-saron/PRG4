@@ -2,6 +2,8 @@ package de.fhe.ai.prg4.controller;
 
 import java.util.LinkedList;
 
+import javax.servlet.RequestDispatcher;
+
 import de.fhe.ai.prg4.io_database.DBManager;
 import de.fhe.ai.prg4.model.Article;
 
@@ -83,4 +85,6 @@ public class ArticelLogic {
 		
 		return status;
 	}
+	
+	
 }

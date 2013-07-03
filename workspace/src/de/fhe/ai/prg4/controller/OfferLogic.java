@@ -62,10 +62,13 @@ public class OfferLogic
 	 */
 	public boolean setNewOffer(int id, float startsaleprice, 
 			float buynowprice, String start,
-			String end, String url, 
-			int status, int creator_User_Id,
+			String end, 
+			String url, 
+			int status, 
+			int creator_User_Id,
 			int article_Id, 
-			String	article_Name, String auctionhouse)
+			String	article_Name, 
+			String auctionhouse)
 	{
 		//TODO: überprüfung des unhaltes
 		Offer offer = new Offer(id, startsaleprice, buynowprice, start,

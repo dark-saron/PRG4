@@ -33,8 +33,8 @@
 %>
 
 
-<div style='float:left; padding:5% 20%'>
-	<div id='content' style='margin:auto; width:800px'>
+<div style='float:left; padding:5% 20%;'>
+	<div id='content' style='margin:auto; width:800px;'>
 		<h1>Angebot bearbeiten:</h1>
 		<br><br><br>
 		<form action="editOffer" method="post">
@@ -56,17 +56,19 @@
 		    	{
 		    	case 1:
 		    		statusName = "Offen";
+		    		break;
 
 		    	case 2:
 		    		statusName = "Gekauft";
-
+					break;
 		    	case 3:
 		    		statusName = "Abgelaufen";
+		    		break;
 		    	}
 		    
 		    %>
 		    	<select name="status" >
-					<option selected="selected" value="<%= offer.getStatus() %> "><%= statusName %></option>
+					<option selected="selected" value="<%= offer.getStatus() %>"><%= statusName %></option>
 					<option value="1">Offen</option>
 					<option value="2">Gekauft</option>
 					<option value="3">Abgelaufen</option>

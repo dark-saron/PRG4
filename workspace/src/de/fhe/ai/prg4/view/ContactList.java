@@ -3,6 +3,7 @@ package de.fhe.ai.prg4.view;
 import java.io.IOException;
 import java.util.LinkedList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,7 +39,8 @@ public class ContactList extends HttpServlet {
 		C_List = CL_Logic.getContactList();
 		 
 		request.setAttribute("contactList", C_List);
-		helper.forwardToPage(request, resp, "Article/ArticleList.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("Contact/ContactList.jsp");
+	    view.forward(request, resp);
 	}
 
 	/**
@@ -50,8 +52,8 @@ public class ContactList extends HttpServlet {
 		C_List = CL_Logic.getContactList();
 		 
 		request.setAttribute("contactList", C_List);
-		helper.forwardToPage(request, response, "Article/ArticleList.jsp");
-
+		RequestDispatcher view = request.getRequestDispatcher("Contact/ContactList.jsp");
+	    view.forward(request, response);
 	}
 
 }
