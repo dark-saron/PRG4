@@ -1,3 +1,15 @@
+/* Test ob Rechnung einfügen klappt
+		 * Bill bill = new Bill (1,3.79f,"2013-07-04","2013-07-04", 5.00f,1,2,1);
+		
+		if (DBM.queryInsertBill(bill)){
+			System.out.println("Rechnung eingefügt");
+		}
+		else {
+			System.out.println("Rechnung wurde nicht eingefügt");
+		}
+		*/
+
+
 /*public static void getResultSet (String _query){
 		try {
 			
@@ -59,5 +71,6 @@
 		//System.out.print(offer.get(1));
 		//Article article = DBM.queryArticleDetails(2);
 		//System.out.print(article.getName());
+		
 		
 	

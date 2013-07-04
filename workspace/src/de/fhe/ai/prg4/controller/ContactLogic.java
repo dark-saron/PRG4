@@ -2,8 +2,6 @@ package de.fhe.ai.prg4.controller;
 
 import java.util.regex.Pattern;
 
-import org.apache.commons.validator.EmailValidator;
-
 import de.fhe.ai.prg4.io_database.DBManager;
 import de.fhe.ai.prg4.model.Address;
 import de.fhe.ai.prg4.model.Contact;
@@ -215,12 +213,6 @@ public class ContactLogic {
 		return check; 
 	}
 
-	@SuppressWarnings("deprecation")
-	public static boolean validateEmailAddress(String sEmail){
-	       EmailValidator emailValidator = EmailValidator.getInstance();
-	       return emailValidator.isValid(sEmail);
-	       
-	} 
 	
 	//delete address in the DB
 	public boolean deleteAddress(int id)

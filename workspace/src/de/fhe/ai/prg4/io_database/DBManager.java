@@ -408,8 +408,7 @@ public class DBManager {
 	}
 
 	//Adress
-	//extra funktionen für addressen insert,delete und update,
-	//getAddress(), und getAddressID() 
+
 
 	public boolean queryInsertAdress(Address address){
 		boolean success = false;
@@ -524,53 +523,86 @@ public int queryAddressID()
 		return success;
 	}
 
-	//Bills
+	//Bill
 	
-	public Bill queryBill (int ID){
+	public Bill queryBill (int id){ //ID von Contact
 		Bill bill = new Bill();
-		return bill;
+		
+		try {
+			RESULT_SET = STATEMENT.executeQuery("SELECT * FROM bill WHERE ID='"+id+"'");
+			RESULT_SET.next();
+			
+			bill.setId(RESULT_SET.getInt("bill.ID"));
+			bill.setTotal(RESULT_SET.getFloat("bill.Total"));
+			bill.setBought_At(RESULT_SET.getString("bill.Bought_at"));
+			bill.setShipped_At(RESULT_SET.getString("bill.Shipped_at"));
+			bill.setShipping_Cost(RESULT_SET.getFloat("bill.Shipping_cost"));
+			bill.setOffer_Id(RESULT_SET.getInt("bill.OfferID"));
+			bill.setContact_Id(RESULT_SET.getInt("bill.ContactID"));
+			bill.setSeller_Id(RESULT_SET.getInt("bill.SellerID"));
+			
+			return bill;
+		}
+			
+		catch (SQLException e){
+			System.out.println(e);
+			return null;
+		}	
+		
 	}
 	
-	public boolean queryInsertBill (int ID){ //ID von Offer
+	public boolean queryInsertBill(Bill bill){
 		boolean success = false;
-		return success;
+		try {
+			int rows=STATEMENT.executeUpdate("INSERT INTO bill " +
+					"(Total,Bought_At,Shipped_At,Shipping_Cost,OfferID,ContactID,SellerID)" +
+					" VALUES ('"+bill.getTotal()+"','"+bill.getBought_At()+"','"+bill.getShipped_At()+"','"+bill.getShipping_Cost()+"','"+bill.getOffer_Id()+"','"+bill.getContact_Id()+"','"+bill.getSeller_Id()+"')");
+			if (rows >0){
+				success=true;
+			}
+			return success;
+		}
+		
+		catch (SQLException e){
+			System.out.println(e);
+			return success;
+		}
 	}
 	
-	public boolean queryExistBill (int ID){ //ID von Offer
+	public boolean queryExistBill (int id){ //ID von Offer
 		boolean success = false;
-		return success;
+		try{
+			RESULT_SET = STATEMENT.executeQuery("SELECT OfferID FROM bill WHERE OfferID='"+id+"'");
+			
+			
+			if(RESULT_SET.next()==false){ //Wenn das SQL-Ergebnis einen NULL-Datensatz liefert
+			return success;
+			}
+			else {
+			success=true;
+			return success;
+			}
+		}
+		
+		catch (SQLException e){
+			System.out.println(e);
+			return success;
+		}
 	}
 
 	
-public static void main (String[] args){
+	public static void main (String[] args){
 		
 		DBManager DBM = new DBManager();
 		
 		DBM.open();
+		DBM.queryBill(1);
 		
-		/*Article article = new Article(1,"Buch", "Ein beispielhaftes Buch", "Box", "Beispielbuch5", "Kein Foto", "3859891302715", "BN12349");
-		if (DBM.queryInsertArticle(article)){
-			System.out.println("Artikel eingefügt");
-		}
-		else {
-			System.out.println("Artikel wurde nicht eingefügt");
-		}
-		*/
-		//Offer offer = new Offer(-1,3.00f,4.00f, "2000-11-30", "2000-12-30", "http:\\www.123.de", 1,1,1, "", "Bol.de") ;
-		//DBM.queryInsertOffer(offer);
-		//System.out.println(offer.getStart().toString());
 		
-		//boolean success=DBM.queryInsertOffer(offer);
-		
-		//System.out.print(offer.getArticle_Name());
-				
-		//LinkedList<Offer> offer = DBM.queryAllOffers(1);
-		//System.out.print(offer.get(1));
-		//Article article = DBM.queryArticleDetails(2);
-		//System.out.print(article.getName());
 		DBM.close();
 		
-}
+	}
+
 }
 
 
