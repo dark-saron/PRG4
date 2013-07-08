@@ -50,7 +50,6 @@ public class ContactEditServlet extends HttpServlet {
 				id, 
 				request.getParameter("cFirst_Name"), 
 				request.getParameter("cLast_Name"), 
-				request.getParameter("cTitle"), 
 				request.getParameter("cEmail"), 
 				request.getParameter("cPhone"), 
 				request.getParameter("cMobile"), 

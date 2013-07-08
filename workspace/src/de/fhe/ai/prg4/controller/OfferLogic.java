@@ -15,6 +15,22 @@ public class OfferLogic
 		offer = new Offer();
 		
 	}
+
+	public boolean existBill(int offerID)
+	{
+		flag = false;
+
+		if(offerID == -1)
+			return flag;
+		
+		DBManager.open();
+		flag = dbManager.queryExistBill(offerID);
+		DBManager.close();
+		
+		return flag;
+	}
+
+	
 	public boolean deleteOffer(int offerID)
 	{
 		flag = false;

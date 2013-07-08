@@ -3,6 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<script type="text/javascript" src="Javascript/check.js" ></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Kontakt Bearbeiten</title>
 </head>
@@ -19,20 +20,19 @@
   address = contactL.getAddress(contact.getBilling_Address_Id());
 %>
 
-<div style='float:left; padding:5% 20%''>
+<div style='float:left; padding:5% 20%'>
 <div id='content' style='margin:auto; width:800px'>
 
 <h1>Kontakt bearbeiten:</h1>
 <br><br><br>
 
-<form action="editContact" method="post">
-<h3>Persönliche Daten:</h1>
+<form name="fContact" id="fContact" action="editContact" method="post">
+<h3>Persönliche Daten:</h3>
 
 <table>
     <tr><td><b>ID:</b>	</td><td><input style="display: none;" type="text" name="id" value="<%= contact.getId() %>"><%= contact.getId() %></td></tr>
-    <tr><td><b>Titel:</b>	</td><td><input type="text" name="cTitle" value="<%= contact.getTitle() %>"></td></tr>
-    <tr><td><b>Vorname:</b>	</td><td><input type="text" name="cFirst_Name" value="<%= contact.getFirst_Name() %>"></td></tr>
-    <tr><td><b>Nachname:</b>	</td><td><input type="text" name="cLast_Name" value="<%= contact.getLast_Name() %>"></td></tr>
+    <tr><td><b>Vorname*:</b>	</td><td><input type="text" name="cFirst_Name" value="<%= contact.getFirst_Name() %>"></td></tr>
+    <tr><td><b>Nachname*:</b>	</td><td><input type="text" name="cLast_Name" value="<%= contact.getLast_Name() %>"></td></tr>
     <tr><td><b>Email: </b></td><td><input type="text" name="cEmail" value="<%= contact.getEmail() %>"></td></tr>
     <tr><td><b>Telefon: </b></td><td><input type="text" name="cPhone" value="<%= contact.getPhone() %>"></td></tr>
     <tr>
@@ -61,29 +61,29 @@
 	</tr>
     <tr>
     	<td><b>Vorname:</b>	</td>
-    	<td><input type="text" name="aFirst_Name" value="<%= address.getFirst_Name() %>"></td>
+    	<td><input type="text" name="aFirst_Name*" value="<%= address.getFirst_Name() %>"></td>
     </tr>
     <tr>
     	<td><b>Nachname:</b>	</td>
-    	<td><input type="text" name="aLast_Name" value="<%= address.getLast_Name() %>"></td>
+    	<td><input type="text" name="aLast_Name*" value="<%= address.getLast_Name() %>"></td>
     </tr>
     <tr>
     	<td><b>Straße und Nr.: </b></td>
-    	<td><input type="text" name="aStreet_Nr" value="<%= address.getStreet_Nr() %>"></td>
+    	<td><input type="text" name="aStreet_Nr*" value="<%= address.getStreet_Nr() %>"></td>
     </tr>
     <tr>
     	<td><b>PLZ: </b></td>
-    	<td><input type="text" name="aZip" value="<%= address.getZip() %>"></td>
+    	<td><input type="text" name="aZip*" value="<%= address.getZip() %>"></td>
     </tr>
     <tr>
     	<td><b>Stadt: </b></td>
-    	<td><input type="text" name="aCity" value="<%= address.getCity() %>"></td>
+    	<td><input type="text" name="aCity*" value="<%= address.getCity() %>"></td>
     </tr>
     <tr>
     	<td><b>Land: </b></td>
-    	<td><input type="text" name="aCountry" value="<%= address.getCountry() %>"></td></tr>
+    	<td><input type="text" name="aCountry*" value="<%= address.getCountry() %>"></td></tr>
 	<br />
-	<tr><td></td><td><input type="submit" value="Kontakt speichern"></td></tr>
+	<tr><td></td><td><input type="button" value="Kontakt speichern" onclick="if(chkContactFormulat()) document.forms.submit();"></td></tr>
 
 </table><br>    
     <a href="/flogit_web/ContactDetails?param=<%= contact.getId() %>">Zurück</a>
@@ -91,5 +91,7 @@
     <span class="error">${error}</span>
 
 </form>
+<div id="errorMsg"></div>
+</div></div>
 </body>
 </html>

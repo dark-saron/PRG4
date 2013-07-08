@@ -29,16 +29,12 @@
 <br>
 <table id="details" width='500' border='1'>
 			<tr>
-			<td ><b>Titel: </b></td>
-			<td >	<%= contact.getTitle() %></td>
+				<td ><b>Vorname: </b></td>
+				<td >	<%= contact.getFirst_Name() %></td>
 			</tr>
 			<tr>
-			<td ><b>Vorname: </b></td>
-			<td >	<%= contact.getFirst_Name() %></td>
-			</tr>
-			<tr>
-			<td><b>Nachname: </b></td>
-			<td>	<%= contact.getLast_Name() %></td>
+				<td><b>Nachname: </b></td>
+				<td><%= contact.getLast_Name() %></td>
 			</tr>
 			<tr>
 			<td><b>Email: </b></td>

@@ -5,7 +5,6 @@ public class Contact {
 	private int 	Id;
 	private String 	First_Name;
 	private String 	Last_Name;
-	private String	Title;
 	private String	Email;
 	private String	Phone;
 	private String	Mobile;
@@ -14,7 +13,7 @@ public class Contact {
 	private int	Billing_Address_Id;
 	
 	
-	public Contact(int id, String first_Name, String last_Name, String title,
+	public Contact(int id, String first_Name, String last_Name, 
 			String email, String phone, String mobile, int user_Id,
 			int shipping_Address_Id, int billing_Address_Id) {
 		super();
@@ -22,7 +21,6 @@ public class Contact {
 		Id = id;
 		First_Name = first_Name;
 		Last_Name = last_Name;
-		Title = title;
 		Email = email;
 		Phone = phone;
 		Mobile = mobile;
@@ -66,17 +64,6 @@ public class Contact {
 	public void setLast_Name(String last_Name) {
 		Last_Name = last_Name;
 	}
-
-
-	public String getTitle() {
-		return Title;
-	}
-
-
-	public void setTitle(String title) {
-		Title = title;
-	}
-
 
 	public String getEmail() {
 		return Email;

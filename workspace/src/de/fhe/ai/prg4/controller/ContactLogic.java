@@ -47,7 +47,6 @@ public class ContactLogic {
 	public boolean CreateNewContactWithAddress(
 			String cFirst_Name, 
 			String cLast_Name, 
-			String cTitle,
 			String cEmail, 
 			String cPhone, 
 			String cMobile, 
@@ -70,7 +69,7 @@ public class ContactLogic {
 		address.setId(dbManager.queryAddressID());
 		DBManager.close();
 		
-		contact = new Contact(-1, cFirst_Name, cLast_Name, cTitle, cEmail, cPhone, cMobile, cUser_Id,address.getId(),address.getId());
+		contact = new Contact(-1, cFirst_Name, cLast_Name, cEmail, cPhone, cMobile, cUser_Id,address.getId(),address.getId());
 		
 		if(!setNewContact(contact))
 		{
@@ -118,7 +117,6 @@ public class ContactLogic {
 			int cid, 
 			String cFirst_Name, 
 			String cLast_Name, 
-			String cTitle,
 			String cEmail, 
 			String cPhone, 
 			String cMobile, 
@@ -133,7 +131,7 @@ public class ContactLogic {
 			String aTitle, 
 			String aGender)
 	{
-		contact = new Contact(cid, cFirst_Name, cLast_Name, cTitle, cEmail, cPhone, cMobile, cUser_Id,aID,aID);
+		contact = new Contact(cid, cFirst_Name, cLast_Name, cEmail, cPhone, cMobile, cUser_Id,aID,aID);
 
 		if(!setContact(contact))
 			return false;

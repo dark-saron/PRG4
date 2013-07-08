@@ -1,37 +1,27 @@
 function chkArticleFormular () {
 	
-	var errorText = "";
+	var flag = true;
 	
   if (document.forms['fArticle']['name'].value == "") {
 	
-    errorText += "<br>Bitte Ihren Namen eingeben!<br>";
-    document.forms['fArticle']['name'].style.background = "red";
+	  flag = false; 
+	  document.forms['fArticle']['name'].style.background = "red";
   }
-  if (document.forms['fArticle']['description'].value == "") {
+ if (document.forms['fArticle']['externalID'].value == "") {
 		
-	    errorText += "<br>Bitte eine Beschreibung eingeben!<br>";
-	    document.forms['fArticle']['description'].style.background = "red";
-	  }
-/*  if (document.forms['fArticle']['ean_isbn'].value == "") {
-	
-	    errorText += "<br>Bitte eine EAN/ ISBN eingeben eingeben!";
-	    document.forms['fArticle']['ean_isbn'].style.background = "red";
-	  }*/
-  if (document.forms['fArticle']['externalID'].value == "") {
-		
-	    errorText += "Bitte Ihren Namen eingeben!";
-	    document.forms['fArticle']['externalID'].style.background = "red";
+	  flag = false; 
+	  document.forms['fArticle']['externalID'].style.background = "red";
 	  }
 
   if (document.forms['fArticle']['place'].value == "") {
 		
-	    errorText += "\nBitte Ihren Namen eingeben!";
+	    flag = false; 
 	    document.forms['fArticle']['place'].style.background = "red";
 	  }
 
-  	if(errorText != "")
+  	if(!flag)
   	{
-  	  	document.getElementById("errorMsg").innerHTML = errorText;
+  	  	document.getElementById("errorMsg").innerHTML = "Bitte korrigieren Sie Ihre Eingaben.";
   	  	return false;
 
   	}
@@ -42,94 +32,91 @@ function chkArticleFormular () {
 
 function chkContactFormular () {
 	
-	var errorText = "";
+	var flag = true;
 	
-  if (document.forms['formarticle']['name'].value == "") {
-	
-    errorText += "<br>Bitte Ihren Namen eingeben!<br>";
-    document.forms['fArticle']['name'].style.background = "red";
+  if (document.forms['fContact']['cFirst_Name'].value == "") {
+	  flag = false;
+    document.forms['fContact']['cFirst_Name'].style.background = "red";
   }
   
-/*  if (document.forms['formarticle']['description'].value == "") {
-		
-	    errorText += "<br>Bitte eine Beschreibung eingeben!<br>";
-	    document.forms['formarticle']['description'].style.background = "red";
+  if (document.forms['fContact']['cLast_Name'].value == "") {
+	  flag = false;
+	  document.forms['fContact']['cLast_Name'].style.background = "red";
 	  }
-  if (document.forms['formarticle']['ean_isbn'].value == "") {
-	
-	    errorText += "<br>Bitte eine EAN/ ISBN eingeben eingeben!";
-	    document.forms['formarticle']['ean_isbn'].style.background = "red";
-	  } */
-  if (document.forms['formarticle']['externalID'].value == "") {
-		alert("Falsche eingabe!");
-	    errorText += "Bitte die Externe ID eingeben!";
-	    document.forms['formarticle']['externalID'].style.background = "red";
+  if (document.forms['fContact']['aFirst_Name'].value == "") {
+	  flag = false;
+    document.forms['fContact']['aFirst_Name'].style.background = "red";
+  }
+  
+  if (document.forms['fContact']['aLast_Name'].value == "") {
+	  flag = false;
+	  document.forms['fContact']['aLast_Name'].style.background = "red";
 	  }
 
-  if (document.forms['formarticle']['place'].value == "") {
-		
-	    errorText += "\nBitte Lagerplatz eingeben!";
-	    document.forms['formarticle']['place'].style.background = "red";
+  if (document.forms['fContact']['aZip'].value == "") {
+	  flag = false;
+	  document.forms['fContact']['aZip'].style.background = "red";
+	  }
+  if (document.forms['fContact']['aCity'].value == "") {
+	  flag = false;
+	  document.forms['fContact']['aCity'].style.background = "red";
 	  }
 
-  if(errorText != "")
-	{
-	  	document.getElementById("errorMsg").innerHTML = errorText;
-	  	return false;
+  if (document.forms['fContact']['aCountry'].value == "") {
+	  flag = false;
+	  document.forms['fContact']['aCountry'].style.background = "red";
+	  }
+  
+	if(!flag)
+  	{
+  	  	document.getElementById("errorMsg").innerHTML = "Bitte korrigieren Sie Ihre Eingaben.";
+  	  	return false;
 
-	}
+  	}
 
-  document.getElementById("fArticle").submit();
+  document.getElementById("fContact").submit();
 }
 
 function chkOfferFormular () {
-	var flag=0;
-	var errorText = "";
+	var flag= true;
 	
-  if (document.forms['fOffer']['article_Id'].value == "") {
-	
-    errorText += "<br>Bitte Ihren Namen eingeben!<br>";
-    document.forms['fOffer']['article_Id'].style.background = "red";
-  }
   if (document.forms['fOffer']['startsaleprice'].value == "") {
-		
-	    errorText += "<br>Bitte eine Beschreibung eingeben!<br>";
-	    document.forms['fOffer']['startsaleprice'].style.background = "red";
+	  flag = false;
+	  document.forms['fOffer']['startsaleprice'].style.background = "red";
 	  }
   if (document.forms['fOffer']['buynowprice'].value == "") {
-	
-	    errorText += "<br>Bitte eine EAN/ ISBN eingeben eingeben!";
-	    document.forms['fOffer']['buynowprice'].style.background = "red";
+	  flag = false;
+	  document.forms['fOffer']['buynowprice'].style.background = "red";
 	  }
   if (document.forms['fOffer']['start'].value == "") {
-	    errorText += "Bitte Ihren Namen eingeben!";
-	    document.forms['fOffer']['start'].style.background = "red";
+	  flag = false;
+	  document.forms['fOffer']['start'].style.background = "red";
 	  }
 
   if (document.forms['fOffer']['auctionhouse'].value == "") {
-		
-	    errorText += "\nBitte Ihren Namen eingeben!";
-	    document.forms['fOffer']['auctionhouse'].style.background = "red";
+	  flag = false;
+	  document.forms['fOffer']['auctionhouse'].style.background = "red";
 	  }
 
   if (document.forms['fOffer']['url'].value == "") {
-	    errorText += "Bitte Ihren Namen eingeben!";
-	    document.forms['fOffer']['url'].style.background = "red";
+	  flag = false;
+	  document.forms['fOffer']['url'].style.background = "red";
 	  }
 
-if (document.forms['fOffer']['end'].value == "") {
-		
-	    errorText += "\nBitte Ihren Namen eingeben!";
-	    document.forms['fOffer']['end'].style.background = "red";
-	  }
-
-  
-  if(errorText != "")
+  if(!flag)
 	{
-	  	document.getElementById("errorMsg").innerHTML = errorText;
+	  	document.getElementById("errorMsg").innerHTML = "Bitte korrigieren Sie Ihre Eingaben.";
 	  	return false;
 
 	}
   
 	document.getElementById("fOffer").submit();
+}
+
+function onChanged(elementId)
+{
+	if(document.getElementById(elementId).style.display == "none")
+		document.getElementById(elementId).style.display = "block";
+	else
+		document.getElementById(elementId).style.display = "none";
 }

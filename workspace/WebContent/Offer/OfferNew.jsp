@@ -116,7 +116,8 @@ LinkedList<Article> artList = new LinkedList<Article>();
     <span class="error">${error}</span>
 	<a href="/flogit_web/OfferList">Zurück zur Angebots Liste</a>
 </form>
-</div></div>
 <div id="errorMsg"></div>
+</div></div>
+
 </body>
 </html>

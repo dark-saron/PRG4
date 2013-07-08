@@ -120,4 +120,31 @@
 
 
 <!-- Contact Mapping end -->
+
+
+<!-- Billing Mapping start -->
+
+  <servlet>
+    <servlet-name>BillingCreate1</servlet-name>
+    <jsp-file>/Billing/BillingCreate_1.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BillingCreate1</servlet-name>
+    <url-pattern>/BillCreate1</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>BillingCreate2</servlet-name>
+    <jsp-file>/Billing/BillingCreate_2.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BillingCreate2</servlet-name>
+    <url-pattern>/BillCreate2</url-pattern>
+  </servlet-mapping>
+
+<!-- Billing Mapping end -->
+
+
+
+
 </web-app>

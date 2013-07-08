@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -79,18 +81,32 @@
     <tr>
     	<td><b>External Url: </b></td>
     	<td><%= offer.getUrl() %></td>
-    </tr>	
-    <tr>
-    	<td></td>
-    	<td><a href="">Rechnung erstellen (In Progress)</a></td>
-    </tr>	
+    </tr>
+    <c:set var="existBill" scope="session" value="<%= offerL.existBill(offer.getId()) %>"></c:set>
+    <c:set var="ofStatus" scope="session" value="<%=  offer.getStatus() %>"></c:set>
+	<c:if test="${ofStatus == '2'}">
 
+    <c:choose>
+    <c:when test="${!existBill}">
+    	<tr>
+    		<td></td>
+    		<td><a href="BillCreate1?param=<%= offer.getId()%>">Rechnung erstellen (In Progress)</a></td>
+    	</tr>
+    </c:when>
+    <c:otherwise>
+    	<tr>
+    	<td></td>
+    	<td><a href="BillDetails?param=<%= offer.getId()%>">Rechnung Ansehen (In Progress)</a></td>
+    	</tr>	
+    </c:otherwise>
+    </c:choose>
+    	</c:if>	
 </table><br> 
 
 		<div style='float:left; padding:5% 0%'>
 			<a href="OfferEdit?param=<%=offer.getId() %>">Bearbeiten</a>
 			<a href="DeleteOffer?param=<%=offer.getId() %>">Löschen</a>
-			<a href="/flogit_web/OfferList">Zurück zur Angebots Liste</a>		
+			<a href="OfferList">Zurück zur Angebots Liste</a>		
 		</div></div></div>   
 
 </body>
