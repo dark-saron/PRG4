@@ -10,8 +10,8 @@ public class Bill {
 	private	String	Shipped_At;
 	private	float	Shipping_Cost;
 	private	int		Offer_Id;
-	private	int		Contact_Id;
-	private	int		Seller_Id;
+	private	int		Contact_Id;		//wird als BuyerAdress benutzt (Referenz zu Adresstabelle)
+	private	int		Seller_Id;		//wird als SellerAdress benutzt (Referenz zu Adresstabelle)
 	
 	public Bill(int id, float total, String bought_At,
 			String shipped_At, float shipping_Cost, int offer_Id,
