@@ -27,7 +27,7 @@
 		
 <h1>Artikeln Löschen:</h1>
 <br><br><br>
-<form action="ArticleDelete" method="post">
+<form id="delete" name="delete" action="ArticleDelete" method="post">
 <table>
 	<tr ><td><b>ID:</b>	</td>
     	<td><div><%= art.getId() %></div></td>
@@ -38,7 +38,7 @@
     	<td><div><%= art.getName() %></div>
     	</td>
     </tr>
-    <tr><td></td><td><input type="button" onclick="if(<%=art.getId() %> != -1) document.forms.submit();" value="Artikel Löschen"></td></tr>
+    <tr><td></td><td><input type="button" onclick="if(<%=art.getId() %> > '-1') document.forms['delete'].submit();" value="Artikel Löschen"></td></tr>
 </table>
 </form>
 <a href="/flogit_web/ArticleDetails?param=<%= art.getId() %>">Zurück</a>

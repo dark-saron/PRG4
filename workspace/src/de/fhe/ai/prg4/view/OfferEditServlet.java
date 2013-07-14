@@ -35,9 +35,9 @@ public class OfferEditServlet extends HttpServlet {
             String url) 
             throws IOException, ServletException
             {
-RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-dispatcher.forward(request,response);
-}
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+				dispatcher.forward(request,response);
+            }
     
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -54,25 +54,29 @@ dispatcher.forward(request,response);
 		boolean updateOffer = false;
 		response.setContentType("Offer" + request.getParameter("id") );
 		int id = Integer.parseInt( request.getParameter("id"));
+		String endDate = "";
+		
+		if(request.getParameter("end") == "")
+			endDate = "3012-12-30";
+		else
+			endDate = request.getParameter("end");
 		
 		updateOffer = offerLogic.setOffer(
 				Integer.parseInt(request.getParameter("id")),
 				Float.parseFloat(request.getParameter("startsaleprice")),
 				Float.parseFloat(request.getParameter("buynowprice")),
 				request.getParameter("start"),
-				request.getParameter("end"),
+				endDate,
 				request.getParameter("url"),
 				Integer.parseInt(request.getParameter("status")),
 				1,
 				Integer.parseInt(request.getParameter("article_Id")),
 				request.getParameter("article_Name"),
-				request.getParameter("auctionhouse"));
-		System.out.println(updateOffer);
+				request.getParameter("auctionhouse"),
+				request.getParameter("externalID"));
+		
 		if(!updateOffer)
 		{
-			response.setContentType( "text/html;charset=UTF-8" );
-			response.setContentType( "<html><head></head><body>" );
-			response.setContentType( "<h2>Artikel konnte nicht zur Datenbank hinzugefügt werden.</h2></body></html>" );
 		}
 		else
 		{

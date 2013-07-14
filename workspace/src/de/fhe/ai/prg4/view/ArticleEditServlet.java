@@ -34,9 +34,9 @@ public class ArticleEditServlet extends HttpServlet {
             String url) 
             throws IOException, ServletException
             {
-RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-dispatcher.forward(request,response);
-}
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+				dispatcher.forward(request,response);
+            }
     
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -60,13 +60,9 @@ dispatcher.forward(request,response);
 				request.getParameter("place"),
 				request.getParameter("name"),
 				request.getParameter("photo"),
-				request.getParameter("ean_isbn"),
-				request.getParameter("externalID"));
+				request.getParameter("ean_isbn"));
 		if(!insertArticle)
 		{
-			response.setContentType( "text/html;charset=UTF-8" );
-			response.setContentType( "<html><head></head><body>" );
-			response.setContentType( "<h2>Artikel konnte nicht zur Datenbank hinzugefügt werden.</h2></body></html>" );
 		}
 		else
 		{

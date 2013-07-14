@@ -37,88 +37,89 @@
 
 <div style='float:left; padding:5% 20%'>
 <div id='content' style='margin:auto; width:800px'>
-
+<%=contactListLogic.getContactCount()  %>
 <h1>Rechnung erstellen 1:</h1>
 <br><br><br>
+<div>* Pflichtfeld </div>
 
 <form name="fBill" id="fBill" action="Billing" method="post">
-<input type="checkbox" name="newSellerAddress" value="newSellerAddress" onchange="onChanged('seller'); onChanged('absender');"> Neue Absender Addresse<br>
-<input type="checkbox" name="newBuyerAddress" value="newBuyerAddress" onchange="onChanged('buyer'); onChanged('empfaenger');"> Neue Empfänger Addresse<br>
+<input type="checkbox" name="newSellerAddress" value="newSellerAddress" onchange="onChanged('seller'); if(<%= contactListLogic.getContactCount() > 0 %>) onChanged('absender');"> Neue Absender Addresse<br>
 
-<table name="seller" id="seller" style="display: none;">
+<table id="seller" style="display: none;">
 	<tr><td><b>Absender Form</b></td></tr>
 	<tr>
-		<td><b>Anrede:</b></td>
+		<td><b>Anrede *:</b></td>
 		<td>
 			<input type="radio" name="aGender" value="m" checked>Herr<br>
 			<input type="radio" name="aGender" value="f">Frau
 		</td>
 	</tr>
     <tr>
-    	<td><b>Vorname:</b>	</td>
-    	<td><input type="text" name="aFirst_Name*" ></td>
+    	<td><b>Vorname *:</b>	</td>
+    	<td><input type="text" name="aFirst_Name" ></td>
     </tr>
     <tr>
-    	<td><b>Nachname:</b>	</td>
-    	<td><input type="text" name="aLast_Name*" ></td>
+    	<td><b>Nachname *:</b>	</td>
+    	<td><input type="text" name="aLast_Name" ></td>
     </tr>
     <tr>
-    	<td><b>Straße und Nr.: </b></td>
-    	<td><input type="text" name="aStreet_Nr*" ></td>
+    	<td><b>Straße und Nr. *: </b></td>
+    	<td><input type="text" name="aStreet_Nr" ></td>
     </tr>
     <tr>
-    	<td><b>PLZ: </b></td>
-    	<td><input type="text" name="aZip*" ></td>
+    	<td><b>PLZ *: </b></td>
+    	<td><input type="text" name="aZip" ></td>
     </tr>
     <tr>
-    	<td><b>Stadt: </b></td>
-    	<td><input type="text" name="aCity*" ></td>
+    	<td><b>Stadt *: </b></td>
+    	<td><input type="text" name="aCity" ></td>
     </tr>
     <tr>
-    	<td><b>Land: </b></td>
-    	<td><input type="text" name="aCountry*" ></td></tr>
+    	<td><b>Land *: </b></td>
+    	<td><input type="text" name="aCountry" ></td></tr>
 	
 </table><br>    
 
-<table name="buyer" id="buyer" style="display: none;">
+<input type="checkbox" name="newBuyerAddress" value="newBuyerAddress" onchange="onChanged('buyer'); if(<%= contactListLogic.getContactCount() > 0 %>) onChanged('empfaenger');"> Neue Empfänger Addresse<br>
+
+<table id="buyer" style="display: none;">
 	<tr><td><b>Empfänger Form</b></td></tr>
 	<tr>
-		<td><b>Anrede:</b></td>
+		<td><b>Anrede *:</b></td>
 		<td>
-			<input type="radio" name="aGender" value="m" checked>Herr<br>
-			<input type="radio" name="aGender" value="f">Frau
+			<input type="radio" name="bGender" value="m" checked>Herr<br>
+			<input type="radio" name="bGender" value="f">Frau
 		</td>
 	</tr>
     <tr>
-    	<td><b>Vorname:</b>	</td>
-    	<td><input type="text" name="aFirst_Name*" ></td>
+    	<td><b>Vorname *:</b>	</td>
+    	<td><input type="text" name="bFirst_Name" ></td>
     </tr>
     <tr>
-    	<td><b>Nachname:</b>	</td>
-    	<td><input type="text" name="aLast_Name*" ></td>
+    	<td><b>Nachname *:</b>	</td>
+    	<td><input type="text" name="bLast_Name" ></td>
     </tr>
     <tr>
-    	<td><b>Straße und Nr.: </b></td>
-    	<td><input type="text" name="aStreet_Nr*" ></td>
+    	<td><b>Straße und Nr. *: </b></td>
+    	<td><input type="text" name="bStreet_Nr" ></td>
     </tr>
     <tr>
-    	<td><b>PLZ: </b></td>
-    	<td><input type="text" name="aZip*" ></td>
+    	<td><b>PLZ *: </b></td>
+    	<td><input type="text" name="bZip" ></td>
     </tr>
     <tr>
-    	<td><b>Stadt: </b></td>
-    	<td><input type="text" name="aCity*" ></td>
+    	<td><b>Stadt *: </b></td>
+    	<td><input type="text" name="bCity" ></td>
     </tr>
     <tr>
-    	<td><b>Land: </b></td>
-    	<td><input type="text" name="aCountry*" ></td></tr>
+    	<td><b>Land *: </b></td>
+    	<td><input type="text" name="bCountry" ></td></tr>
 	
 </table><br>    
 
-
 <table>
-
-    <tr id="absender" name="absender" style="display: default;">
+<c:if test="<%= contactListLogic.getContactCount() > 0 %>">
+    <tr id="absender" name="empfaenger style="display: default;">
     	<td><b>Absender: </b></td>
       	<td>
 	      	<select name="buyer_id">
@@ -131,6 +132,8 @@
 	      	
       	</td>
     </tr>
+</c:if>
+<c:if test="<%= contactListLogic.getContactCount() > 0 %>">
     <tr id="empfaenger" name="empfaenger" style="display: default;">
     
 	    <td ><b>Empfänger: </b></td>
@@ -144,38 +147,46 @@
 	  		</select>
       	</td>
     </tr>
+</c:if>
     <tr>
-    	<td><b>Kaufdatum:</b>	</td>
-    	<td><input style="display: none;" type="text" name="brought_At" value="<%=offer.getEnd()%>"></td></tr>
+    	<td><b>Kaufdatum *:</b>	</td>
+    	<td><input type="text" name="brought_At" value="<%= offer.getEnd()%>"></td></tr>
     <tr>
     	<td><b>Lieferdatum:</b>	</td>
     	<td><input type="text" name="shipping_At" value="<%=offer.getEnd()%>"></td></tr>
     <tr>
-    	<td><b>Verkaufspreis*:</b>	</td>
+    	<td><b>Verkaufspreis *:</b>	</td>
     	<td><input type="text" name="total" value="<%=offer.getBuynowprice()%>"></td></tr>
     <tr>
-    	<td><b>Versandkosten: </b></td>
+    	<td><b>Versandkosten *: </b></td>
     	<td><input type="text" name="shippingCost" placeholder="0.00"></td></tr>
+    <tr>
+    	<td><b>External ID: </b></td>
+    	<td style="display: none;"><input type="text" name="externalID" value="<%=offer.getExternalId()%>"></td>
+    	<td ><%=offer.getExternalId()%></td>
+    </tr>
     <tr>
     	<td><b>Artikel Auktion: </b></td>
     	<td ><input disabled="disabled" type="text" value="<%=offer.getArticle_Name()%>"></td>
-    	<td style="display: none;"><input type="text" name="offerID" value="<%=offer.getArticle_Id()%>"></td>
     </tr>
 	 <tr>
     	<td></td>
-    	<td><input type="button"  value="Rechnungs Details" onclick="submit();"></td>
+    	<td style="display: none;"><input type="text" name="offerID" value="<%=offer.getId()%>"></td>
+    	<td><input type="button"  value="Rechnungs Anlegen" onclick="if(chkBillFormular()) document.forms.submit();"></td>
     </tr>
 	
 	<br />
 </table>
 <br>    
-<hr>
-    <a href="/flogit_web/ContactDetails?param=<%=contact.getId()%>">Zurück</a>
+
     
     <span class="error">${error}</span>
 
 </form>
 <div id="errorMsg"></div>
+<br>
+<hr>
+    <a href="/flogit_web/OfferDetails?param=<%=offer.getId()%>">Zurück</a>
 </div></div>
 
 </body>

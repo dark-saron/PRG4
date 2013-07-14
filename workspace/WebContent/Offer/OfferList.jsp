@@ -41,7 +41,15 @@
   </c:forEach>
 </table>
 
-
-<a href='/flogit_web/NewOffer'>Erstelle Angebot</a></div></div>
+<c:choose>
+<c:when test="${articleCount > 0 }">
+	<a href='/flogit_web/NewOffer'>Erstelle Angebot</a></div></div>
+</c:when>
+<c:otherwise>
+	<div>Es gibt keine Artikel in der DB. Bitte legen Sie eins an.</div>
+	<br>
+	<a href='/flogit_web/NewArticle'>Erstelle Artikel</a>
+</c:otherwise>
+</c:choose>
 </body>
 </html>

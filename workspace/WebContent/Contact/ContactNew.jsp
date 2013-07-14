@@ -15,12 +15,14 @@
 		
 <h1>Neuen Kontakt anlegen:</h1>
 <br><br><br>
+<div>* Pflichtfeld </div>
+
 <form id="fContact" name="fContact"  action="psNK" method="post">
 <h3>Persönliche Daten:</h3>
 <br>
 <table>
-    <tr><td><b>Vorname:</b>	</td><td><input type="text" name="cFirst_Name" placeholer="Max"></td></tr>
-    <tr><td><b>Nachname:</b>	</td><td><input type="text" name="cLast_Name" placeholer="Mustermann"></td></tr>
+    <tr><td><b>Vorname*:</b>	</td><td><input type="text" name="cFirst_Name" placeholer="Max"></td></tr>
+    <tr><td><b>Nachname*:</b>	</td><td><input type="text" name="cLast_Name" placeholer="Mustermann"></td></tr>
     <tr><td><b>Email: </b></td><td><input type="text" name="cEmail" placeholer="muster@email.de"></td></tr>
     <tr><td><b>Telefon: </b></td><td><input type="text" name="cPhone" placeholer="01234-12343"></td></tr>
     <tr><td><b>Mobile: </b></td><td><input type="text" name="cMobile" placeholer="01234-1234"></td></tr>
@@ -28,6 +30,9 @@
 </table><br>    
 <hr>
 <h3>Anschrift: </h3>
+
+
+
 <table>
     
 	<tr>
@@ -38,12 +43,12 @@
 		</td>
 	</tr>
 	<tr><td><b>Titel:</b>	</td><td><input type="text" name="aTitle" placeholer="Dr."></td></tr>
-    <tr><td><b>Vorname:</b>	</td><td><input type="text" name="aFirst_Name" placeholer="Max"></td></tr>
-    <tr><td><b>Nachname:</b>	</td><td><input type="text" name="aLast_Name" placeholer="Mustermann"></td></tr>
-    <tr><td><b>Straße und Nr.: </b></td><td><input type="text" name="aStreet_Nr" placeholer="Luther Str. 7"></td></tr>
-    <tr><td><b>PLZ: </b></td><td><input type="text" name="aZip" placeholer="01234"></td></tr>
-    <tr><td><b>Stadt: </b></td><td><input type="text" name="aCity" placeholer="Erfurt"></td></tr>
-    <tr><td><b>Land: </b></td><td><input type="text" name="aCountry" placeholer="Deutschland"></td></tr>
+    <tr><td><b>Vorname*:</b>	</td><td><input type="text" name="aFirst_Name" placeholer="Max"></td></tr>
+    <tr><td><b>Nachname*:</b>	</td><td><input type="text" name="aLast_Name" placeholer="Mustermann"></td></tr>
+    <tr><td><b>Straße und Nr. *: </b></td><td><input type="text" name="aStreet_Nr" placeholer="Luther Str. 7"></td></tr>
+    <tr><td><b>PLZ *: </b></td><td><input type="text" name="aZip" placeholer="01234"></td></tr>
+    <tr><td><b>Stadt *: </b></td><td><input type="text" name="aCity" placeholer="Erfurt"></td></tr>
+    <tr><td><b>Land *: </b></td><td><input type="text" name="aCountry" placeholer="Deutschland"></td></tr>
 	
 
 </table>

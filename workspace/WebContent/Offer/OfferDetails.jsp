@@ -79,6 +79,10 @@
     	<td><%= offer.getAuctionhouse() %></td>
     </tr>
     <tr>
+		<td><b>External ID:</b></td>
+		<td>	<%= offer.getExternalId() %></td>
+	</tr>
+    <tr>
     	<td><b>External Url: </b></td>
     	<td><%= offer.getUrl() %></td>
     </tr>
@@ -90,13 +94,13 @@
     <c:when test="${!existBill}">
     	<tr>
     		<td></td>
-    		<td><a href="BillCreate1?param=<%= offer.getId()%>">Rechnung erstellen (In Progress)</a></td>
+    		<td><a href="BillCreate1?param=<%= offer.getId()%>">Rechnung erstellen</a></td>
     	</tr>
     </c:when>
     <c:otherwise>
     	<tr>
     	<td></td>
-    	<td><a href="BillDetails?param=<%= offer.getId()%>">Rechnung Ansehen (In Progress)</a></td>
+    	<td><a href="BillDetails?param=<%= offer.getId()%>">Rechnung Ansehen</a></td>
     	</tr>	
     </c:otherwise>
     </c:choose>

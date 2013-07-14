@@ -50,11 +50,6 @@
 			<td>	<%= art.getPhoto() %></td>
 			</tr>
 			<tr>
-			<td><b>External ID:</b></td>
-			<td>	<%= art.getExternalId() %></td>
-			</tr>
-			
-			<tr>
 			<td><b>Beschreibung:</b></td>
 			<td>	<%= art.getDescription() %></td>
 			</tr>

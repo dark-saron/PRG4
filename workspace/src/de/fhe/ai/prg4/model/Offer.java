@@ -15,11 +15,12 @@ public class Offer {
 	private	int		Article_Id;
 	private String	Article_Name;
 	private String	Auctionhouse;
+	private	String	externalId;
 	
 	
 	public Offer(int id, float startsaleprice, float buynowprice, String start,
 			String end, String url, int status, int creator_User_Id,
-			int article_Id, String	article_Name, String auctionhouse) {
+			int article_Id, String	article_Name, String auctionhouse, String externalId) {
 		super();
 		Id = id;
 		Startsaleprice = startsaleprice;
@@ -32,6 +33,7 @@ public class Offer {
 		Article_Id = article_Id;
 		Article_Name = null;
 		Auctionhouse = auctionhouse;
+		this.externalId = externalId;
 	}
 
 
@@ -47,6 +49,7 @@ public class Offer {
 		Article_Id = -1;
 		Article_Name = null;
 		Auctionhouse = null; 
+		this.externalId = null;
 	}
 
 	public String getAuctionhouse(){
@@ -154,6 +157,14 @@ public class Offer {
 
 	public void setArticle_Id(int article_Id) {
 		Article_Id = article_Id;
+	}
+	
+	public String getExternalId() {
+		return externalId;
+	}
+
+	public void setExternalId(String externalId) {
+		this.externalId = externalId;
 	}
 	
 

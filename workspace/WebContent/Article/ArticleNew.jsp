@@ -16,33 +16,36 @@
 <div id='content' style='margin:auto; width:800px'>
 		
 <h1>Neuen Artikeln anlegen:</h1>
-<br><div id="Msg">* Pflicht Felder ausfüllen</div><br>
+<br><br>
+<div>* Pflichtfeld </div>
+<br>
 <form id="fArticle" name="fArticle" action="psNA" method="post" onsubmit="">
 <table>
-    <tr><td><b>Name *:</b>	</td><td><input type="text" name="name"></td></tr>
-    <tr><td><b>Type *: </b></td><td>
-    	<select name="type">
-			<option selected="selected" value="Buch">Buch</option>
-			<option value="CD">CD</option>
-			<option value="DVD">DVD</option>
-			<option value="Spiel">Spiel</option>
-		</select>
-     </td></tr>
+    <tr>
+    	<td><b>Name *:</b>	</td>
+    	<td><input type="text" name="name" placeholder="PHP 5.4 für Dummies"></td>
+    </tr>
+    <tr>
+    	<td><b>Type *: </b></td><td>
+	    	<select name="type">
+				<option selected="selected" value="Buch">Buch</option>
+				<option value="CD">CD</option>
+				<option value="DVD">DVD</option>
+				<option value="Spiel">Spiel</option>
+			</select>
+    	</td>
+    </tr>
     <tr>
     	<td><b>Beschreibung: </b></td>
     	<td><input type="text" name="description" placeholder="Beschreibung"></td>
     </tr>
     <tr>
     	<td><b>EAN/ISBN: </b></td>
-    	<td><input type="text" name="ean_isbn"></td>
-    </tr>
-    <tr>
-    	<td><b>External ID *: </b></td>
-    	<td><input type="text" name="externalID"></td>
+    	<td><input type="text" name="ean_isbn" placeholder="ISBN 12321-12"></td>
     </tr>
     <tr>
     	<td><b>Lager *: </b></td>
-    	<td><input type="text" name="place"></td>
+    	<td><input type="text" name="place" placeholder="Zimmer"></td>
     </tr>
 
 
@@ -55,7 +58,8 @@
     <span class="error">${error}</span>
 
 </form>
-</div></div>
 <div id="errorMsg"></div>
+
+</div></div>
 </body>
 </html>

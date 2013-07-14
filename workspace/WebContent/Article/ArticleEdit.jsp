@@ -25,6 +25,7 @@
 
 <h1>Artikel bearbeiten:</h1>
 <br><div id="Msg">* Pflicht Felder ausfüllen</div><br>
+
 <form id="fArticle" name="fArticle" action="editArticle" method="post" >
 <table>
     <tr><td style="diplay:hide;"><b>ID:</b>	</td>
@@ -51,10 +52,6 @@
     	<td><input type="text" name="ean_isbn" value="<%= art.getEan_Isbn() %>"></td>
     </tr>
     <tr>
-    	<td><b>External ID *: </b></td>
-    	<td><input type="text" name="externalID" value="<%= art.getExternalId() %>"></td>
-    </tr>
-    <tr>
     	<td><b>Lager *: </b></td><td>
     	<input type="text" name="place" value="<%= art.getPlace() %>"></td></tr>
 	<tr>
@@ -71,7 +68,8 @@
     <span class="error">${error}</span>
 
 </form>
-</div></div>
 <div id="errorMsg"></div>
+
+</div></div>
 </body>
 </html>

@@ -25,6 +25,7 @@
 
 <h1>Kontakt bearbeiten:</h1>
 <br><br><br>
+<div>* Pflichtfeld </div>
 
 <form name="fContact" id="fContact" action="editContact" method="post">
 <h3>Persönliche Daten:</h3>
@@ -53,35 +54,35 @@
     	<td><input type="text" name="aID" value="<%= address.getId() %>"></td>
     </tr>
 	<tr>
-		<td><b>Anrede:</b></td>
+		<td><b>Anrede *:</b></td>
 		<td>
 			<input type="radio" name="aGender" value="m" checked>Herr<br>
 			<input type="radio" name="aGender" value="f">Frau
 		</td>
 	</tr>
     <tr>
-    	<td><b>Vorname:</b>	</td>
-    	<td><input type="text" name="aFirst_Name*" value="<%= address.getFirst_Name() %>"></td>
+    	<td><b>Vorname *:</b>	</td>
+    	<td><input type="text" name="aFirst_Name" value="<%= address.getFirst_Name() %>"></td>
     </tr>
     <tr>
-    	<td><b>Nachname:</b>	</td>
-    	<td><input type="text" name="aLast_Name*" value="<%= address.getLast_Name() %>"></td>
+    	<td><b>Nachname *:</b>	</td>
+    	<td><input type="text" name="aLast_Name" value="<%= address.getLast_Name() %>"></td>
     </tr>
     <tr>
-    	<td><b>Straße und Nr.: </b></td>
-    	<td><input type="text" name="aStreet_Nr*" value="<%= address.getStreet_Nr() %>"></td>
+    	<td><b>Straße und Nr. *: </b></td>
+    	<td><input type="text" name="aStreet_Nr" value="<%= address.getStreet_Nr() %>"></td>
     </tr>
     <tr>
-    	<td><b>PLZ: </b></td>
-    	<td><input type="text" name="aZip*" value="<%= address.getZip() %>"></td>
+    	<td><b>PLZ *: </b></td>
+    	<td><input type="text" name="aZip" value="<%= address.getZip() %>"></td>
     </tr>
     <tr>
-    	<td><b>Stadt: </b></td>
-    	<td><input type="text" name="aCity*" value="<%= address.getCity() %>"></td>
+    	<td><b>Stadt *: </b></td>
+    	<td><input type="text" name="aCity" value="<%= address.getCity() %>"></td>
     </tr>
     <tr>
-    	<td><b>Land: </b></td>
-    	<td><input type="text" name="aCountry*" value="<%= address.getCountry() %>"></td></tr>
+    	<td><b>Land *: </b></td>
+    	<td><input type="text" name="aCountry" value="<%= address.getCountry() %>"></td></tr>
 	<br />
 	<tr><td></td><td><input type="button" value="Kontakt speichern" onclick="if(chkContactFormulat()) document.forms.submit();"></td></tr>
 

@@ -40,6 +40,19 @@ public class Address {
 		Gender = "w";
 	}
 	
+	public Address (Address adr)
+	{
+		super();
+		Id = adr.getId();
+		First_Name = adr.getFirst_Name();
+		Last_Name = adr.getLast_Name();
+		Street_Nr = adr.getStreet_Nr();
+		Zip = adr.getZip();
+		City = adr.getCity();
+		Country = adr.getCountry();
+		Gender = adr.getGender();
+	}
+	
 	public int getId() {
 		return Id;
 	}

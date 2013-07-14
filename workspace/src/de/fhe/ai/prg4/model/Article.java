@@ -11,10 +11,10 @@ public class Article implements Serializable{
 	private	String 	Name;
 	private	String	Photo;
 	private	String 	Ean_Isbn;
-	private	String	externalId;
+
 	
 	public Article(int id, String type, String description, String place, String name,
-			String photo, String ean_Isbn, String externalId) {
+			String photo, String ean_Isbn) {
 		super();
 		Id = id;
 		Type = type;
@@ -23,7 +23,7 @@ public class Article implements Serializable{
 		Name = name;
 		Photo = photo;
 		Ean_Isbn = ean_Isbn;
-		this.externalId = externalId;
+
 	}
 	
 	public Article(Article art) {
@@ -35,7 +35,7 @@ public class Article implements Serializable{
 		Name = art.Name;
 		Photo = art.Photo;
 		Ean_Isbn = art.Ean_Isbn;
-		this.externalId = art.externalId;
+
 	}
 
 	
@@ -48,7 +48,6 @@ public class Article implements Serializable{
 		Name = null;
 		Photo = null;
 		Ean_Isbn = null;
-		externalId = null;
 	}
 	
 	
@@ -100,13 +99,6 @@ public class Article implements Serializable{
 		Ean_Isbn = ean_Isbn;
 	}
 
-	public String getExternalId() {
-		return externalId;
-	}
-
-	public void setExternalId(String externalId) {
-		this.externalId = externalId;
-	}
 
 	public String getType() {
 		return Type;

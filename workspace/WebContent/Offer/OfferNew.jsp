@@ -56,12 +56,13 @@ LinkedList<Article> artList = new LinkedList<Article>();
 <div id='content' style='margin:auto; width:800px'>
 <h1>Neues Angebot anlegen:</h1>
 <br><br><br>
+<div>* Pflichtfelder</div>
 <form id="fOffer" name="fOffer" action="psNO" method="post">
 <c:set var="aID" scope="session" value="<%= id %>"/>
 
 <table>
     <tr>
-    	<td><b>Artikel:</b>	</td>
+    	<td><b>Artikel*:</b>	</td>
 		<c:choose>
 		<c:when test="${aID  == -1}">
 			<td>
@@ -83,15 +84,15 @@ LinkedList<Article> artList = new LinkedList<Article>();
     	</c:choose>
     </tr>
     <tr>
-    	<td><b>Start Preis:</b>	</td>
+    	<td><b>Start Preis*:</b>	</td>
     	<td><input type="text" name="startsaleprice" placeholder="0.00"></td>
     </tr>
     <tr>
-    	<td><b>Buy Now Preis:</b>	</td>
+    	<td><b>Buy Now Preis*:</b>	</td>
     	<td><input type="text" name="buynowprice" placeholder="0.00"></td>
     </tr>
     <tr>
-    	<td><b>Start Datum: </b></td>
+    	<td><b>Start Datum*: </b></td>
     	<td><input type="text" name="start" class="datepicker" placeholder="2013-01-01"></td>
     </tr>
     <tr>
@@ -99,11 +100,18 @@ LinkedList<Article> artList = new LinkedList<Article>();
     	<td><input type="text" name="end" class="datepicker" placeholder="2013-01-01"></td>
     </tr>
     <tr>
-    	<td><b>Auctions Hause: </b></td>
+    	<td><b>Auctions Hause*: </b></td>
     	<td><input type="text" name="auctionhouse" placeholder="ebay"></td>
     </tr>
     <tr>
-    	<td><b>External Url: </b></td>
+    	<td><b>External ID *: </b></td>
+    	<td><input type="text" name="externalID" placeholder="BN 1232"></td>
+    </tr>
+    <tr>
+    	<td colspan="2"><i>External ID: Auktions ID vergeben vom Auktionshaus</i></td>
+    </tr>
+    <tr>
+    	<td><b>External Url*: </b></td>
     	<td><input type="text" name="url" placeholder="ebay.de/234Ad"></td>
     </tr>	
     <tr>
@@ -114,9 +122,11 @@ LinkedList<Article> artList = new LinkedList<Article>();
 
 </table><br>    
     <span class="error">${error}</span>
-	<a href="/flogit_web/OfferList">Zurück zur Angebots Liste</a>
 </form>
 <div id="errorMsg"></div>
+<br>
+<a href="/flogit_web/OfferList">Zurück zur Angebots Liste</a>
+
 </div></div>
 
 </body>

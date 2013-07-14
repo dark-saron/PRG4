@@ -15,7 +15,8 @@ import de.fhe.ai.prg4.model.Offer;
 import de.fhe.ai.prg4.model.User;
 //@Author Roland Peyerl
 
-public class DBManager {
+public class DBManager 
+{
 	
 	static final String PATH_DRIVER_JDBC 	= "com.mysql.jdbc.Driver";
 	static final String PATH_DB 			= "jdbc:mysql://localhost/mydb";
@@ -29,44 +30,54 @@ public class DBManager {
 		
 	
 	// called once!!! at start
-	public static void open(){
-		try {
+	public static void open()
+	{
+		try
+		{
 			Class.forName(PATH_DRIVER_JDBC).newInstance();
 			CONNECTION 	= DriverManager.getConnection(PATH_DB,USER,PASSWORT);
 			STATEMENT 	= CONNECTION.createStatement();
 			link = true;
 		
-		} catch (Exception e) {	
+		} catch (Exception e) 
+		{	
 			e.printStackTrace();
 		}
 	}
 	
 	// called once!!! at the end
-	public static void close(){
+	public static void close()
+	{
 		
-		try {			
+		try 
+		{			
 			
-			if (RESULT_SET != null){
-			RESULT_SET.close();
+			if (RESULT_SET != null)
+			{
+				RESULT_SET.close();
 			}
 			
 			STATEMENT.close();
 			CONNECTION.close();		
 		
-		} catch (Exception e) {	
+		} catch (Exception e)
+		{	
 			e.printStackTrace();
 		}
 	}
+	
 	//Articles
-	public LinkedList<Article> queryAllArticles(){
-		try {
+	public LinkedList<Article> queryAllArticles()
+	{
+		try 
+		{
 			RESULT_SET = STATEMENT.executeQuery("SELECT ID,Type,Name FROM article");
 			
 			LinkedList<Article> list1 = new LinkedList<Article>();
 			Article article;
-			while (RESULT_SET.next()){
+			while (RESULT_SET.next())
+			{
 				article = new Article();
-				//System.out.println(RESULT_SET.getInt("ID"));
 				article.setId(RESULT_SET.getInt("ID"));
 				article.setType(RESULT_SET.getString("Type"));
 				article.setName(RESULT_SET.getString("Name"));
@@ -75,7 +86,8 @@ public class DBManager {
 			}
 			return list1;
 		}
-		catch (SQLException e){
+		catch (SQLException e)
+		{
 			System.out.println(e);
 			return null;
 		}	
@@ -83,9 +95,11 @@ public class DBManager {
 	
 	//----------------------------------------
 	
-	public Article queryArticleDetails (int id){
+	public Article queryArticleDetails (int id)
+	{
 	
-		try {
+		try
+		{
 			
 			RESULT_SET = STATEMENT.executeQuery("SELECT * FROM article WHERE ID LIKE '" + id + "'");
 			RESULT_SET.next();
@@ -99,85 +113,97 @@ public class DBManager {
 			article.setDescription(RESULT_SET.getString("Description"));
 			article.setPhoto(RESULT_SET.getString("Photo"));
 			article.setEan_Isbn(RESULT_SET.getString("EAN_ISBN"));
-			article.setExternalId(RESULT_SET.getString("externalID"));
 			article.setPlace(RESULT_SET.getString("Place"));
 			return article;
 		}
 			
-		catch (SQLException e){
+		catch (SQLException e)
+		{
 			System.out.println(e);
 			return null;
 		}	
 	}
 	
-	public boolean queryInsertArticle (Article article){
+	public boolean queryInsertArticle (Article article)
+	{
 		boolean success= false;
-		try {
+		
+		try
+		{
 			
 			String type=article.getType();
 			String name=article.getName();
 			String place=article.getPlace();
 			String ean_isbn=article.getEan_Isbn();
-			String externalID=article.getExternalId();
 			String description=article.getDescription();
 			String photo=article.getPhoto();
+						
+			int rows=STATEMENT.executeUpdate("INSERT INTO article (Type,Name,Place,EAN_ISBN,Description,Photo) VALUES ('"+type+"','"+name+"','"+place+"','"+ean_isbn+"','"+description+"','"+photo+"')") ;
 			
-			System.out.println(article.getName());
-			
-			int rows=STATEMENT.executeUpdate("INSERT INTO article (Type,Name,Place,externalID,EAN_ISBN,Description,Photo) VALUES ('"+type+"','"+name+"','"+place+"','"+externalID+"','"+ean_isbn+"','"+description+"','"+photo+"')") ;
-			if (rows >0){
+			if (rows >0)
+			{
 				success=true;
 			}
 			
 			return success;
 		}
 			
-		catch (SQLException e){
+		catch (SQLException e)
+		{
 			System.out.println(e);
 			return success;
 		}
 	}
 	
-	public boolean queryUpdateArticle (Article article){//Artikel ändern
+	public boolean queryUpdateArticle (Article article)
+	{//Artikel ändern
+	
 		boolean success = false;
-		try {
+		try
+		{
 			
 			String newtype=article.getType();
 			String newname=article.getName();
 			String newplace=article.getPlace();
 			String newean_isbn=article.getEan_Isbn();
-			String newexternalID=article.getEan_Isbn();
 			String newdescription=article.getDescription();
 			String newphoto=article.getPhoto();
 			
-			int rows=STATEMENT.executeUpdate("UPDATE article SET Type='"+newtype+"',Name='"+newname+"',Place='"+newplace+"',externalID='"+newexternalID+"',EAN_ISBN='"+newean_isbn+"',Description='"+newdescription+"',Photo='"+newphoto+"' WHERE ID ='"+article.getId()+"'");
+			int rows=STATEMENT.executeUpdate("UPDATE article SET Type='"+newtype+"',Name='"+newname+"',Place='"+newplace+"',EAN_ISBN='"+newean_isbn+"',Description='"+newdescription+"',Photo='"+newphoto+"' WHERE ID ='"+article.getId()+"'");
 			
-			if (rows>0){
+			if (rows>0)
+			{
 				success=true;
 			}
 			
 			return success;
 		}
 			
-		catch (SQLException e){
+		catch (SQLException e)
+		{
 			System.out.println(e);
 			return success;
 		}
 	}
 	
-	public boolean queryDeleteArticle (int id){
+	public boolean queryDeleteArticle (int id)
+	{
+	
 		boolean success=false;
-		try {
+		try
+		{
 			
 			int rows=STATEMENT.executeUpdate("Delete LOW_PRIORITY FROM article WHERE ID ='"+id+"'");
 			
-			if (rows > 0){
+			if (rows > 0)
+			{
 				success=true;
 			}
 			return success;
 		}
 			
-		catch (SQLException e){
+		catch (SQLException e)
+		{
 			System.out.println(e);
 			return success;
 		}
@@ -185,14 +211,17 @@ public class DBManager {
 
 	//Offers
 	
-	public LinkedList<Offer> queryAllOffers(int UserID){
-		try {
+	public LinkedList<Offer> queryAllOffers(int UserID)
+	{
+		try 
+		{
 			LinkedList<Offer> list1 = new LinkedList<Offer>();
 			//@TODO UserID nachreichen
 			RESULT_SET = STATEMENT.executeQuery("SELECT offer.ID, offer.StatusID, article.Name, article.ID FROM offer join user on offer.UserID=user.ID join article on article.ID=offer.ArticleID ORDER BY offer.StatusID");
 			
 			Offer offer;
-			while (RESULT_SET.next()){
+			while (RESULT_SET.next())
+			{
 				offer = new Offer();
 				//System.out.println(RESULT_SET.getInt("ID"));
 				offer.setId(RESULT_SET.getInt("offer.ID"));
@@ -204,16 +233,18 @@ public class DBManager {
 				
 			}
 			return list1;
-		}
-		catch (SQLException e){
+		} catch (SQLException e)
+		{
 			System.out.println(e);
 			return null;
 		}	
 	}
 	
-	public Offer queryOfferDetails (int id){ //ID von Offer
+	public Offer queryOfferDetails (int id)
+	{ //ID von Offer
 				
-		try {
+		try
+		{
 			
 			RESULT_SET = STATEMENT.executeQuery("SELECT * FROM offer WHERE ID LIKE '" + id + "'");
 			
@@ -230,24 +261,27 @@ public class DBManager {
 			offer.setAuctionhouse(RESULT_SET.getString("Auctionhouse"));
 			offer.setCreator_User_Id(RESULT_SET.getInt("UserID"));
 			offer.setArticle_Id(RESULT_SET.getInt("ArticleID"));
-			
+			offer.setExternalId(RESULT_SET.getString("externalID"));
 			RESULT_SET = STATEMENT.executeQuery("SELECT Name FROM article WHERE ID LIKE '" +offer.getArticle_Id()+ "'");
 			RESULT_SET.next();
 			offer.setArticle_Name(RESULT_SET.getString("Name"));
 			return offer;
 		}
 			
-		catch (SQLException e){
+		catch (SQLException e)
+		{
 			System.out.println(e);
 			return null;
 		}	
 	}
 	
-	public boolean queryInsertOffer(Offer offer){
+	public boolean queryInsertOffer(Offer offer)
+	{
 		boolean success = false;
 		
-		try {			
-			int rows=STATEMENT.executeUpdate("INSERT INTO offer (Startsaleprice,Buynowprice,Start,End,Auctionhouse,URL,ArticleID,UserID,StatusID) VALUES ('"+offer.getStartsaleprice()+"','"+offer.getBuynowprice()+"','"+offer.getStart()+"','"+offer.getEnd()+"','"+offer.getAuctionhouse()+"','"+offer.getUrl()+"','"+offer.getArticle_Id()+"','"+offer.getCreator_User_Id()+"','"+offer.getStatus()+"')");
+		try
+		{			
+			int rows=STATEMENT.executeUpdate("INSERT INTO offer (Startsaleprice,Buynowprice,Start,End,Auctionhouse,URL,ArticleID,UserID,StatusID,ExternalID) VALUES ('"+offer.getStartsaleprice()+"','"+offer.getBuynowprice()+"','"+offer.getStart()+"','"+offer.getEnd()+"','"+offer.getAuctionhouse()+"','"+offer.getUrl()+"','"+offer.getArticle_Id()+"','"+offer.getCreator_User_Id()+"','"+offer.getStatus()+"','"+offer.getExternalId()+"')");
 			if (rows >0){
 				success=true;
 			}
@@ -255,43 +289,54 @@ public class DBManager {
 			return success;
 		}
 			
-		catch (SQLException e){
+		catch (SQLException e)
+		{
 			System.out.println(e);
 			return success;
 		}
 	}
 	
-	public boolean queryUpdateOffer(Offer offer){
+	public boolean queryUpdateOffer(Offer offer)
+	{
 		boolean success = false;
-		try {
-			int rows=STATEMENT.executeUpdate("Update offer SET Startsaleprice='"+offer.getStartsaleprice()+"',Buynowprice='"+offer.getBuynowprice()+"',Start='"+offer.getStart()+"',End='"+offer.getEnd()+"',Auctionhouse='"+offer.getAuctionhouse()+"',URL='"+offer.getUrl()+"',ArticleID='"+offer.getArticle_Id()+"',UserID='"+offer.getCreator_User_Id()+"',StatusID='"+offer.getStatus()+"' WHERE ID ='"+offer.getId()+"'");
+		try
+		{
+			int rows=STATEMENT.executeUpdate("Update offer SET Startsaleprice='"+offer.getStartsaleprice()+"',Buynowprice='"+offer.getBuynowprice()+"',Start='"+offer.getStart()+"',End='"+offer.getEnd()+"',Auctionhouse='"+offer.getAuctionhouse()+"',URL='"+offer.getUrl()+"',ArticleID='"+offer.getArticle_Id()+"',UserID='"+offer.getCreator_User_Id()+"',StatusID='"+offer.getStatus()+"',ExternalID='"+
+					offer.getExternalId()+"' WHERE ID ='"+offer.getId()+"'");
 			
-			if (rows>0){
+			if (rows>0)
+			{
 				success=true;
 			}
 			
 			return success;
 		}
 			
-		catch (SQLException e){
+		catch (SQLException e)
+		{
 			System.out.println(e);
 			return success;
 		}
 	}
 	
-	public boolean queryDeleteOffer(int id){
+	public boolean queryDeleteOffer(int id)
+	{
+		
 		boolean success = false;
-		try {
+		try
+		{
 			
 			int rows=STATEMENT.executeUpdate("Delete LOW_PRIORITY FROM offer WHERE ID ='"+id+"'");
 			
-			if (rows > 0){
+			if (rows > 0)
+			{
 				success=true;
 			}
 			return success;
 		}
 			
-		catch (SQLException e){
+		catch (SQLException e)
+		{
 			System.out.println(e);
 			return success;
 		}
@@ -299,14 +344,17 @@ public class DBManager {
 	
 	// Contacts
 	
-	public LinkedList<Contact> queryAllContacts(int UserID){
-		try {
+	public LinkedList<Contact> queryAllContacts(int UserID)
+	{
+		try
+		{
 			LinkedList<Contact> list1 = new LinkedList<Contact>();
 			//@TODO UserID nachreichen
 			RESULT_SET = STATEMENT.executeQuery("SELECT contact.ID, contact.First_Name, contact.Last_Name FROM contact");
 			
 			Contact contact;
-			while (RESULT_SET.next()){
+			while (RESULT_SET.next())
+			{
 				contact = new Contact();
 				contact.setId(RESULT_SET.getInt("contact.ID"));
 				contact.setFirst_Name(RESULT_SET.getString("contact.First_Name"));
@@ -316,16 +364,19 @@ public class DBManager {
 				
 			}
 			return list1;
-		}
-		catch (SQLException e){
+		} catch (SQLException e)
+		{
 			System.out.println(e);
 			return null;
 		}	
 	}
 	
-	public Contact queryContactDetails(int id){ //ID von Contact
+	public Contact queryContactDetails(int id)
+	{ //ID von Contact
+	
 		Contact contact;
-		try {
+		try
+		{
 			RESULT_SET = STATEMENT.executeQuery("SELECT * FROM contact WHERE ID='"+id+"'");
 			RESULT_SET.next();
 			contact = new Contact();
@@ -343,65 +394,80 @@ public class DBManager {
 			return contact;
 		}
 			
-		catch (SQLException e){
+		catch (SQLException e)
+		{
 			System.out.println(e);
 			return null;
 		}	
 		
 	}
 	
-	public boolean queryInsertContact(Contact contact){ //id für shipping und billing standardmäßig gleich
+	public boolean queryInsertContact(Contact contact)
+	{ //id für shipping und billing standardmäßig gleich
+	
 		boolean success = false;
 		
-		try {			
+		try 
+		{			
 			int rows=STATEMENT.executeUpdate("INSERT INTO contact " +
 					"(First_Name,Last_Name,Email,Phone,Mobile,UserID,ShippingadressID,BillingadressID)" +
 					" VALUES ('"+contact.getFirst_Name()+"','"+contact.getLast_Name()+"','"+contact.getEmail()+"','"+contact.getPhone()+"','"+contact.getMobile()+"','"+contact.getUser_Id()+"','"+contact.getShipping_Address_Id()+"','"+contact.getBilling_Address_Id()+"')");
-			if (rows >0){
+			if (rows >0)
+			{
 				success=true;
 			}
 			
 			return success;
 		}
 			
-		catch (SQLException e){
+		catch (SQLException e)
+		{
 			System.out.println(e);
 			return success;
 		}
 	}
 	
-	public boolean queryUpdateContact(Contact contact){
+	public boolean queryUpdateContact(Contact contact)
+	{
+		
 		boolean success = false;
 
-		try {			
+		try
+		{			
 			int rows=STATEMENT.executeUpdate("UPDATE contact SET First_Name='"+contact.getFirst_Name()+"',Last_Name='"+contact.getLast_Name()+"',Email='"+contact.getEmail()+"',Phone='"+contact.getPhone()+"',Mobile='"+contact.getMobile()+"',UserID='"+contact.getUser_Id()+"',ShippingadressID='"+contact.getShipping_Address_Id()+"',BillingadressID='"+contact.getBilling_Address_Id()+"' WHERE ID='"+contact.getId()+"'");
-			if (rows >0){
+			if (rows >0)
+			{
 				success=true;
 			}
 			
 			return success;
 		}
 			
-		catch (SQLException e){
+		catch (SQLException e)
+		{
 			System.out.println(e);
 			return success;
 		}
 		
 	}
 	
-	public boolean queryDeleteContact(int id){
+	public boolean queryDeleteContact(int id)
+	{
+		
 		boolean success = false;
 		try {
 			
 			int rows=STATEMENT.executeUpdate("Delete LOW_PRIORITY FROM contact WHERE ID ='"+id+"'");
 			
-			if (rows > 0){
+			if (rows > 0)
+			{
 				success=true;
 			}
 			return success;
 		}
 			
-		catch (SQLException e){
+		catch (SQLException e)
+		{
 			System.out.println(e);
 			return success;
 		}
@@ -410,70 +476,85 @@ public class DBManager {
 	//Adress
 
 
-	public boolean queryInsertAdress(Address address){
+	public boolean queryInsertAdress(Address address)
+	{
+		
 		boolean success = false;
 		
-		try {			
+		try
+		{			
 			int rows=STATEMENT.executeUpdate("INSERT INTO address " +
 					"(First_Name,Last_Name,Street_Nr,Zip,city,country,Gender,Title)" +
 					" VALUES ('"+address.getFirst_Name()+"','"+address.getLast_Name()+"','"+address.getStreet_Nr()+"','"+address.getZip()+"','"+address.getCity()+"','"+address.getCountry()+"','"+address.getGender()+"','"+address.getTitle()+"')");
-			if (rows >0){
+			if (rows >0)
+			{
 				success=true;
 			}
 			
 			return success;
 		}
 			
-		catch (SQLException e){
+		catch (SQLException e)
+		{
 			System.out.println(e);
 			return success;
 		}
 	}
 	
-	public boolean queryUpdateAddress(Address address){
+	public boolean queryUpdateAddress(Address address)
+	{
+	
 		boolean success = false;
 
-		try {			
+		try
+		{			
 			int rows=STATEMENT.executeUpdate("UPDATE address SET First_Name='"+address.getFirst_Name()+"',Last_Name='"+address.getLast_Name()+"',Street_Nr='"+address.getStreet_Nr()+"',Zip='"+address.getZip()+"',city='"+address.getCity()+"',country='"+address.getCountry()+"',Gender='"+address.getGender()+"',Title='"+address.getTitle()+"' WHERE ID='"+address.getId()+"'");
-			if (rows >0){
+			if (rows >0)
+			{
 				success=true;
 			}
 			
 			return success;
 		}
 			
-		catch (SQLException e){
+		catch (SQLException e)
+		{
 			System.out.println(e);
 			return success;
 		}
 		
 	}	
 	
-	public boolean queryDeleteAddress(int id){
+	public boolean queryDeleteAddress(int id)
+	{
 		boolean success = false;
-		try {
+		try 
+		{
 			
 			int rows=STATEMENT.executeUpdate("Delete LOW_PRIORITY FROM address WHERE ID ='"+id+"'");
 			
-			if (rows > 0){
+			if (rows > 0)
+			{
 				success=true;
 			}
 			return success;
 		}
 			
-		catch (SQLException e){
+		catch (SQLException e)
+		{
 			System.out.println(e);
 			return success;
 		}
 	}
 	
-	public Address queryAddressDetails(int id){ //ID von Contact
+	public Address queryAddressDetails(int id)
+	{ //ID von Contact
 		
-		try {
+		try
+		{
 			Address address = new Address();
 			RESULT_SET = STATEMENT.executeQuery("SELECT * FROM address WHERE ID='"+id+"'");
 			RESULT_SET.next();
-			//System.out.println(RESULT_SET.getInt("ID"));
 			address.setId(RESULT_SET.getInt("address.ID"));
 			address.setFirst_Name(RESULT_SET.getString("address.First_Name"));
 			address.setLast_Name(RESULT_SET.getString("address.Last_Name"));
@@ -487,7 +568,8 @@ public class DBManager {
 			return address;
 		}
 			
-		catch (SQLException e){
+		catch (SQLException e)
+		{
 			System.out.println(e);
 			return null;
 		}	
@@ -498,16 +580,17 @@ public class DBManager {
 public int queryAddressID()
 { 
 		
-		try {
+		try
+		{
 			
 			RESULT_SET = STATEMENT.executeQuery("SELECT ID FROM address ORDER BY ID DESC LIMIT 1");
 			RESULT_SET.next();
-			//System.out.println(RESULT_SET.getInt("ID"));
 				
 			return RESULT_SET.getInt("address.ID");
 		}
 			
-		catch (SQLException e){
+		catch (SQLException e)
+		{
 			System.out.println(e);
 			return -1;
 		}	
@@ -518,17 +601,21 @@ public int queryAddressID()
 	
 	//Login
 	
-	public boolean queryLogin (User user){
+	public boolean queryLogin (User user)
+	{
 		boolean success = false;
 		return success;
 	}
 
 	//Bill
 	
-	public Bill queryBill (int id){ //ID von Contact
+	public Bill queryBill (int id)
+	{ //ID von Contact
+	
 		Bill bill = new Bill();
 		
-		try {
+		try
+		{
 			RESULT_SET = STATEMENT.executeQuery("SELECT * FROM bill WHERE ID='"+id+"'");
 			RESULT_SET.next();
 			
@@ -544,54 +631,96 @@ public int queryAddressID()
 			return bill;
 		}
 			
-		catch (SQLException e){
+		catch (SQLException e)
+		{
 			System.out.println(e);
 			return null;
 		}	
 		
 	}
 	
-	public boolean queryInsertBill(Bill bill){
+	public boolean queryInsertBill(Bill bill)
+	{
+		
 		boolean success = false;
-		try {
+		try
+		{
 			int rows=STATEMENT.executeUpdate("INSERT INTO bill " +
 					"(Total,Bought_At,Shipped_At,Shipping_Cost,OfferID,ContactID,SellerID)" +
-					" VALUES ('"+bill.getTotal()+"','"+bill.getBought_At()+"','"+bill.getShipped_At()+"','"+bill.getShipping_Cost()+"','"+bill.getOffer_Id()+"','"+bill.getContact_Id()+"','"+bill.getSeller_Id()+"')");
-			if (rows >0){
+					" VALUES ("+bill.getTotal()+",'"+bill.getBought_At()+"','"+bill.getShipped_At()+"',"+bill.getShipping_Cost()+","+bill.getOffer_Id()+","+bill.getContact_Id()+","+bill.getSeller_Id()+")");
+			if (rows >0)
+			{
 				success=true;
 			}
 			return success;
 		}
 		
-		catch (SQLException e){
+		catch (SQLException e)
+		{
 			System.out.println(e);
 			return success;
 		}
 	}
 	
-	public boolean queryExistBill (int id){ //ID von Offer
+	public boolean queryExistBill (int id)
+	{ //ID von Offer
+	
 		boolean success = false;
-		try{
+		try
+		{
 			RESULT_SET = STATEMENT.executeQuery("SELECT OfferID FROM bill WHERE OfferID='"+id+"'");
 			
 			
-			if(RESULT_SET.next()==false){ //Wenn das SQL-Ergebnis einen NULL-Datensatz liefert
-			return success;
+			if(RESULT_SET.next()==false)
+			{ //Wenn das SQL-Ergebnis einen NULL-Datensatz liefert
+				return success;
 			}
-			else {
-			success=true;
-			return success;
+			else 
+			{
+				success=true;
+				return success;
 			}
 		}
 		
-		catch (SQLException e){
+		catch (SQLException e)
+		{
 			System.out.println(e);
 			return success;
+		}
+	}
+	
+	public int queryGetBillID (int offerId)
+	{ 
+		//ID von Offer
+	
+		boolean success = false;
+		
+		try
+		{
+			RESULT_SET = STATEMENT.executeQuery("SELECT ID FROM bill WHERE OfferID='"+offerId+"'");
+			
+			
+			if(RESULT_SET.next()==false)
+			{ 
+				//Wenn das SQL-Ergebnis einen NULL-Datensatz liefert
+				return -1;
+			}
+			else 
+			{
+				return RESULT_SET.getInt("bill.ID");
+			}
+		}
+		
+		catch (SQLException e)
+		{
+			System.out.println(e);
+			return -1;
 		}
 	}
 
 	
-	public static void main (String[] args){
+	/*public static void main (String[] args)
+	{
 		
 		DBManager DBM = new DBManager();
 		
@@ -601,7 +730,7 @@ public int queryAddressID()
 		
 		DBM.close();
 		
-	}
+	}*/
 
 }
 

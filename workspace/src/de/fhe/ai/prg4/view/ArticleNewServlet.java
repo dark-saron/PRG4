@@ -16,7 +16,8 @@ import de.fhe.ai.prg4.helper.Helper;
  * Servlet implementation class NewArticle
  */
 @WebServlet("/psNA")
-public class ArticleNewServlet extends HttpServlet {
+public class ArticleNewServlet extends HttpServlet 
+{
 	private static final long serialVersionUID = 1L;
     private static ArticelLogic artLogic;
     private Helper helper;
@@ -34,7 +35,8 @@ public class ArticleNewServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException 
+	{
 	
 
 	}
@@ -42,7 +44,8 @@ public class ArticleNewServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException
+	{
 		// TODO Auto-generated method stub
 		insertArticle = false;
 		
@@ -52,8 +55,7 @@ public class ArticleNewServlet extends HttpServlet {
 				request.getParameter("place"),
 				request.getParameter("name"),
 				request.getParameter("photo"),
-				request.getParameter("ean_isbn"),
-				request.getParameter("externalID"));
+				request.getParameter("ean_isbn"));
 		
 		//helper.forwardToPage(request, resp, "/ArticleList");
 		if(!insertArticle)

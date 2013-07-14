@@ -217,11 +217,22 @@ public class ContactLogic {
 		{
 			boolean check;
 			
-			//TODO: Missing query for the address
 			DBManager.open();
 			check = dbManager.queryDeleteAddress(id);
 			DBManager.close();
 			return check; 
 		}
+	
+	//delete address in the DB
+	public int getAddressID()
+	{		
+		int id = -1;
+		
+		DBManager.open();
+		id = dbManager.queryAddressID();
+		DBManager.close();
+		return id;
+		
+	}
 	
 }

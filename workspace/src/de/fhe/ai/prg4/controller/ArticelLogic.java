@@ -18,7 +18,8 @@ import de.fhe.ai.prg4.model.Article;
  *Funktion: 
  */
 
-public class ArticelLogic {
+public class ArticelLogic 
+{
 
 	private DBManager dbManager;
 	private Article art;
@@ -56,10 +57,10 @@ public class ArticelLogic {
 	
 	//anlegen eines neuen Artikeln
 	public boolean setNewArticle(int id, String type, String description, String place, String name,
-			String photo, String ean_Isbn, String externalId)
+			String photo, String ean_Isbn)
 	{
 		//TODO: überprüfung des unhaltes
-		Article art = new Article(id, type, description, place, name, photo, ean_Isbn, externalId);
+		Article art = new Article(id, type, description, place, name, photo, ean_Isbn);
 		boolean status;
 		
 		//db connection um ein insert aufzurufen
@@ -72,10 +73,9 @@ public class ArticelLogic {
 	
 	//bearbeiten eines Artikeln
 	public boolean setArticle(int id, String type, String description, String place, String name,
-			String photo, String ean_Isbn, String externalId)
+			String photo, String ean_Isbn)
 	{
-		Article art = new Article(id, type, description, place, name, photo, ean_Isbn, externalId);
-		System.out.println(id + type + description + place + name + photo + ean_Isbn + externalId);
+		Article art = new Article(id, type, description, place, name, photo, ean_Isbn);
 		boolean status;
 		
 		//db connection um ein insert aufzurufen

@@ -20,6 +20,7 @@ public class ContactListLogic {
 
 	DBManager dbManager = new DBManager();
 	LinkedList<Contact> list = new LinkedList<Contact>();
+	int count = 0;
 	
 	public LinkedList<Contact> getContactList()
 	{
@@ -44,5 +45,16 @@ public class ContactListLogic {
 		return null;
 	}
 	
+	public int getContactCount()
+	{
+		DBManager.open();
+		
+		count =  dbManager.queryAllContacts(1).size();
+		DBManager.close();
+		
+		return count;
+	
+	
+	}
 
 }

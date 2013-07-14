@@ -21,37 +21,43 @@
 <jsp:useBean id="addresse" class ="de.fhe.ai.prg4.model.Address" />
 <jsp:useBean id="contactL" class ="de.fhe.ai.prg4.controller.ContactLogic" />
 <jsp:useBean id="offer" class ="de.fhe.ai.prg4.model.Offer" />
+<jsp:useBean id="billing" class ="de.fhe.ai.prg4.model.Bill" />
 <jsp:useBean id="offerL" class = "de.fhe.ai.prg4.controller.OfferLogic" />
 <jsp:useBean id="billL" class = "de.fhe.ai.prg4.controller.BillLogic" />
 
+<%
+  int offerId = Integer.parseInt(request.getParameter( "param" ));
+  billing = billL.getBill( billL.GetBillID(offerId));
+  
+%>
+
+<c:set var="seller_address" scope="session" value="<%= contactL.getAddress(billing.getSeller_Id()) %>"></c:set>   
+<c:set var="buyer_address" scope="session" value="<%= contactL.getAddress(billing.getContact_Id()) %>"></c:set>   
+<c:set var="offerDetails" scope="session" value="<%= offerL.getOffer(billing.getOffer_Id()) %>"></c:set>
 
 <div style='float:left; padding:5% 20%'>
-<div id='content' style='margin:auto; width:800px'>		
-
+<div id='content' style='margin:auto; width:800px'>	
 <div class=WordSection1>
 
-<table class=MsoNormalTable border=0 cellpadding=0 width="100%"
- style='width:100.0%;mso-cellspacing:1.5pt;mso-yfti-tbllook:1184'>
-  <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
-  <td style='padding:.75pt .75pt .75pt .75pt'>
-  <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width="100%"
-   style='width:100.0%;mso-cellspacing:0cm;mso-yfti-tbllook:1184;mso-padding-alt:
-   0cm 0cm 0cm 0cm'>
-   <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
-    <td width="235" valign=top style='padding:0cm 0cm 0cm 0cm'>
-    <p class=MsoNormal><span style='font-size:7.5pt;font-family:"Verdana","sans-serif"'>
-	<c:set var="seller_address" scope="session" value="${contactL.getAddress(billDetails.getSeller_Id()) }"></c:set>   
+<table class=MsoNormalTable border=0 cellpadding=0 width="100%">
+  <tr >
+  <td >
+  <table class=MsoNormalTable2 border=0 cellspacing=0 cellpadding=0 width="100%">
+   <tr >
+    <td>
+    <p class=MsoNormal><span>
+	
 	${seller_address.getFirst_Name() } ${seller_address.getLast_Name() }<br>   
 	${seller_address.getStreet_Nr() }<br>
     ${seller_address.getZip() } ${seller_address.getCity() }<br>
     ${seller_address.getCountry() }<br>
     <p>&nbsp;</p>
     </td>
-    <td width="132" valign=top style='padding:0cm 0cm 0cm 0cm'><p><span style="font-size:7.5pt;font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;">
-	<c:set var="buyer_address" scope="session" value="${contactL.getAddress(billDetails.getContact_Id()) }"></c:set>   
-    ${buyer_address.getFirst_Name() } ${seller_address.getLast_Name() }<br>   
+    <td width="132" valign=top ><p class=MsoNormal><span>
+	
+    ${buyer_address.getFirst_Name() } ${buyer_address.getLast_Name() }<br>   
 	${buyer_address.getStreet_Nr() }<br>
-    ${buyer_address.getZip() } ${seller_address.getCity() }<br>
+    ${buyer_address.getZip() } ${buyer_address.getCity() }<br>
     ${buyer_address.getCountry() }<br>
 
       </span></p></td>
@@ -61,28 +67,22 @@
    </tr>
   </table>
   <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  <table class=MsoNormalTable border=1 cellpadding=0 width="100%"
-   style='width:100.0%;mso-cellspacing:1.5pt;border-top:solid windowtext 1.0pt;
-   border-left:none;border-bottom:solid windowtext 1.0pt;border-right:none;
-   mso-border-top-alt:solid windowtext .75pt;mso-border-bottom-alt:solid windowtext .75pt;
-   mso-yfti-tbllook:1184'>
-   <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
-    <td width="50%" style='width:50.0%;border:none;background:#F1F1F1;
-    padding:.75pt .75pt .75pt .75pt'>&nbsp;</td>
-    <td width="50%" style='width:50.0%;border:none;background:#F1F1F1;
-    padding:.75pt .75pt .75pt .75pt'>&nbsp;</td>
+  <table class=MsoNormalTable3 border=1 cellpadding=0 width="100%">
+   <tr >
+    <td width="50%" >&nbsp;</td>
+    <td width="50%" >&nbsp;</td>
     </tr>
-   <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
-    <td style='border:none;padding:.75pt .75pt .75pt .75pt'><p>Lieferschein</p></td>
-    <td style='border:none;padding:.75pt .75pt .75pt .75pt'>
+   <tr id="row1">
+    <td ><p>Lieferschein</p></td>
+    <td >
     	<p>
-    		<span style='font-size:7.5pt;font-family:"Verdana","sans-serif"'>
+    		<span >
     			<strong>
-    				<span style='font-family:"Verdana","sans-serif"'>Bestelldatum:</span>
-    			</strong> ${billDetails.getBought_At() }<br>
+    				<span >Bestelldatum:</span>
+    			</strong> <%=billing.getBought_At()  %><br>
       		<strong>
-      			<span style='font-family:"Verdana","sans-serif"'>Lieferdatum:</span>
-      		</strong> ${billDetails.getShipped_At() }<br>
+      			<span >Lieferdatum:</span>
+      		</strong> <%= billing.getShipped_At() %><br>
       </span></p></td>
     </tr>
   </table>
@@ -90,78 +90,41 @@
  </tr>
 </table>
 
-<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Calibri","sans-serif";
-mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:
-"Times New Roman";mso-bidi-theme-font:minor-bidi;display:none;mso-hide:all'><o:p>&nbsp;</o:p></span></p>
+<p class=MsoNormal2><span ><o:p>&nbsp;</o:p></span></p>
 
-<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0 width="100%"
- style='width:100.0%;mso-cellspacing:0cm;border:none;border-bottom:solid windowtext 1.0pt;
- mso-border-bottom-alt:solid windowtext .75pt;mso-yfti-tbllook:1184;mso-padding-alt:
- 0cm 0cm 0cm 0cm'>
- <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
-  <td style='border:none;padding:0cm 0cm 0cm 0cm'>
-  <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width="100%"
-   style='width:100.0%;mso-cellspacing:0cm;background:#F1F1F1;mso-yfti-tbllook:
-   1184;mso-padding-alt:2.25pt 2.25pt 2.25pt 2.25pt'>
-   <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
-    <td width="10%" style='width:10.0%;border-top:none;border-left:none;
-    border-bottom:solid white 1.5pt;border-right:solid white 1.5pt;padding:
-    2.25pt 2.25pt 2.25pt 2.25pt'>
-    <p class=MsoNormal align=center style='text-align:center'><strong><span
-    style='font-size: 7.5pt; font-family: &quot;Arial&quot;, &quot;sans-serif&quot;'>Artikelnummer </span></strong></p>
+<table class=MsoNormalTable4 border=1 cellspacing=0 cellpadding=0 width="100%">
+ <tr class=firstALast>
+  <td class="noBorder noPadding">
+  <table class=MsoNormalTable5 border=0 cellspacing=0 cellpadding=0 width="100%">
+   <tr>
+    <td class="t4row1">
+    <p class=MsoNormal align=center style='text-align:center'><strong><span>External ID </span></strong></p>
     </td>
-    <td width="50%" style='width:50.0%;border-top:none;border-left:none;
-    border-bottom:solid white 1.5pt;border-right:solid white 1.5pt;padding:
-    2.25pt 2.25pt 2.25pt 2.25pt'>
-    <p class=MsoNormal><strong><span style='font-size: 7.5pt; font-family: &quot;Arial&quot;, &quot;sans-serif&quot;'>Artikelbezeichnung
-    </span></strong></p>
+    <td class="t4row2">
+    <p class=MsoNormal><strong><span>Artikelbezeichnung</span></strong></p>
     </td>
-    <td width="15%" style='width:15.0%;border-top:none;border-left:none;
-    border-bottom:solid white 1.5pt;border-right:solid white 1.5pt;padding:
-    2.25pt 2.25pt 2.25pt 2.25pt'>
-      <p class=MsoNormal><strong><span style='font-size: 7.5pt; font-family: &quot;Arial&quot;, &quot;sans-serif&quot;'>Menge </span></strong></p>
+    <td class="t4row3" >
+      <p class=MsoNormal><strong><span>Menge </span></strong></p>
     </td>
-    <td width="13%" style='width:13.0%;border-top:none;border-left:none;
-    border-bottom:solid white 1.5pt;border-right:solid white 1.5pt;padding:
-    2.25pt 2.25pt 2.25pt 2.25pt'>
-      <p class=MsoNormal align=right style='text-align:right'><strong><span
-    style='font-size:7.5pt;font-family:"Arial","sans-serif"'>Gesamtpreis</span></strong><span
-    style='font-size:7.5pt;font-family:"Arial","sans-serif"'> </span></p>
+    <td class="t4row4">
+      <p class="aRight MsoNormal"><strong><span>Gesamtpreis</span></strong><span> </span></p>
     </td>
    </tr>
   </table>
   <p class=MsoNormal><span style='display:none;mso-hide:all'><o:p>&nbsp;</o:p></span></p>
-  <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width="100%"
-   style='width:100.0%;mso-cellspacing:0cm;background:#F1F1F1;mso-yfti-tbllook:
-   1184;mso-padding-alt:2.25pt 2.25pt 2.25pt 2.25pt'>
-   <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
-    <td style='width:10.0%;border-top:none;border-left:none;
-    border-bottom:solid white 1.5pt;border-right:solid white 1.5pt;padding:
-    2.25pt 2.25pt 2.25pt 2.25pt'>
-    <p class=MsoNormal align=center style='text-align:center'><span
-    style='font-size:7.5pt;font-family:"Arial","sans-serif"'>1</span></p>
+  <table class=MsoNormalTable5 border=0 cellspacing=0 cellpadding=0 width="100%">
+   <tr class=firstALast>
+    <td class=t4row1>
+    <p class="MsoNormal aCenter" ><span>${offerDetails.getExternalId() }</span></p>
     </td>
-    <td width="5%" style='width:5.0%;border-top:none;border-left:none;
-    border-bottom:solid white 1.5pt;border-right:solid white 1.5pt;padding:
-    2.25pt 2.25pt 2.25pt 2.25pt'>
-    <p class=MsoNormal align=center style='text-align:center'><span
-    style='font-size:7.5pt;font-family:"Arial","sans-serif"'>x</span></p>
+    <td class=t4row2>
+ 	   <p class=MsoNormal><strong><span>${offerDetails.getArticle_Name() }</span></strong></p>
     </td>
-    <td width="50%" style='width:50.0%;border-top:none;border-left:none;
-    border-bottom:solid white 1.5pt;border-right:solid white 1.5pt;padding:
-    2.25pt 2.25pt 2.25pt 2.25pt'>
-    <p class=MsoNormal><strong><span style='font-size:7.5pt;font-family:"Arial","sans-serif"'>${offerL.getOffer(billDetails.getOffer_Id()).getArticle_Name() }</span></strong></p>
+    <td class=t4row3>
+      <p class=MsoNormal><span>1</span></p>
     </td>
-    <td width="15%" style='width:15.0%;border-top:none;border-left:none;
-    border-bottom:solid white 1.5pt;border-right:solid white 1.5pt;padding:
-    2.25pt 2.25pt 2.25pt 2.25pt'>
-      <p class=MsoNormal><span style='font-size:7.5pt;font-family:"Arial","sans-serif"'>Placeholder für External ID </span></p>
-    </td>
-    <td width="13%" style='width:13.0%;border-top:none;border-left:none;
-    border-bottom:solid white 1.5pt;border-right:solid white 1.5pt;padding:
-    2.25pt 2.25pt 2.25pt 2.25pt'>
-      <p class=MsoNormal align=right style='text-align:right'><span
-    style='font-size:7.5pt;font-family:"Arial","sans-serif"'>${billDetails.getTotal() } EUR</span></p>
+    <td class="t4row4">
+      <p class="MsoNormal aRight"><span><%= billing.getTotal()  %> EUR</span></p>
     </td>
    </tr>
   </table>
@@ -169,33 +132,17 @@ mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-
  </tr>
 </table>
 
-<p class=MsoNormal align=right style='text-align:right'><span style='font-size:
-7.5pt;font-family:"Arial","sans-serif"'>Zwischensumme: ${billDetails.getTotal() } EUR</span><span
-style='font-size:10.0pt;font-family:"Calibri","sans-serif";mso-ascii-theme-font:
-minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:"Times New Roman";
-mso-bidi-theme-font:minor-bidi'><o:p></o:p></span></p>
+<p class="MsoNormal aRight" ><span>Zwischensumme: <%= billing.getTotal()  %> EUR</span><span class=font10><o:p></o:p></span></p>
 
-<p class=MsoNormal align=right style='text-align:right'><span style='font-size:
-7.5pt;font-family:"Arial","sans-serif"'>Versandkosten: ${billDetails.getShipping_Cost() } EUR</span><span style='font-size:10.0pt;font-family:"Calibri","sans-serif";
-mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:
-"Times New Roman";mso-bidi-theme-font:minor-bidi'>
-  <o:p></o:p></span><span
-style='font-size:10.0pt;font-family:"Calibri","sans-serif";mso-ascii-theme-font:
-minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:"Times New Roman";
-mso-bidi-theme-font:minor-bidi'>
+<p class="MsoNormal aRight"><span>Versandkosten: <%= billing.getShipping_Cost() %> EUR</span><span class=font10>
+  <o:p></o:p></span><span class=font10>
   <o:p></o:p>
   </span></p>
 
-<p class=MsoNormal align=right style='text-align:right'><b><span
-style='font-size:7.5pt;font-family:"Arial","sans-serif"'>Summe</span></b><span
-style='font-size:7.5pt;font-family:"Arial","sans-serif"'>:<b>  
+<p class="MsoNormal aRight" ><b><span>Summe</span></b><span>:<b>  
 
-${billL.CalculateSum(billDetails.getTotal() , billDetails.getShipping_Cost())} EUR</b></span></p><p class=MsoNormal align=right style='text-align:right'><span
-style='font-size:10.0pt;font-family:"Calibri","sans-serif";mso-ascii-theme-font:
-minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:"Times New Roman";
-mso-bidi-theme-font:minor-bidi'><o:p></o:p></span></p>
-<p><span style="font-size:7.5pt;font-family:
-  &quot;Verdana&quot;,&quot;sans-serif&quot;">Vielen Dank f&uuml;r Ihre Bestellung!</span></p>
+<%= billL.CalculateSum(billing.getTotal() , billing.getShipping_Cost()) %> EUR</b></span></p><p class="MsoNormal aRight"><span class=font10><o:p></o:p></span></p>
+<p><span>Vielen Dank f&uuml;r Ihre Bestellung!</span></p>
 
 </div>
 </div></div>

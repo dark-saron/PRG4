@@ -2,6 +2,7 @@ package de.fhe.ai.prg4.view;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -54,12 +55,13 @@ public class ArticleDelete extends HttpServlet {
 		
 		if(!deleteArticle)
 		{
-			helper.forwardToPage(request, response, "/ArticleDetails?param=" + id);
-			//TODO: include fehler meldung
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ArticleDetails?param=" + id);
+			dispatcher.forward(request,response);
 		}
 		else
 		{
-			helper.forwardToPage(request, response, "/ArticleList");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ArticleList");
+			dispatcher.forward(request,response);
 		}
 	}
 

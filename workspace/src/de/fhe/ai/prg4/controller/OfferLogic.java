@@ -84,12 +84,12 @@ public class OfferLogic
 			int creator_User_Id,
 			int article_Id, 
 			String	article_Name, 
-			String auctionhouse)
+			String auctionhouse, String externalId)
 	{
 		//TODO: überprüfung des unhaltes
 		Offer offer = new Offer(id, startsaleprice, buynowprice, start,
 				end, url, status, creator_User_Id,
-				article_Id, article_Name, auctionhouse);
+				article_Id, article_Name, auctionhouse,externalId);
 		boolean flag;
 		
 		//db connection um ein insert aufzurufen
@@ -115,11 +115,11 @@ public class OfferLogic
 	 */
 	public boolean setOffer(int id, float startsaleprice, float buynowprice, String start,
 			String end, String url, int status, int creator_User_Id,
-			int article_Id, String	article_Name, String auctionhouse)
+			int article_Id, String	article_Name, String auctionhouse, String externalId)
 	{
 		Offer offer = new Offer(id, startsaleprice, buynowprice, start,
 				end, url, status, creator_User_Id,
-				article_Id, article_Name, auctionhouse);
+				article_Id, article_Name, auctionhouse, externalId);
 		
 		boolean flag;
 		

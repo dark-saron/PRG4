@@ -19,6 +19,7 @@ public class ArticelListLogic {
 	
 	DBManager dbManager = new DBManager();
 	LinkedList<Article> list = new LinkedList<Article>();
+	
 	public LinkedList<Article> getArticleList()
 	{
 		DBManager.open();
@@ -42,6 +43,14 @@ public class ArticelListLogic {
 		return null;
 	}
 	
+	public int getListArticleCount()
+	{
+		DBManager.open();
+		list =		dbManager.queryAllArticles();
+		DBManager.close();
+		
+		return list.size();
+	}
 	
 	
 }

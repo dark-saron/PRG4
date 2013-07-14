@@ -22,8 +22,10 @@ import de.fhe.ai.prg4.model.Offer;
 public class OfferList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private static OfferListLogic OlLogic = new OfferListLogic();
+    private static ArticelListLogic AlLogic = new ArticelListLogic();
 	LinkedList<Offer> O_List = new LinkedList<Offer>();
-    
+	int ArticleCount;
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -36,8 +38,10 @@ public class OfferList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
 		O_List = OlLogic.getOfferList();
+		ArticleCount = AlLogic.getListArticleCount();
 		
 		request.setAttribute("offerList", O_List);
+		request.setAttribute("articleCount", ArticleCount);
 		RequestDispatcher view = request.getRequestDispatcher("Offer/OfferList.jsp");
 	    view.forward(request, resp);
 	}
@@ -49,8 +53,10 @@ public class OfferList extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		O_List = OlLogic.getOfferList();
+		ArticleCount = AlLogic.getListArticleCount();
 		
 		request.setAttribute("offerList", O_List);
+		request.setAttribute("articleCount", ArticleCount);
 		RequestDispatcher view = request.getRequestDispatcher("Offer/OfferList.jsp");
 	    view.forward(request, response);
 	}
