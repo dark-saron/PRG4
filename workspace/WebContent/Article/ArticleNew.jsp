@@ -47,6 +47,10 @@
     	<td><b>Lager *: </b></td>
     	<td><input type="text" name="place" placeholder="Zimmer"></td>
     </tr>
+    <tr>
+		<td><b>Photo:</b></td>
+		<td><input type="text" name="photo" placeholder="url"></td>
+	</tr>
 
 
     <tr><td></td><td><input type="button" value="Artikel erstellen" onclick="if(chkArticleFormular()) document.forms.submit();"></td></tr>
