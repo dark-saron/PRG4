@@ -37,7 +37,6 @@
 
 <div style='float:left; padding:5% 20%'>
 <div id='content' style='margin:auto; width:800px'>
-<%=contactListLogic.getContactCount()  %>
 <h1>Rechnung erstellen 1:</h1>
 <br><br><br>
 <div>* Pflichtfeld </div>

@@ -52,7 +52,8 @@ public class Bill1Servlet extends HttpServlet {
 		if(request.getParameter("newSellerAddress")==null)
 		{
 			//TODO: catch error if no ID of a existing Address is given either
-			sellerAddress = cLogic.getAddress(Integer.parseInt(request.getParameter("seller_id")));
+			sellerAddress = cLogic.getAddress(
+					cLogic.getContact(Integer.parseInt(request.getParameter("seller_id"))).getShipping_Address_Id());
 		}
 		else
 		{
@@ -71,7 +72,8 @@ public class Bill1Servlet extends HttpServlet {
 		if(request.getParameter("newBuyerAddress")==null)
 		{
 			//TODO: catch error if no ID of a existing Address is given either
-			buyerAddress = cLogic.getAddress(Integer.parseInt(request.getParameter("buyer_id")));
+			buyerAddress = cLogic.getAddress(
+					cLogic.getContact(Integer.parseInt(request.getParameter("buyer_id"))).getShipping_Address_Id());
 		}
 		else
 		{
@@ -87,6 +89,7 @@ public class Bill1Servlet extends HttpServlet {
 					request.getParameter("bGender"));
 		}
 		
+		
 		bill = new Bill(
 				-1,
 				Float.parseFloat(request.getParameter("total")), 
@@ -96,7 +99,6 @@ public class Bill1Servlet extends HttpServlet {
 				Integer.parseInt(request.getParameter("offerID")), 
 				-1,
 				-1);
-		
 		status = billL.CreateNewBill(bill, sellerAddress, buyerAddress);
 		
 		if(!status)
